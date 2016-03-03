@@ -1,0 +1,184 @@
+﻿@model Supermarket.Models.BouquetProgram
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BouquetProgram</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionProgramBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionProgramBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.retailBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.retailBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalstemCountBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalstemCountBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.focalCountBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.focalCountBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherFocals)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherFocals)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorEnhacedFocal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorEnhacedFocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.basicStemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.basicStemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherBasic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherBasic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorenhacedBasic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorenhacedBasic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fillerStemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fillerStemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherFillerBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherFillerBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorEnhacedFiller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorEnhacedFiller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.greensStemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.greensStemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherGreenType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherGreenType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorEnhacedGreen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorEnhacedGreen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplierBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplierBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sleeveBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sleeveBP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.innerWrapBP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.innerWrapBP)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

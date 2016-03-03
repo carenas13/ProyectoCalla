@@ -1,0 +1,1078 @@
+﻿@model GalleriaDesign.Models.QualityReport
+@using GalleriaDesign.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal" id="createQualityReport">
+    <form enctype="multipart/form-data" method="post" action="@Url.Action("Create")">
+        <div id="formEncabezado">
+            @{ 
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+            }
+            <input type="hidden" id="userInspector" name="userInspector" value="@currentUser.fullName" />
+            <input type="hidden" id="reportTypeId" name="reportTypeId" value="@ViewBag.reportType.reportTypeId" />
+            <input type="hidden" id="inspectionPlace" name="inspectionPlace" value="@ViewBag.reportType.nameReportType" />
+
+
+            <h2>Create</h2>
+            <h4> @ViewBag.reportType.nameReportType Report</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+            <div class="form-group">
+                
+                <div id="dateWeb" hidden="hidden">
+                    @*<input type="date" id="dateWebPack" name="dateWebPack" />*@
+                    @Html.LabelFor(model => model.dateWebPack, "DATE WEB PACK : ", htmlAttributes: new { @class = "control-label col-md-2", @id = "date" })
+
+                    @*<label id="date" class="control-label col-md-2">DATE/FECHA:</label>*@
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.dateWebPack, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.dateWebPack, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="order" hidden="hidden">
+                <div class="form-group">
+                    @Html.Label("NUMBER ORDER:", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.numOrder, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.numOrder, "", new { @class = "text-danger" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.farmReport, "FARM/FINCA:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.farmReport, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden" } })*@
+                    @*@Html.HiddenFor(model => model.farmReport)*@
+                    @{
+                        List<SelectListItem> listItems = new List<SelectListItem>();
+                        listItems.Add(new SelectListItem { Text = "ABA-ABAX", Value = "ABA-ABAX" });
+                        listItems.Add(new SelectListItem { Text = "ACH-ACHETECORP ECUADOR SAS", Value = "ACH-ACHETECORP ECUADOR SAS" });
+                        listItems.Add(new SelectListItem { Text = "AFD-ANDEAN FIELD             ", Value = "AFD-ANDEAN FIELD             " });
+                        listItems.Add(new SelectListItem { Text = "AFI-AFI PERU FARMS           ", Value = "AFI-AFI PERU FARMS           " });
+                        listItems.Add(new SelectListItem { Text = "AGC-AGRICOLA CIRCASIA        ", Value = "AGC-AGRICOLA CIRCASIA        " });
+                        listItems.Add(new SelectListItem { Text = "AGI-AGRIROSES", Value = "AGI-AGRIROSES" });
+                        listItems.Add(new SelectListItem { Text = "AGL-AGROLIMACHE ", Value = "AGL-AGROLIMACHE " });
+                        listItems.Add(new SelectListItem { Text = "AGN-AGRINAG", Value = "AGN-AGRINAG" });
+                        listItems.Add(new SelectListItem { Text = "AGV-AGRIVALDANI", Value = "AGV-AGRIVALDANI" });
+                        listItems.Add(new SelectListItem { Text = "AGX-AGROCOEX", Value = "AGX-AGROCOEX" });
+                        listItems.Add(new SelectListItem { Text = "ALD-ALDEBARAN-ROMPEVIENTOS", Value = "ALD-ALDEBARAN-ROMPEVIENTOS" });
+                        listItems.Add(new SelectListItem { Text = "ALE-ALEXANDRA FARMS          ", Value = "ALE-ALEXANDRA FARMS          " });
+                        listItems.Add(new SelectListItem { Text = "ALR-ALPAROSES", Value = "ALR-ALPAROSES" });
+                        listItems.Add(new SelectListItem { Text = "ALT-ALTOS DE LA MIRA", Value = "ALT-ALTOS DE LA MIRA" });
+                        listItems.Add(new SelectListItem { Text = "AND-ANDALUCIA FARMS          ", Value = "AND-ANDALUCIA FARMS          " });
+                        listItems.Add(new SelectListItem { Text = "ANE-AGRICOLA NEUSA           ", Value = "ANE-AGRICOLA NEUSA           " });
+                        listItems.Add(new SelectListItem { Text = "APO-APOSENTOS FARMS          ", Value = "APO-APOSENTOS FARMS          " });
+                        listItems.Add(new SelectListItem { Text = "APW-AGROPRIM", Value = "APW-AGROPRIM" });
+                        listItems.Add(new SelectListItem { Text = "ARB-CI AGRICOLA RAIMBOW", Value = "ARB-CI AGRICOLA RAIMBOW" });
+                        listItems.Add(new SelectListItem { Text = "ARC-FIORELLA", Value = "ARC-FIORELLA" });
+                        listItems.Add(new SelectListItem { Text = "ARG-AGROGANA ECUADOR SAS", Value = "ARG-AGROGANA ECUADOR SAS" });
+                        listItems.Add(new SelectListItem { Text = "ARO-FLOR AROMA", Value = "ARO-FLOR AROMA" });
+                        listItems.Add(new SelectListItem { Text = "AST-ASTRAL ROSES             ", Value = "AST-ASTRAL ROSES             " });
+                        listItems.Add(new SelectListItem { Text = "BCW-FLORES LA CAMPIÑA", Value = "BCW-FLORES LA CAMPIÑA" });
+                        listItems.Add(new SelectListItem { Text = "BES-BEST FARMS               ", Value = "BES-BEST FARMS               " });
+                        listItems.Add(new SelectListItem { Text = "BEW-RANCHO BELLAVISTA", Value = "BEW-RANCHO BELLAVISTA" });
+                        listItems.Add(new SelectListItem { Text = "BIC-BICCO FARMS SAS          ", Value = "BIC-BICCO FARMS SAS          " });
+                        listItems.Add(new SelectListItem { Text = "BLG-FLORANDINA", Value = "BLG-FLORANDINA" });
+                        listItems.Add(new SelectListItem { Text = "BOH-BOHEMIA                  ", Value = "BOH-BOHEMIA                  " });
+                        listItems.Add(new SelectListItem { Text = "BON-BONITA FARMS             ", Value = "BON-BONITA FARMS             " });
+                        listItems.Add(new SelectListItem { Text = "BRF-FLORES RIONEGRO", Value = "BRF-FLORES RIONEGRO" });
+                        listItems.Add(new SelectListItem { Text = "BUS-BUSSINES", Value = "BUS-BUSSINES" });
+                        listItems.Add(new SelectListItem { Text = "CAI-CALIFORNIA FARMS ", Value = "CAI-CALIFORNIA FARMS " });
+                        listItems.Add(new SelectListItem { Text = "CAL-CALAFATE FARMS           ", Value = "CAL-CALAFATE FARMS           " });
+                        listItems.Add(new SelectListItem { Text = "CAM-CAMTEC", Value = "CAM-CAMTEC" });
+                        listItems.Add(new SelectListItem { Text = "CAP-CI EXPOFLORES CAPIRITO SAS", Value = "CAP-CI EXPOFLORES CAPIRITO SAS" });
+                        listItems.Add(new SelectListItem { Text = "CAT-CATALEYA FLOWERS SAS", Value = "CAT-CATALEYA FLOWERS SAS" });
+                        listItems.Add(new SelectListItem { Text = "CBD-BLOOMS DIRECT SAS", Value = "CBD-BLOOMS DIRECT SAS" });
+                        listItems.Add(new SelectListItem { Text = "CBH-CI CALLA FARMS SAS", Value = "CBH-CI CALLA FARMS SAS" });
+                        listItems.Add(new SelectListItem { Text = "CER-CERES FARMS ", Value = "CER-CERES FARMS " });
+                        listItems.Add(new SelectListItem { Text = "CNN-CULTIVOS DE NORTE        ", Value = "CNN-CULTIVOS DE NORTE        " });
+                        listItems.Add(new SelectListItem { Text = "COL-COLIBRI FARMS            ", Value = "COL-COLIBRI FARMS            " });
+                        listItems.Add(new SelectListItem { Text = "CON-LA CONCHITA FARMS        ", Value = "CON-LA CONCHITA FARMS        " });
+                        listItems.Add(new SelectListItem { Text = "COP-COOP FARM", Value = "COP-COOP FARM" });
+                        listItems.Add(new SelectListItem { Text = "COR-CORIFRESCO               ", Value = "COR-CORIFRESCO               " });
+                        listItems.Add(new SelectListItem { Text = "COS-COSMOFLOWER S.A.S", Value = "COS-COSMOFLOWER S.A.S" });
+                        listItems.Add(new SelectListItem { Text = "COT-FLORES COTOPAXI", Value = "COT-FLORES COTOPAXI" });
+                        listItems.Add(new SelectListItem { Text = "CPC-CAPIRO", Value = "CPC-CAPIRO" });
+                        listItems.Add(new SelectListItem { Text = "CRC-COSTA RICA CALLAS        ", Value = "CRC-COSTA RICA CALLAS        " });
+                        listItems.Add(new SelectListItem { Text = "CRG-CROSS FARMS BOGOTA       ", Value = "CRG-CROSS FARMS BOGOTA       " });
+                        listItems.Add(new SelectListItem { Text = "CSJ-FLORES SAN JUAN SA CI    ", Value = "CSJ-FLORES SAN JUAN SA CI    " });
+                        listItems.Add(new SelectListItem { Text = "CUA-FLORES MONSERRATE        ", Value = "CUA-FLORES MONSERRATE        " });
+                        listItems.Add(new SelectListItem { Text = "CUE-MYSTIQUE                 ", Value = "CUE-MYSTIQUE                 " });
+                        listItems.Add(new SelectListItem { Text = "CUG-TESALIA                  ", Value = "CUG-TESALIA                  " });
+                        listItems.Add(new SelectListItem { Text = "CVU-CI VUELVEN FARMS         ", Value = "CVU-CI VUELVEN FARMS         " });
+                        listItems.Add(new SelectListItem { Text = "DAI -DAIKAROS", Value = "DAI -DAIKAROS" });
+                        listItems.Add(new SelectListItem { Text = "DAL-DALI ROSES", Value = "DAL-DALI ROSES" });
+                        listItems.Add(new SelectListItem { Text = "DAM-DAMAGRO ", Value = "DAM-DAMAGRO " });
+                        listItems.Add(new SelectListItem { Text = "DEJ-DEJAVU FARMS             ", Value = "DEJ-DEJAVU FARMS             " });
+                        listItems.Add(new SelectListItem { Text = "DII-DIFIORI ", Value = "DII-DIFIORI " });
+                        listItems.Add(new SelectListItem { Text = "DIN-DINALB FARMS              ", Value = "DIN-DINALB FARMS              " });
+                        listItems.Add(new SelectListItem { Text = "ECB-ECUABOUQUETS", Value = "ECB-ECUABOUQUETS" });
+                        listItems.Add(new SelectListItem { Text = "EMH-EMIHANA ", Value = "EMH-EMIHANA " });
+                        listItems.Add(new SelectListItem { Text = "ENF-CI ENCANTO FLOWERS ", Value = "ENF-CI ENCANTO FLOWERS " });
+                        listItems.Add(new SelectListItem { Text = "EQR-EQUATOROSES", Value = "EQR-EQUATOROSES" });
+                        listItems.Add(new SelectListItem { Text = "EQU-ECUANROS", Value = "EQU-ECUANROS" });
+                        listItems.Add(new SelectListItem { Text = "ERB-EL REBANO                ", Value = "ERB-EL REBANO                " });
+                        listItems.Add(new SelectListItem { Text = "ETE-FLOR ETERNA", Value = "ETE-FLOR ETERNA" });
+                        listItems.Add(new SelectListItem { Text = "EVE-EVERGREEN ", Value = "EVE-EVERGREEN " });
+                        listItems.Add(new SelectListItem { Text = "EXF-EXPRESS FARMS", Value = "EXF-EXPRESS FARMS" });
+                        listItems.Add(new SelectListItem { Text = "EXO-EXOTIC FARMS             ", Value = "EXO-EXOTIC FARMS             " });
+                        listItems.Add(new SelectListItem { Text = "FBG-FLORES COLON LTDA        ", Value = "FBG-FLORES COLON LTDA        " });
+                        listItems.Add(new SelectListItem { Text = "FCY-FANCY FLOWERS", Value = "FCY-FANCY FLOWERS" });
+                        listItems.Add(new SelectListItem { Text = "FDC-FLODECOL", Value = "FDC-FLODECOL" });
+                        listItems.Add(new SelectListItem { Text = "FDL-FLORES DEL CAMPO", Value = "FDL-FLORES DEL CAMPO" });
+                        listItems.Add(new SelectListItem { Text = "FEE-FEEL FLOWERS", Value = "FEE-FEEL FLOWERS" });
+                        listItems.Add(new SelectListItem { Text = "FEP-FLOWER EXPRESIONS", Value = "FEP-FLOWER EXPRESIONS" });
+                        listItems.Add(new SelectListItem { Text = "FES-FLOWER EVERY DAY", Value = "FES-FLOWER EVERY DAY" });
+                        listItems.Add(new SelectListItem { Text = "FFE-FLORES FE                ", Value = "FFE-FLORES FE                " });
+                        listItems.Add(new SelectListItem { Text = "FGF-FLORIGENE ECUADOR", Value = "FGF-FLORIGENE ECUADOR" });
+                        listItems.Add(new SelectListItem { Text = "FIF-FLORIGENE FLOWERS BTA    ", Value = "FIF-FLORIGENE FLOWERS BTA    " });
+                        listItems.Add(new SelectListItem { Text = "FIR-FIORENTINA", Value = "FIR-FIORENTINA" });
+                        listItems.Add(new SelectListItem { Text = "FLI-GRUPO FLORISOL", Value = "FLI-GRUPO FLORISOL" });
+                        listItems.Add(new SelectListItem { Text = "FLO-FLORISERT FARMS          ", Value = "FLO-FLORISERT FARMS          " });
+                        listItems.Add(new SelectListItem { Text = "FLT-FLORIFRUT", Value = "FLT-FLORIFRUT" });
+                        listItems.Add(new SelectListItem { Text = "FMA-FLORES MAGICAS", Value = "FMA-FLORES MAGICAS" });
+                        listItems.Add(new SelectListItem { Text = "FMF-AGRICOLA LA MONTANA      ", Value = "FMF-AGRICOLA LA MONTANA      " });
+                        listItems.Add(new SelectListItem { Text = "FMH-FLOR MACHACHI", Value = "FMH-FLOR MACHACHI" });
+                        listItems.Add(new SelectListItem { Text = "FMR-FLORES MARAL SAS", Value = "FMR-FLORES MARAL SAS" });
+                        listItems.Add(new SelectListItem { Text = "FOD-FRUTOS LA ODISEA         ", Value = "FOD-FRUTOS LA ODISEA         " });
+                        listItems.Add(new SelectListItem { Text = "FQU-FLOREQUISA", Value = "FQU-FLOREQUISA" });
+                        listItems.Add(new SelectListItem { Text = "FRR-FLORANA", Value = "FRR-FLORANA" });
+                        listItems.Add(new SelectListItem { Text = "FSA-SAVISA", Value = "FSA-SAVISA" });
+                        listItems.Add(new SelectListItem { Text = "FSI-FLORSANI", Value = "FSI-FLORSANI" });
+                        listItems.Add(new SelectListItem { Text = "FSS-FLORES DEL SUR", Value = "FSS-FLORES DEL SUR" });
+                        listItems.Add(new SelectListItem { Text = "FTM-FLORES TIMANA            ", Value = "FTM-FLORES TIMANA            " });
+                        listItems.Add(new SelectListItem { Text = "FTU -FLORES DE TUMBABIRO ", Value = "FTU -FLORES DE TUMBABIRO " });
+                        listItems.Add(new SelectListItem { Text = "FUF-INVERPALMAS              ", Value = "FUF-INVERPALMAS              " });
+                        listItems.Add(new SelectListItem { Text = "FUL-FLORES MUNDO COLORES.", Value = "FUL-FLORES MUNDO COLORES." });
+                        listItems.Add(new SelectListItem { Text = "FWW-FLORIGENE DIR UP TO MAY13", Value = "FWW-FLORIGENE DIR UP TO MAY13" });
+                        listItems.Add(new SelectListItem { Text = "GAA-GRUPO ANDES              ", Value = "GAA-GRUPO ANDES              " });
+                        listItems.Add(new SelectListItem { Text = "GAL-FLORES DE LA GALICIA", Value = "GAL-FLORES DE LA GALICIA" });
+                        listItems.Add(new SelectListItem { Text = "GAM-MONTEVERDE               ", Value = "GAM-MONTEVERDE               " });
+                        listItems.Add(new SelectListItem { Text = "GBU-FLORES GAMBUR            ", Value = "GBU-FLORES GAMBUR            " });
+                        listItems.Add(new SelectListItem { Text = "GOL-GOLDEN ROSE", Value = "GOL-GOLDEN ROSE" });
+                        listItems.Add(new SelectListItem { Text = "GST-GREEN STAR", Value = "GST-GREEN STAR" });
+                        listItems.Add(new SelectListItem { Text = "GUT-GUTIMILKO", Value = "GUT-GUTIMILKO" });
+                        listItems.Add(new SelectListItem { Text = "GYP-GYPSO ", Value = "GYP-GYPSO " });
+                        listItems.Add(new SelectListItem { Text = "HFF-H FLOWER", Value = "HFF-H FLOWER" });
+                        listItems.Add(new SelectListItem { Text = "HOS-HOSA FARMS               ", Value = "HOS-HOSA FARMS               " });
+                        listItems.Add(new SelectListItem { Text = "HYF-FLORECOT ", Value = "HYF-FLORECOT " });
+                        listItems.Add(new SelectListItem { Text = "HYO-HYDRAFLORA SAS", Value = "HYO-HYDRAFLORA SAS" });
+                        listItems.Add(new SelectListItem { Text = "ILM-INVERSIONES LA MONTANA   ", Value = "ILM-INVERSIONES LA MONTANA   " });
+                        listItems.Add(new SelectListItem { Text = "ING-INGUEZA", Value = "ING-INGUEZA" });
+                        listItems.Add(new SelectListItem { Text = "IRS-IRIS FARMS               ", Value = "IRS-IRIS FARMS               " });
+                        listItems.Add(new SelectListItem { Text = "JAR-JARDINES DE SAN NICOLAS", Value = "JAR-JARDINES DE SAN NICOLAS" });
+                        listItems.Add(new SelectListItem { Text = "JOR-EL JORDAN", Value = "JOR-EL JORDAN" });
+                        listItems.Add(new SelectListItem { Text = "JPF-JYP FLOWERS SAS", Value = "JPF-JYP FLOWERS SAS" });
+                        listItems.Add(new SelectListItem { Text = "JUM-JUMBO ROSES", Value = "JUM-JUMBO ROSES" });
+                        listItems.Add(new SelectListItem { Text = "KUN-KUNA FLOWERS             ", Value = "KUN-KUNA FLOWERS             " });
+                        listItems.Add(new SelectListItem { Text = "LAC-CULTIVOS  LA CEJA", Value = "LAC-CULTIVOS  LA CEJA" });
+                        listItems.Add(new SelectListItem { Text = "LAH-LA HERRADURA", Value = "LAH-LA HERRADURA" });
+                        listItems.Add(new SelectListItem { Text = "LAM-FLORES DE LA MONTAÑA", Value = "LAM-FLORES DE LA MONTAÑA" });
+                        listItems.Add(new SelectListItem { Text = "LAR-EL ROSEDAL ", Value = "LAR-EL ROSEDAL " });
+                        listItems.Add(new SelectListItem { Text = "LAT-LATIN FLOWER             ", Value = "LAT-LATIN FLOWER             " });
+                        listItems.Add(new SelectListItem { Text = "LAV-FLORES LA VICTORIA", Value = "LAV-FLORES LA VICTORIA" });
+                        listItems.Add(new SelectListItem { Text = "LAX-LA AUXILIADORA ", Value = "LAX-LA AUXILIADORA " });
+                        listItems.Add(new SelectListItem { Text = "LFL-LAS FLORES FARMS         ", Value = "LFL-LAS FLORES FARMS         " });
+                        listItems.Add(new SelectListItem { Text = "LGF-LA GAITANA FARMS         ", Value = "LGF-LA GAITANA FARMS         " });
+                        listItems.Add(new SelectListItem { Text = "LTC-LATITUD 0", Value = "LTC-LATITUD 0" });
+                        listItems.Add(new SelectListItem { Text = "MAC-MACARENA FARMS           ", Value = "MAC-MACARENA FARMS           " });
+                        listItems.Add(new SelectListItem { Text = "MAG-NINTANGA", Value = "MAG-NINTANGA" });
+                        listItems.Add(new SelectListItem { Text = "MAI-MAXIROSES", Value = "MAI-MAXIROSES" });
+                        listItems.Add(new SelectListItem { Text = "MEC-MER C ROSES", Value = "MEC-MER C ROSES" });
+                        listItems.Add(new SelectListItem { Text = "MGR-MEGAROSES", Value = "MGR-MEGAROSES" });
+                        listItems.Add(new SelectListItem { Text = "MIL-MILROSES", Value = "MIL-MILROSES" });
+                        listItems.Add(new SelectListItem { Text = "MIO-MILONGA FARMS            ", Value = "MIO-MILONGA FARMS            " });
+                        listItems.Add(new SelectListItem { Text = "MIR-MIRAMONTE", Value = "MIR-MIRAMONTE" });
+                        listItems.Add(new SelectListItem { Text = "MLI-MALIMA", Value = "MLI-MALIMA" });
+                        listItems.Add(new SelectListItem { Text = "MTS-CACHIPAY  SUNFLOWERS     ", Value = "MTS-CACHIPAY  SUNFLOWERS     " });
+                        listItems.Add(new SelectListItem { Text = "MUC-MUCH FLOWERS", Value = "MUC-MUCH FLOWERS" });
+                        listItems.Add(new SelectListItem { Text = "MYC-MAYACROPS FARMS          ", Value = "MYC-MAYACROPS FARMS          " });
+                        listItems.Add(new SelectListItem { Text = "MYF-PUEMBO ", Value = "MYF-PUEMBO " });
+                        listItems.Add(new SelectListItem { Text = "MZR-CULTIVOS MANZANAREZ", Value = "MZR-CULTIVOS MANZANAREZ" });
+                        listItems.Add(new SelectListItem { Text = "NAC-CAUCA                    ", Value = "NAC-CAUCA                    " });
+                        listItems.Add(new SelectListItem { Text = "NAR-NARANJO ", Value = "NAR-NARANJO " });
+                        listItems.Add(new SelectListItem { Text = "NAT-NATUFLOR ", Value = "NAT-NATUFLOR " });
+                        listItems.Add(new SelectListItem { Text = "NEM-NEMOCON FARMS            ", Value = "NEM-NEMOCON FARMS            " });
+                        listItems.Add(new SelectListItem { Text = "NER-NEVADO ", Value = "NER-NEVADO " });
+                        listItems.Add(new SelectListItem { Text = "NOF-NORCAFE FARMS            ", Value = "NOF-NORCAFE FARMS            " });
+                        listItems.Add(new SelectListItem { Text = "OLI-OLIVARES", Value = "OLI-OLIVARES" });
+                        listItems.Add(new SelectListItem { Text = "PET-PETALUMA LTDA            ", Value = "PET-PETALUMA LTDA            " });
+                        listItems.Add(new SelectListItem { Text = "PFC-PLANTAS Y FLORES         ", Value = "PFC-PLANTAS Y FLORES         " });
+                        listItems.Add(new SelectListItem { Text = "PHT-PHYTOTEC FARMS           ", Value = "PHT-PHYTOTEC FARMS           " });
+                        listItems.Add(new SelectListItem { Text = "PIA-PIANGO ", Value = "PIA-PIANGO " });
+                        listItems.Add(new SelectListItem { Text = "PLA-BAZZANI                  ", Value = "PLA-BAZZANI                  " });
+                        listItems.Add(new SelectListItem { Text = "PLR-PLATINUN ROSES", Value = "PLR-PLATINUN ROSES" });
+                        listItems.Add(new SelectListItem { Text = "PQR-WAYUU FLOWERS - PQR ROSES", Value = "PQR-WAYUU FLOWERS - PQR ROSES" });
+                        listItems.Add(new SelectListItem { Text = "PRF-FLORES Y FOLLAJES FARM   ", Value = "PRF-FLORES Y FOLLAJES FARM   " });
+                        listItems.Add(new SelectListItem { Text = "PRO-PROTEAS DEL SOL ", Value = "PRO-PROTEAS DEL SOL " });
+                        listItems.Add(new SelectListItem { Text = "PRR-PRINCESS FARMS ", Value = "PRR-PRINCESS FARMS " });
+                        listItems.Add(new SelectListItem { Text = "QUI-QUIRAMA", Value = "QUI-QUIRAMA" });
+                        listItems.Add(new SelectListItem { Text = "R&R-ROSES & ROSES", Value = "R&R-ROSES & ROSES" });
+                        listItems.Add(new SelectListItem { Text = "RED-REDIL FARMS              ", Value = "RED-REDIL FARMS              " });
+                        listItems.Add(new SelectListItem { Text = "RFD-FLORES SANTA FE LTDA     ", Value = "RFD-FLORES SANTA FE LTDA     " });
+                        listItems.Add(new SelectListItem { Text = "RGC-FLORES MARAVILLA SA      ", Value = "RGC-FLORES MARAVILLA SA      " });
+                        listItems.Add(new SelectListItem { Text = "RIF-RAINFOREST FARMS         ", Value = "RIF-RAINFOREST FARMS         " });
+                        listItems.Add(new SelectListItem { Text = "RLD-LA ROSALEDA", Value = "RLD-LA ROSALEDA" });
+                        listItems.Add(new SelectListItem { Text = "RLM-ROSAS LA MARTINA SAS", Value = "RLM-ROSAS LA MARTINA SAS" });
+                        listItems.Add(new SelectListItem { Text = "ROG-SABANILLA SAS            ", Value = "ROG-SABANILLA SAS            " });
+                        listItems.Add(new SelectListItem { Text = "ROH-ORNAMENTALES COL", Value = "ROH-ORNAMENTALES COL" });
+                        listItems.Add(new SelectListItem { Text = "ROM-ROSELAND FARMS           ", Value = "ROM-ROSELAND FARMS           " });
+                        listItems.Add(new SelectListItem { Text = "ROO-ROOTS PERU               ", Value = "ROO-ROOTS PERU               " });
+                        listItems.Add(new SelectListItem { Text = "RRG-GLAMOUR", Value = "RRG-GLAMOUR" });
+                        listItems.Add(new SelectListItem { Text = "RSQ-ROSALQUEZ", Value = "RSQ-ROSALQUEZ" });
+                        listItems.Add(new SelectListItem { Text = "RSS-ROSE SUCCESS", Value = "RSS-ROSE SUCCESS" });
+                        listItems.Add(new SelectListItem { Text = "RTI-TUCAN ROSES              ", Value = "RTI-TUCAN ROSES              " });
+                        listItems.Add(new SelectListItem { Text = "RVG-VEGAFLOR ", Value = "RVG-VEGAFLOR " });
+                        listItems.Add(new SelectListItem { Text = "SAG-SAGARO FARMS             ", Value = "SAG-SAGARO FARMS             " });
+                        listItems.Add(new SelectListItem { Text = "SBT-SB TALEE FARMS           ", Value = "SBT-SB TALEE FARMS           " });
+                        listItems.Add(new SelectListItem { Text = "SFG-SAN FRANCISCO GARDEN", Value = "SFG-SAN FRANCISCO GARDEN" });
+                        listItems.Add(new SelectListItem { Text = "SIL-FLOWER SILVESTRE", Value = "SIL-FLOWER SILVESTRE" });
+                        listItems.Add(new SelectListItem { Text = "SIS-SISARI FARMS", Value = "SIS-SISARI FARMS" });
+                        listItems.Add(new SelectListItem { Text = "SKF-SKF", Value = "SKF-SKF" });
+                        listItems.Add(new SelectListItem { Text = "SKY-SKY VALLEY ", Value = "SKY-SKY VALLEY " });
+                        listItems.Add(new SelectListItem { Text = "SOF-SOFIS FARMS ", Value = "SOF-SOFIS FARMS " });
+                        listItems.Add(new SelectListItem { Text = "SUA-AGRICOLA SUATI           ", Value = "SUA-AGRICOLA SUATI           " });
+                        listItems.Add(new SelectListItem { Text = "SUN-VALLEFLOR", Value = "SUN-VALLEFLOR" });
+                        listItems.Add(new SelectListItem { Text = "TAH-TAHAMI", Value = "TAH-TAHAMI" });
+                        listItems.Add(new SelectListItem { Text = "TEC-TEUCALI                  ", Value = "TEC-TEUCALI                  " });
+                        listItems.Add(new SelectListItem { Text = "TES-TESSA ROSES", Value = "TES-TESSA ROSES" });
+                        listItems.Add(new SelectListItem { Text = "TOA-FLORES TOACASO ", Value = "TOA-FLORES TOACASO " });
+                        listItems.Add(new SelectListItem { Text = "TRE-TREASURE FARMS", Value = "TRE-TREASURE FARMS" });
+                        listItems.Add(new SelectListItem { Text = "UNQ-UNIQUE COLLECTION SA     ", Value = "UNQ-UNIQUE COLLECTION SA     " });
+                        listItems.Add(new SelectListItem { Text = "VAL-FLORES VALDAYA           ", Value = "VAL-FLORES VALDAYA           " });
+                        listItems.Add(new SelectListItem { Text = "VDF-VERDIFRATI               ", Value = "VDF-VERDIFRATI               " });
+                        listItems.Add(new SelectListItem { Text = "VER-VERAFLOWERS", Value = "VER-VERAFLOWERS" });
+                        listItems.Add(new SelectListItem { Text = "VIL-VILLANELLY FLOWERS SAS", Value = "VIL-VILLANELLY FLOWERS SAS" });
+                        listItems.Add(new SelectListItem { Text = "YBE-JARDINES DE CAYAMBE", Value = "YBE-JARDINES DE CAYAMBE" });
+                        listItems.Add(new SelectListItem { Text = "YOT-YOTEMA FARMS             ", Value = "YOT-YOTEMA FARMS             " });
+                        listItems.Add(new SelectListItem { Text = "ZVO-ZAPAD VOSTOK", Value = "ZVO-ZAPAD VOSTOK" });
+                    }
+
+                    @Html.DropDownListFor(model => model.farmReport, listItems, htmlAttributes: new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.farmReport, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" id="awbNum">
+                @Html.LabelFor(model => model.awbNumber, "AWB NUMBER:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.awbNumber, new { htmlAttributes = new { @class = "form-control", @maxlength = "4" } })
+                    @Html.ValidationMessageFor(model => model.awbNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+           
+
+            <div  class="form-group">
+                @Html.LabelFor(model => model.customer, "CUSTOMER/CLIENTE:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.customer, new { htmlAttributes = new { @class = "form-control", @onchange = "validarCampo(this)" } })
+                    @Html.ValidationMessageFor(model => model.customer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="Prod" class="form-group">
+                @Html.LabelFor(model => model.flower, "PRODUCT/PRODUCTO:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.flower, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.flower, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div id="box" hidden="hidden">
+                <div class="form-group">
+                    @Html.Label("# BOXES:", htmlAttributes: new { @class = "control-label col-md-2", @id = "etiquetaBoxBunch" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @class = "form-control", @onkeyup = "calFieldTot()" } })
+
+                        @Html.ValidationMessageFor(model => model.qty, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div id="boxesInspected" hidden="hidden">
+                <div class="form-group">
+                    @Html.Label("BOXES INSPECTED:", htmlAttributes: new { @class = "control-label col-md-2", @id = "boxesInspected" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.boxesInspected, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.boxesInspected, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="addFields" hidden="hidden">
+
+
+                <div class="form-group">
+                    @Html.Label("BUNCH/BOX:", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.bunchBox, new { htmlAttributes = new { @class = "form-control", @onkeyup = "calFieldTot()" } })
+
+                        @Html.ValidationMessageFor(model => model.bunchBox, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("TOTAL BUNCH:", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+
+                        <input type="number" id="totalBunch" name="totalBunch" hidden="hidden" />
+                        <input type="number" id="tBunch" name="tBunch" disabled="disabled" class="form-control" />
+                        @*@Html.EditorFor(model => model.totalBunch, new { htmlAttributes = new { @class = "form-control"} })*@
+
+                        @Html.ValidationMessageFor(model => model.totalBunch, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("BUNCHES REJECTED:", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.bunchInspected, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.bunchInspected, "", new { @class = "text-danger" })
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="btn_report">
+                <a data-toggle="modal" class="btn btn-primary" href="#modal-form2">Report</a>
+            </div>
+
+            <div id="btn_create" hidden="hidden">
+                <input type="submit" value="Create" class="btn btn-primary " onclick="isTrue()" hidden="hidden" />
+            </div>
+
+
+
+        </div>
+
+
+
+        <!--maestros de modales-->
+
+        <div id="maestros" hidden="hidden">
+            <input id="imageEstandar" name="image" onchange="loadFotos(this)" accept="image/*" type="file" multiple="true" capture />
+            <input type="hidden" id="typeImage" name="typeImage">
+            <input type="text" id="foto">
+            <canvas id="canvasfotos" name="canvasfotos" class="img-responsive"></canvas>
+            @*<img id="foto"/>*@
+
+        </div>
+
+
+        <!-- modales responsive-->
+        @{
+            int idx1 = 0;
+            int modalNext = 2;
+            int total = 1;
+            bool titulo = true;
+            foreach (var itemType in ViewBag.problemTypeList)
+            {
+                <div id="@string.Format("modal-form{0}", modalNext)" name="modalQuality" class="modal fade" aria-hidden="true">
+
+                    <div class="modal-dialog">
+                        <div id="modalFoto" name="modalFoto" class="modal-content">
+                            <input type="hidden" id="modalAnterior" name="modalAnterior" value="@itemType.typeProblemID" />
+                            <div class="modal-header">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h1 class="modal-title">
+                                            @itemType.descritpionProblem
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                @if (ViewBag.reportType.reportTypeId != 5)
+                                {
+                                    foreach (var item in ViewBag.problemList)
+                                    {
+                                        if (item.typeProblemID == itemType.typeProblemID)
+                                        {
+
+                                            <div class="row">
+
+                                                <input type="hidden" class="form-control" id="ProblemID"
+                                                       name="@string.Format("[{0}].problemID", idx1)"
+                                                       value=@item.problemID>
+
+                                                <div class="col-md-12">
+                                                    <div class="checkbox i-checks btn-lg">
+
+                                                        <h3>
+                                                            <input type="checkbox" id="answerInspection"
+                                                                   name="@string.Format("[{0}].answerInspection", idx1)" style="height: 30px; width: 30px; margin-right: 10px;" />
+                                                            @item.descritpionProblem
+                                                        </h3>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            idx1++;
+                                        }
+                                    }
+                                    <div class="row" id="fotoP" name="fotoP">
+                                        <div class="col-md-6">
+
+
+                                            <input id="image" name="image" onchange="loadFotos(this)" accept="image/*" type="file" style="width:10px;" multiple="true" capture />
+
+                                        </div>
+                                        <div class="col-md-12">
+
+                                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                                            <div name="mostarFotos">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                                else {
+
+                                    foreach (var item in ViewBag.problemList)
+                                    {
+                                        if (item.typeProblemID == itemType.typeProblemID)
+                                        {
+
+                                            <div class="row">
+
+                                                <input type="hidden" class="form-control" id="ProblemID"
+                                                       name="@string.Format("[{0}].problemID", idx1)"
+                                                       value=@item.problemID>
+
+                                                <div class="col-md-12">
+                                                    <div class="checkbox i-checks btn-lg">
+
+                                                        <h3>
+                                                            <input type="checkbox" id="answerInspection"
+                                                                   name="@string.Format("[{0}].answerInspection", idx1)" style="height: 30px; width: 30px; margin-right: 10px;" />
+                                                            @item.descritpionProblem
+                                                        </h3>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            idx1++;
+                                        }
+                                    }
+                                    <div class="row" id="fotoP" name="fotoP">
+                                        <input type="hidden" id="modalAnterior" name="modalAnterior" value="@itemType.typeProblemID" />
+                                        <div class="col-md-6">
+
+
+                                            <input id="image" name="image" onchange="loadFotosProductionNew(this)" accept="image/*" type="file" style="width:10px;" multiple="true" capture />
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                                            <div name="mostarFotos">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" align="center">
+                                            <a data-toggle="modal" id="snap1"
+                                               onclick="takePictureProductionNew(this,1)"
+                                               title="Take a Picture"
+                                               class="btn btn-success  btn-circle btn-lg center-block"
+                                               style="background-color: #449D44">
+                                                <i class="glyphicon glyphicon-camera"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <HR width=80% align="center">
+                                    <div class="row" id="fotoP" name="fotoP">
+
+
+                                        @foreach (var item in ViewBag.problemList)
+                                        {
+                                            if (item.typeProblemID != itemType.typeProblemID && titulo)
+                                            {
+                                                <div class="col-md-6">
+
+                                                    <div class="row">
+
+                                                        <input type="hidden" class="form-control" id="ProblemID"
+                                                               name="@string.Format("[{0}].problemID", idx1)"
+                                                               value=@item.problemID>
+
+                                                        <div class="col-md-12">
+                                                            <div class="checkbox i-checks btn-lg">
+
+                                                                <h3>
+                                                                    <input type="checkbox" id="answerInspection"
+                                                                           name="@string.Format("[{0}].answerInspection", idx1)" style="height: 30px; width: 30px; margin-right: 10px;" />
+                                                                    @item.descritpionProblem
+                                                                </h3>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row" name="fotoP" align="center">
+                                                        <input type="hidden" id="modalAnterior" name="modalAnterior" value="@item.typeProblemID" />
+                                                        <input id="image" name="image" onchange="loadFotosProductionNew(this)" accept="image/*" type="file" style="width:10px;" multiple="true" capture />
+                                                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                                                        <div name="mostarFotos">
+
+                                                        </div>
+                                                        <a data-toggle="modal" id="snap1"
+                                                           onclick="takePictureProductionNew(this)"
+                                                           title="Take a Picture"
+                                                           class="btn btn-success  btn-circle btn-lg center-block"
+                                                           style="background-color: #449D44">
+                                                            <i class="glyphicon glyphicon-camera"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                idx1++;
+                                                titulo = false;
+                                            }
+                                            else {
+                                                if (item.typeProblemID != itemType.typeProblemID)
+                                                {
+                                                    <div class="col-md-6">
+
+                                                        <div class="row">
+
+                                                            <input type="hidden" class="form-control" id="ProblemID"
+                                                                   name="@string.Format("[{0}].problemID", idx1)"
+                                                                   value=@item.problemID>
+
+                                                            <div class="col-md-12">
+                                                                <div class="checkbox i-checks btn-lg">
+
+                                                                    <h3>
+                                                                        <input type="checkbox" id="answerInspection"
+                                                                               name="@string.Format("[{0}].answerInspection", idx1)" style="height: 30px; width: 30px; margin-right: 10px;" />
+                                                                        @item.descritpionProblem
+                                                                    </h3>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row" name="fotoP" align="center">
+                                                            <input type="hidden" id="modalAnterior" name="modalAnterior" value="@item.typeProblemID" />
+                                                            <input id="image" name="image" onchange="loadFotosProductionNew(this)" accept="image/*" type="file" style="width:10px;" multiple="true" capture />
+                                                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                                                            <div name="mostarFotos">
+
+                                                            </div>
+                                                            <a data-toggle="modal" id="snap1"
+                                                               onclick="takePictureProductionNew(this)"
+                                                               title="Take a Picture"
+                                                               class="btn btn-success  btn-circle btn-lg"
+                                                               style="background-color: #449D44">
+                                                                <i class="glyphicon glyphicon-camera"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    idx1++;
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+
+
+
+
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                @if (total == ViewBag.problemTypeList.Count)
+                                {
+
+
+
+                                    <a data - toggle="modal" class="btn btn-primary btn-lg pull-left" onclick="cerrarModal(this)" href="@string.Format("#modal-form{0}", modalNext-1)">
+                                        <span class="glyphicon glyphicon-arrow-left"></span> Previous
+                                    </a>
+
+                                    if (ViewBag.reportType.reportTypeId != 5)
+                                    {
+                                        <a data-toggle="modal" id="snap1"
+                                           onclick="takePicture(this)"
+                                           title="Take a Picture"
+                                           class="btn btn-success  btn-circle btn-lg"
+                                           style="background-color: #449D44">
+                                            <i class="glyphicon glyphicon-camera"></i>
+                                        </a>
+                                    }
+
+                                    <a data-toggle="modal" class="btn btn-primary btn-lg" onclick="modalCommentsOpen()" title="Add comments">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+
+
+                                    //Prueba
+                                    if (ViewBag.reportType.reportTypeId != 5)
+                                    {
+                                        <a data-toggle="modal" class="btn btn-primary btn-lg pull-right" onclick="viewFields()" data-dismiss="modal">
+                                            <span class="glyphicon glyphicon-arrow-right"></span> Next
+                                        </a>
+                                    }
+                                    else {
+                                        <a id="bntNext" data-toggle="modal" class="btn btn-primary btn-lg pull-right" onclick="viewFields()" data-dismiss="modal" disabled="disabled">
+                                            <span class="glyphicon glyphicon-arrow-right"></span> Next
+                                        </a>
+
+                                    }
+
+                                }
+                                else
+                                {
+
+
+                                    <a data-toggle="modal" class="btn btn-primary btn-lg pull-left" onclick="cerrarModal(this)" href="@string.Format("#modal-form{0}", modalNext-1)">
+                                        <span class="glyphicon glyphicon-arrow-left"></span> Previous
+                                    </a>
+
+
+
+                                                <a data-toggle="modal" id="snap"
+                                                   onclick="takePicture(this)"
+                                                   title="Take a Picture"
+                                                   class="btn btn-success  btn-circle btn-lg"
+                                                   style="background-color: #449D44">
+                                                    <i class="glyphicon glyphicon-camera"></i>
+                                                </a>
+
+
+
+                                                <a data-toggle="modal" class="btn btn-primary btn-lg pull-right" onclick="cerrarModal(this)" href="@string.Format("#modal-form{0}", modalNext+1)">
+                                                    <span class="glyphicon glyphicon-arrow-right"></span> Next
+                                                </a>
+
+
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                total++;
+                modalNext++;
+            }
+        }
+
+        <!-- modales responsive-->
+
+
+        <div id="ModalComments" name="ModalComments" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="modal-title">
+                                    Comments
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+
+                        @*<div class="row" id="preubaF">*@
+
+                        @*<div class="col-md-12">*@
+                        <textarea id="commentsReport" name="commentsReport" rows="4" maxlength="400" class="form-control"></textarea>
+                        @*@Html.TextAreaFor(model => model.commentsReport, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        @*</div>
+
+                            </div>*@
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-azul" onclick="deleteComments()">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-azul" data-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--maestros de modales-->
+
+
+    </form>
+
+
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var REPORTYPE = "";
+        var mostrarCampos = false;
+        var QCMIAMI = 1;
+        var QCPRODUCTIONMIAMI = 4;
+        var QCFARMS = 3;
+        var QCMM2SOLITARY = 2;
+        var QCPRODUCTIONMIAMINEW = 5;
+
+        //funcion para iniciar los modales de la inspeccion y mostrar los 
+        // campos de la inspeccio QC Quick Rose Report
+        $(document).ready(function () {
+            
+            $("#modal-form2").modal("show");
+   
+            if ($("#reportTypeId").val() == QCPRODUCTIONMIAMINEW) {
+
+                $("#awbNum").attr("hidden", "hidden");
+                $("#dateRepor").attr("hidden", "hidden");
+                $("#Prod").attr("hidden", "hidden");
+                $("#flower").val("ROSAS");
+
+            }
+        })
+        /// Funcion para mostrar campos
+        function viewBoxBuch() {
+
+            if (mostrarCampos === true) {
+                viewFields();
+            }
+
+        }
+
+        function viewFields() {
+            mostrarCampos = true;
+
+            if (mostrarCampos === true) {
+
+                if ($("#reportTypeId").val() == QCMIAMI || $("#reportTypeId").val() == QCMM2SOLITARY) {
+                    $("#box").removeAttr("hidden");
+                    $("#addFields").attr("hidden", "hidden")
+                    $("#order").attr("hidden", "hidden")
+                    $("#box").removeAttr("hidden");
+                    $("#boxesInspected").removeAttr("hidden");
+
+                }
+                else if ($("#reportTypeId").val() == QCFARMS) {
+                    $("#box").removeAttr("hidden");
+                    $("#addFields").attr("hidden", "hidden")
+                    $("#order").removeAttr("hidden");
+                    $("#boxesInspected").removeAttr("hidden");
+                }
+                else if ($("#reportTypeId").val() == QCPRODUCTIONMIAMI) {
+                    $("#box").removeAttr("hidden");
+                    $("#addFields").removeAttr("hidden");
+
+                    $("#order").attr("hidden", "hidden")
+                    $("#boxesInspected").attr("hidden", "hidden");
+                }
+            }
+            $("#btn_report").attr("hidden", "hidden");
+            //btn_report.style.visibility = "hidden";
+            $("#btn_create").removeAttr("hidden");
+
+        }
+
+        function calFieldTot() {
+
+
+            if ($("#qty").val() != "" && $("#bunchBox").val() != "") {
+                $("#totalBunch").val($("#qty").val() * $("#bunchBox").val());
+                $("#tBunch").val($("#qty").val() * $("#bunchBox").val());
+
+            }
+            else {
+                $("#totalBunch").val("");
+                $("#tBunch").val("");
+            }
+        }
+
+        //function selectFarm() {
+        //    $("#farmReport").val($("#SelectFarmReport option:selected").text());
+        //    $("#farmReport").val();
+        //}
+
+        //function modalClose(botonModal,modal) {
+        //   $(botonModal).closest("div[name^='modalQuality']").modal("hide");
+
+        //}
+
+        function cerrarModal(botonModal) {
+            $(botonModal).closest("div[name^='modalQuality']").modal("hide");
+            siguiente();
+        }
+        function modalCommentsOpen() {
+            $("#ModalComments").modal("show");
+           // $("#preubaF").append($("#fotoP"));
+        }
+        function deleteComments() {
+            $("#commentsReport").val(null);
+            $("#ModalComments").modal("hide");
+
+        }
+        var actual = 1;
+        //var limpiarFoto = $("#tomarFoto")[0].cloneNode(true);
+        function siguiente() {
+                $("#modal-form2").modal("hide")
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                // Borramos el área que nos interese
+                ctx.clearRect(0, 0, 420, 240);
+
+
+          //  }
+                $("#maestros").append($("#body").find("div[name^='problems']"));
+
+
+                $("#maestros").find("div[name^='problems']").each(function (ind, modal) {
+                    if ($(modal).find("input[name^='modalActual']").val() == actual) {
+                        $("#body").append(modal);
+                    }
+
+                });
+
+
+
+                if (actual <= $("#maestros").find("div[name^='problems']").length) {
+                    actual++;
+                } else {
+                    $("#btnNext").attr("hidden", "hidden");
+                    $("#btonCreate").removeAttr("hidden");
+                }
+
+
+        }
+        var abriModal = true;
+
+        function anterior() {
+            $("#modal-form2").modal("hide")
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            // Borramos el área que nos interese
+            ctx.clearRect(0, 0, 420, 240);
+            if (actual > $("#maestros").find("div[name^='problems']").length) {
+                $("#btonCreate").attr("hidden", "hidden");
+                $("#btnNext").removeAttr("hidden");
+            }
+            $("#maestros").append($("#body").find("div[name^='problems']"));
+
+
+
+            if (actual >1 ) {
+                actual--;
+
+            } else {
+               // $("#modal-form2").modal("hide");
+                $("#modal-form1").modal("show");
+            }
+
+            $("#maestros").find("div[name^='problems']").each(function (ind, modal) {
+                if ($(modal).find("input[name^='modalActual']").val() == actual) {
+                    $("#body").append(modal);
+                }
+
+            });
+
+
+        }
+        /// funcion para asignarle el valor de verdaderos a los checbox de respuestas de los problemas
+        function isTrue() {
+
+            $("#createQualityReport").find("input[name*='answerInspection']").each(function (ind, respuesta) {
+
+                if (respuesta.checked) {
+                    $(respuesta).val("true");
+                }
+            });
+
+
+        }
+
+        function cerrarModal(btonNext) {
+
+            $(btonNext).closest("div[name*='modalQuality']").modal("hide");
+
+        }
+
+        function takePicture(btnCamera) {
+
+            $(btnCamera).closest("div[name^=modalFoto]").find("input[name^=image]").click();
+
+           // $('#image').click();
+
+        }
+        // tomar foto reporte producion new
+        var SUMARFOTOS;
+        var CANTIDADFOTOS = 0;
+        var generarReporteProblem = false;
+        var generarReporteCodigoBarras = false;
+        function takePictureProductionNew(btnCamera, camaraProblemas) {
+
+            if (camaraProblemas == 1) {
+                SUMARFOTOS = camaraProblemas;
+                if (CANTIDADFOTOS < 3) {
+                    $(btnCamera).closest("div[name^=fotoP]").find("input[name^=image]").click();
+                    generarReporteProblem = true;
+                }
+                else {
+                    $(btnCamera).closest("div[name^=fotoP]").find("input[name^=image]").click();
+                    $(btnCamera).attr("disabled", "disabled");
+                }
+            }
+            else {
+                generarReporteCodigoBarras = true;
+                SUMARFOTOS = camaraProblemas;
+                $(btnCamera).closest("div[name^=fotoP]").find("input[name^=image]").click();
+                $(btnCamera).attr("disabled", "disabled");
+            }
+
+            if (generarReporteProblem && generarReporteCodigoBarras) {
+                $("#bntNext").removeAttr("disabled");
+            }
+            // $('#image').click();
+
+        }
+
+
+        ///// tomar foto///
+        function loadFotos(Camera) {
+
+            var input = Camera;
+            var file = input.files[0];
+          //  drawOnCanvas(file, $(Camera).closest("div[name^=modalFoto]"));
+          //  guardarFotos($(Camera).closest("div[name^=modalFoto]"));
+
+            $(input.files).each(function (int, imagen) {
+                drawOnCanvas(imagen, $(Camera).closest("div[name^=modalFoto]"));
+               // guardarFotos($(Camera).closest("div[name^=modalFoto]"));
+            });
+
+
+        }
+        //tommar foto production new
+        function loadFotosProductionNew(Camera) {
+
+            var input = Camera;
+            var file = input.files[0];
+            drawOnCanvas(file, $(Camera).closest("div[name^=fotoP]"));
+            guardarFotos($(Camera).closest("div[name^=fotoP]"));
+        }
+
+        var cantFotos=0;
+        function guardarFotos(inputFile) {
+            var pictureType = $("#typeImage")[0].cloneNode(true);
+            $(pictureType).attr("name", "[" + cantFotos + "].typeImage");
+            $(pictureType).val($(inputFile).find("input[name^=modalAnterior]").val());
+            $("#maestros").append(pictureType);
+        }
+
+        function drawOnCanvas(file,inputPicture) {
+            var reader = new FileReader();
+            //  var canvas = $(inputPicture).find("canvas[name^='canvas']")[0];
+            var canvas = $("#canvasfotos")[0];
+            canvasfotos
+            var ctx = canvas.getContext('2d');
+           
+            reader.onload = function (e) {
+                var dataURL = e.target.result,
+                   // canvas = $(file).closest("div[name^='fotoP']").find("canvas[name^='canvas']")[0], // see Example 4
+                   // ctx = canvas.getContext('2d'),
+                    img = new Image();
+
+                img.onload = function () {
+                   // ctx.drawImage(img, 0, 0, 354, 354);
+                    var canvasFoto = canvas.cloneNode(true);
+                    canvasFoto.width = 400;
+                    canvasFoto.height = 400;
+                    $(inputPicture).find("div[name^='mostarFotos']").append(canvasFoto);
+                    $(canvasFoto).attr("name", "fotoFormacion");
+                    var ctx1 = canvasFoto.getContext('2d');
+                    ctx1.drawImage(img, 0, 0, 354, 354);
+                    var foto = canvasFoto.toDataURL("image/png").replace('data:image/png;base64,', '');
+                    var pictureSave = $("#foto")[0].cloneNode(true);
+                    $(pictureSave).attr("name", "[" + cantFotos + "].image");
+                    $("#maestros").append(pictureSave);
+                    //$(pictureSave).attr("src", foto);
+                    $(pictureSave).val(foto);
+                    guardarFotos(inputPicture);
+                    cantFotos++;
+                    if (SUMARFOTOS == 1) {
+                        CANTIDADFOTOS++;
+                    }
+                };
+
+                img.src = dataURL;
+            };
+
+            reader.readAsDataURL(file);
+
+           // tomarImagen();
+        }
+
+        function validarCampo(btnEntetr) {
+            var press = jQuery.Event("keydown");
+            press.which = 13;
+            $(btnEntetr).trigger(press);
+        }
+
+
+
+    </script>
+
+
+
+}
+
+
+
+
+
+

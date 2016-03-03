@@ -1,0 +1,90 @@
+﻿@model Supermarket.Models.InspecctionSupermarket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InspecctionSupermarket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bouquetProgram.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bouquetProgram.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorEnhaced.nameColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorEnhaced.nameColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumerBunchProgram.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumerBunchProgram.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roseProgram.programDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roseProgram.programDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sleeveType.nameSleeve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sleeveType.nameSleeve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeExecution.idStoreExecution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeExecution.idStoreExecution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeInformation.otherRetailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeInformation.otherRetailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.nameSupplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.nameSupplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.additionalComents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.additionalComents)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idInspecctionSupermarket }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

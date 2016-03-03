@@ -1,0 +1,33 @@
+﻿@model GalleriaDesign.Models.UserGalleria
+
+@{
+    ViewBag.Title = "seeRolesUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <h2>Roles to  User @Model.userName </h2>
+    <hr />
+
+       
+        <table id="tbSeerole" class="table table-striped table-bordered table-responsive" cellspacing="0">
+            @foreach (var item in Model.roles)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nameRol)
+                    </td>
+                    
+                    <td>  
+                        @Html.ActionLink("Delete", "deleteRoleUser", new {idUser=Model.IDUser, idRol=item.IdRol})
+                    </td>
+                </tr>
+            }
+            </table>
+</div>
+<p>
+    @Html.ActionLink("add Role User", "addRolesUser", new { id = Model.IDUser }, htmlAttributes: new { @class = "btn btn-success" }) 
+</p>

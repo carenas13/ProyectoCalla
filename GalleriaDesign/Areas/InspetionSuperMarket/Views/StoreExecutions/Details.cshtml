@@ -1,0 +1,76 @@
+﻿@model Supermarket.Models.StoreExecution
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StoreExecution</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.coolerTemperature.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coolerTemperature.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exposureClient.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exposureClient.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flowerPerfomance.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flowerPerfomance.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.overallFloralExecution.nameOverall)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.overallFloralExecution.nameOverall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pullDates.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pullDates.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.waterState.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waterState.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.waterTemperature.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waterTemperature.description)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idStoreExecution }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<GalleriaDesign.Models.QualityReport>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dateReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.farmReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.awbNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qty)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateReport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.farmReport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awbNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.flower)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qty)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.qualityReportID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.qualityReportID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.qualityReportID }) |
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emailsBody.emailFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.farmReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.awbNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inspectionPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.commentsReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userInspector)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailsBody.emailFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.farmReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.awbNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inspectionPlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.commentsReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userInspector)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.qualityReportID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.qualityReportID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.qualityReportID })
+        </td>
+    </tr>
+}
+
+</table>*@

@@ -1,0 +1,51 @@
+﻿@model GalleriaDesign.Models.Emails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Emails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.emailsBody.emailFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailsBody.emailFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userIsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userIsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addressEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addressEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.emailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

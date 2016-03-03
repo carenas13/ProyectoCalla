@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Supermarket.Models.PullDates>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Product Pull Date</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idPullDates }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idPullDates }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idPullDates })
+        </td>
+    </tr>
+}
+
+</table>

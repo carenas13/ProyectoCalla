@@ -1,0 +1,136 @@
+﻿@model Supermarket.Models.RoseProgram
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RoseProgram</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.headSize.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.headSize.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stemLength.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stemLength.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bunchRetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bunchRetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.innerWrap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.innerWrap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.retailBouquet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.retailBouquet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalStem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalStem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roseStem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roseStem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fillerStemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fillerStemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherFiller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherFiller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.greemsStemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.greemsStemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplierBouquet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplierBouquet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherGreenType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherGreenType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

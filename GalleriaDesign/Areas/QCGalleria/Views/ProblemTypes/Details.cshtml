@@ -1,0 +1,35 @@
+﻿@model GalleriaDesign.Models.ProblemType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProblemType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descritpionProblem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descritpionProblem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActivo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.typeProblemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

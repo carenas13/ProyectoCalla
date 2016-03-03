@@ -1,0 +1,148 @@
+﻿@model IEnumerable<GalleriaDesign.Models.ProblemType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table  id="tableProblemType" class="table table-striped table-bordered table-responsive" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.descritpionProblem)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.isActivo)
+            </th>*@
+            @foreach (var itemType in ViewBag.reportTypes)
+            {
+                <th>
+                    @itemType.nameReportType
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.descritpionProblem)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.isActivo)
+            </th>*@
+            @foreach (var itemType in ViewBag.reportTypes)
+            {
+                <th>
+                    @itemType.nameReportType
+                </th>
+            }
+            <th></th>
+        </tr>
+
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descritpionProblem)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.isActivo)
+                </td>*@
+                @{
+
+                    Boolean seleccionarCheckBox = false;
+                    int problemByReportsID = 0;
+                    foreach (var itemType in ViewBag.reportTypes)
+                    {
+                        foreach (var itemProblemsByReport in ViewBag.ProblemTypeByReports)
+                        {
+                            if (itemProblemsByReport.reportTypeId == itemType.reportTypeId && itemProblemsByReport.typeProblemID == item.typeProblemID)
+                            {
+                                seleccionarCheckBox = true;
+                                problemByReportsID = itemProblemsByReport.problemTypeByReportID;
+                            }
+
+                        }
+                        if (seleccionarCheckBox)
+                        {
+                            <td>
+                                <input type="checkbox" id="asignarReportType" onchange="asignarReportType(this)" checked="checked" />
+                                <input type="hidden" id="reportTypeID" name="reportTypeID" value="@itemType.reportTypeId" />
+                                <input type="hidden" id="typeProblemID" name="typeProblemID" value="@item.typeProblemID" />
+                                <input type="hidden" id="problemByReportsID" name="problemByReportsID" value="@problemByReportsID" />
+
+                            </td>
+                            seleccionarCheckBox = false;
+                        }
+                        else {
+                            <td>
+                                <input type="checkbox" id="asignarReportType" onchange="asignarReportType(this)" />
+                                <input type="hidden" id="reportTypeID" name="reportTypeID" value="@itemType.reportTypeId" />
+                                <input type="hidden" id="typeProblemID" name="typeProblemID" value="@item.typeProblemID" />
+                                <input type="hidden" id="problemByReportsID" name="problemByReportsID" />
+                            </td>
+
+
+                        }
+                    }
+                }
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.typeProblemID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.typeProblemID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.typeProblemID })
+                </td>
+            </tr>
+                    }
+    </tbody>
+</table>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tableProblemType').dataTable({
+            })});
+        //funcion para realizar la relacion entre tipos de problemas y tipos de reportes
+        function asignarReportType(checBoxCelda) {
+
+            var reportTypeId = $(checBoxCelda).closest("td").find("input[name=reportTypeID]").val();
+            var problemID = $(checBoxCelda).closest("td").find("input[name=typeProblemID]").val();
+
+            var data_caso = "";
+            data_caso += "&reportTypeId=" + reportTypeId + "&typeProblemID=" + problemID;
+            if (checBoxCelda.checked) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Create", "ProblemTypeByReports")',
+                    data: data_caso,
+                    dataType: "json",
+                    success: function (response) {
+                        $(checBoxCelda).closest("td").find("input[name=problemByReportsID]").val(response.idProblemReport);
+                    }
+                });
+            } else {
+                var data_caso = "id=" + $(checBoxCelda).closest("td").find("input[name=problemByReportsID]").val();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "ProblemTypeByReports")',
+                    data: data_caso,
+                    dataType: "json",
+                    success: function (response) {
+
+                       // var numero = 4;
+                    }
+                });
+
+
+            }
+        }
+    </script>
+}

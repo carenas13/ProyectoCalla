@@ -1,0 +1,717 @@
+﻿@model Supermarket.Models.InspecctionSupermarket
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<div id="supermarketWizard" class="form-horizontal">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul>
+                    <li> <a href="#tab1" data-toggle="tab">Store information</a></li>
+                    <li> <a href="#tab2" data-toggle="tab">Consumer bunch program   </a></li>
+                    <li> <a href="#tab3" data-toggle="tab">Rose program </a></li>
+                    <li> <a href="#tab4" data-toggle="tab">Bouquet program </a></li>
+                    <li> <a href="#tab5" data-toggle="tab">Store Execution</a></li>
+
+
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="tab-content"  id="formInspectionSupermarket">
+        <div class="tab-pane" id="tab1">
+           @*// Store Information*@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idStoreInformation, "Retail", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("retailsID", null, htmlAttributes: new { @class = "form-control" })
+                  
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otherRetailer" class="col-lg-2 control-label">If Other, then...Describe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherRetailer" name="otherRetailer">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numberStore" class="col-lg-2 control-label">Number Store </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="numberStore" name="numberStore" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date" class="col-lg-2 control-label">Date /Time </label>
+                            <div class="col-lg-10">
+                                <input type="datetime" class="form-control" id="date" name="date">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city" class="col-lg-2 control-label">City </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="city" name="city">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state" class="col-lg-2 control-label">State </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="state" name="state">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inspector" class="col-lg-2 control-label">Inspector </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="inspector" name="inspector">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idStoreInformation, "Floral Setup", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("floralID", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullServicesSI" class="col-lg-2 control-label">If full service, then... Hours/Week </label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="fullServicesSI" name="fullServicesSI">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idStoreInformation, "Floral Display", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("floralDisplayID", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+            <div name="imgStoreInformation" id="imgStoreInformation" >
+
+
+                    <input id="imageDisplay"  hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                           <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                           </a>
+                <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+            </div>
+
+
+                        <div class="form-group">
+                            <label for="otherBreakdown" class="col-lg-2 control-label">If Other, then ... Describe </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherBreakdown" name="otherBreakdown">
+                            </div>
+                        </div>
+
+            <input type="button" value="Guardar" onclick="saveStoreInformation()" />
+
+          </div>
+                 <div class="tab-pane" id="tab2">
+
+            @*// Bunch Program*@
+
+    
+                            <div class="form-group">
+                                <label for="descriptionProgram" class="col-lg-2 control-label"> Program description </label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="descriptionProgram" name="descriptionProgram">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="retailBP" class="col-lg-2 control-label"> Retail </label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="retailBP" name="retailBP">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idConsumerBunchProgram, "Consumer Bunch Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("consumerBunchTypeID", null, htmlAttributes: new { @class = "form-control" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="otherBunchType" class="col-lg-2 control-label"> If other, then describe</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="otherBunchType" name="otherBunchType">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="stemCountBP" class="col-lg-2 control-label"> Stem Count</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="stemCountBP" name="stemCountBP">
+                                </div>
+                            </div>
+
+
+                            @*<div class="form-group">
+                               
+                                    @Html.LabelFor(model => model.idColorEnhaced, " Color Enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                <div class="col-lg-10">
+                                    @Html.DropDownList("idColorEnhaced", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+
+
+                            @*<div class="form-group">
+                                  
+                                         @Html.LabelFor(model => model.idSupplier, "Supplier", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                    <div class="col-lg-10">
+                                        @Html.DropDownList("idSupplier", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.idSupplier, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
+
+
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idSleeveType, " Sleeve Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSleeveType", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSleeveType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                            <div class="form-group">
+                                <label for="innerWrapBP" class="col-lg-2 control-label"> Inner Wrap</label>
+
+                                <div class="col-lg-10">
+                                    <input type="checkbox" name="btnCheck" id="innerWrapBP" />
+                                </div>
+
+                              
+                           </div>
+         
+
+                     <input type="button" value="Guardar" onclick="saveConsumerBunchProgram()" />
+        </div>
+                <div class="tab-pane" id="tab3">
+            
+           @*Rose Program*@
+
+
+                        <div class="form-group">
+                            <label for="programDescription" class="col-lg-2 control-label"> Description Program</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="programDescription" name="programDescription">
+                            </div>
+                        </div>
+
+
+                        <h4> Rose Bunch Retail </h4>
+
+
+                        <div class="form-group">
+                            <label for="bunchRetail" class="col-lg-2 control-label"> Rose Bunch Retail </label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="bunchRetail" name="bunchRetail">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stemCountRP" class="col-lg-2 control-label"> Rose Stem Count </label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="stemCountRP" name="stemCountRP">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Stem Length", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("stemLengthID", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Head Size", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("headSizeID", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idSupplier, "Supplier", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSupplier", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSupplier, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idSleeveType, "SleeveType", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSleeveType", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSleeveType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                        <div class="form-group">
+                            <label for="innerWrapRP" class="col-lg-2 control-label"> Inner Wrap?</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="btnCheck" id="innerWrapRP" />
+                            </div>
+                        </div>
+
+
+
+                        <h4> Rose Bouquet Retail</h4>
+
+                        <div class="form-group">
+                            <label for="retailBouquet" class="col-lg-2 control-label"> Bouquet Retail</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="retailBouquet" name="retailBouquet">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="totalStem" class="col-lg-2 control-label"> Total Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="totalStem" name="totalStem">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="roseStemRP" class="col-lg-2 control-label"> Rose Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="roseStemRP" name="roseStemRP">
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idColorEnhaced, "Rose Color enhanced", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idColorEnhaced", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                        <div class="form-group">
+                            <label for="fillerStemCount" class="col-lg-2 control-label"> Filler Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="fillerStemCount" name="fillerStemCount">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="otherFiller" class="col-lg-2 control-label"> If other, Then ... Describe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherFiller" name="otherFiller">
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idColorEnhaced, "Are the fillers Color enhanced?", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idColorEnhacedF", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+
+                        <div class="form-group">
+                            <label for="greemsStemCount" class="col-lg-2 control-label"> Green Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="greemsStemCount" name="greemsStemCount">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="otherGreenType" class="col-lg-2 control-label"> If other, then ... Desribe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherGreenType" name="otherGreenType">
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idColorEnhaced, "Are the Greens Color enhanced?", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idColorEnhacedG", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idSupplier, "Supplier(if available)", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSupplierR", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSupplier, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idSleeveType, "SleeveType", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSleeveR", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSleeveType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+
+                        <div class="form-group">
+                            <label for="innerWrapRetail" class="col-lg-2 control-label"> Inner Wrap</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="btnCheck" id="innerWrapRetail" />
+                            </div>
+                        </div>
+
+                    <input type="button" value="Guardar" onclick="saveRoseProgram()" />
+
+        </div>
+                <div class="tab-pane" id="tab4">
+           
+                     @*Bouquet program*@
+ 
+                            <div class="form-group">
+                                <label for="descriptionProgramBP" class="col-lg-2 control-label"> Description Program</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="descriptionProgramBP" name="descriptionProgramBP">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="retailBPR" class="col-lg-2 control-label"> Retail</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="retailBPR" name="retailBPR">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nameBPR" class="col-lg-2 control-label"> Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="nameBPR" name="nameBPR">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="totalstemCountBPR" class="col-lg-2 control-label"> Total Stem Count:</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="totalstemCountBPR" name="totalstemCountBPR">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="focalCountBPR" class="col-lg-2 control-label"> Focal Stem Count:</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="focalCountBPR" name="focalCountBPR">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="otherFocals" class="col-lg-2 control-label"> If Other, then Describe :</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="otherFocals" name="otherFocals">
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.idColorEnhaced, "Focals -color enlached?", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idColorEnhacedFOB", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+
+                            <div class="form-group">
+                                <label for="basicStemCount" class="col-lg-2 control-label"> Basic Stem Count:</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="basicStemCount" name="basicStemCount">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="otherBasics" class="col-lg-2 control-label">If Other, then Describe</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="otherBasics" name="otherBasics">
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.idColorEnhaced, "Basics -color enhaced?", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idColorEnhacedB", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+            
+                        <div class="form-group">
+                            <label for="fillerStemCountBP" class="col-lg-2 control-label"> Filler Stem Count:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="fillerStemCountBP" name="fillerStemCountBP">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otherFillerBPR" class="col-lg-2 control-label">If Other, then Describe:</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherFillerBPR" name="otherFillerBPR">
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idColorEnhaced, "Fillers -color enlached?", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idColorEnhacedFB", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                            <div class="form-group">
+                                <label for="greensStemCount" class="col-lg-2 control-label"> Green Stem Count:</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="greensStemCount" name="greenStemCount">
+                                </div>
+                            </div>
+
+
+                            @*green type*@
+
+                            <div class="form-group">
+                                <label for="otherGreenTypeBP" class="col-lg-2 control-label">If Other, then Describe:</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="otherGreenTypeBP" name="otherGreenTypeBP">
+                                </div>
+                            </div>
+
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idColorEnhaced, "Greens -color enlached?", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idColorEnhacedGB", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idColorEnhaced, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+
+                        <div class="form-group">
+                            <label for="pick" class="col-lg-2 control-label"> Pick</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="btnCheck" id="pick" />
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.idSupplier, "Supplier", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("suplierBP", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSupplier, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idSleeveType, "Sleeve Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSleeveBP", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idSleeveType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                        <div class="form-group">
+                            <label for="innerWrapBPR" class="col-lg-2 control-label">  Inner Wrap ?  </label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="btnCheck" id="innerWrapBPR"  />
+                            </div>
+                        </div>
+
+                    <input type="button" value="Guardar" onclick="saveBouquetProgram()" />
+          
+    </div>
+        @*StoreExecutions*@
+
+        <div class="tab-pane" id="tab5">
+           
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Overall Store Execution  grade", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("overalExecutionID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Flower Perfomance", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("flowerPerformanceID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Pull Dates", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("pullDatesID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Water Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("waterTemperatureID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Water State", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("waterStateID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Cooler Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("coolerTemperatureID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Exposure to sunlight", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("exposureSunlight", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStoreExecution, "Exposure to draft", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("exposureDraft", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otherCommentsExecution" class="col-md-2 control-label">Other Store execution comments</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="otherCommentsExecution" name="otherCommentsExecution">
+                        </div>
+                    </div>
+
+
+            <input type="button" value="Guardar" onclick="saveStoreExecution()" />
+
+              </div>
+
+        <ul class="pager wizard">
+            <li class="previous first" style="display:none;"><a href="#">First</a></li>
+            <li class="previous"><a href="#">Previous</a></li>
+            <li class="next last" style="display:none;"><a href="#">Last</a></li>
+            <li class="next"><a href="#">Next</a></li>
+        </ul>
+
+    
+         </div>
+    </div>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        @*function saveStoreInformation() {
+
+            var data_caso = "";
+
+            data_caso = "&idRetailer=" + $("#retailsID").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("storeInformation", "InspecctionSupermarkets")',
+                data: data_caso,
+                dataType: "json",
+                success: function (response) {
+
+
+                }
+            });
+
+
+        }
+
+        function editEncabezado() {
+            $.post('@Url.Action("stoInfor","InspecctionSupermarkets")', {
+                type: 'data', retailsID: $("#retailsID").val(),
+
+            }, function (result) {
+                if (result.success) {
+
+                }
+            });
+        }*@
+
+   
+
+    </script>
+
+}

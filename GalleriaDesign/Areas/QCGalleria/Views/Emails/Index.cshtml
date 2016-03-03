@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GalleriaDesign.Models.Emails>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emailsBody.emailFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userIsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.addressEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailsBody.emailFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userIsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.addressEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.emailID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.emailID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.emailID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Prueba";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Prueba</h2>
+
+
+<div id="camara" name="camara">
+
+
+    <input id="image" name="image" onchange="loadFotosProductionNew(this)" accept="image/*" type="file" style="width:10px;" capture />
+
+
+    <a data-toggle="modal" id="snap"
+       onclick="takePicture(this)"
+       title="Take a Picture"
+       class="btn btn-success  btn-circle btn-lg"
+       style="background-color: #449D44">
+        <i class="glyphicon glyphicon-camera"></i>
+    </a>
+
+</div>
+
+<div id="camara" name="camara">
+    <input id="image" name="image" onchange="loadFotosProductionNew(this)" accept="image/*" type="file" style="width:10px;" capture />
+    <input type="hidden" id="foto">
+    <a data-toggle="modal" id="snap"
+       onclick="takePicture(this)"
+       title="Take a Picture"
+       class="btn btn-success  btn-circle btn-lg"
+       style="background-color: #449D44">
+        <i class="glyphicon glyphicon-camera"></i>
+    </a>
+</div>
+
+<div id="camara" name="camara">
+    <input id="image" name="image" onchange="loadFotosProductionNew(this)" accept="image/*" type="file" style="width:10px;" capture />
+    
+
+    <a data-toggle="modal" id="snap"
+       onclick="takePicture(this)"
+       title="Take a Picture"
+       class="btn btn-success  btn-circle btn-lg"
+       style="background-color: #449D44">
+        <i class="glyphicon glyphicon-camera"></i>
+    </a>
+</div>
+
+<div hidden="hidden">
+
+
+
+
+</div>
+
+
+    @section Scripts {
+
+
+        <script type="text/javascript">
+
+            function takePicture(btnCamera) {
+
+                $(btnCamera).closest("div[name^=camara]").find("input[name^=image]").click();
+
+                // $('#image').click();
+
+            }
+
+        </script>

@@ -1,0 +1,42 @@
+﻿@model Supermarket.Models.Bouquet_GreenType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bouquet_GreenType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bouquetProgram.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bouquetProgram.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idGreenType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idGreenType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.checkGreenType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.checkGreenType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idBouquetGreenType }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

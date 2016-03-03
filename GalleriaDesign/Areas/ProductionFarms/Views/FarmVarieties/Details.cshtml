@@ -1,0 +1,34 @@
+﻿@model ApplicationProductionsFarms.Model.FarmVariety
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FarmVariety</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Farms.codeFarms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Farms.codeFarms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Variety.codVariety)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Variety.codVariety)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idFarmVariety }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Supermarket.Models.RoseProgram>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.headSize.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stemLength.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.programDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bunchRetail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.innerWrap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.retailBouquet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalStem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.roseStem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fillerStemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherFiller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.greemsStemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supplierBouquet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherGreenType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.headSize.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stemLength.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.programDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bunchRetail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.innerWrap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.retailBouquet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalStem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.roseStem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fillerStemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherFiller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.greemsStemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplierBouquet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherGreenType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idRoseProgram }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idRoseProgram }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idRoseProgram })
+        </td>
+    </tr>
+}
+
+</table>

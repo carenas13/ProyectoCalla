@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Supermarket.Models.ConsumerBunchProgram>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.consumerBunchType.nameConsumer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionProgram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.retail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherBunchType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.innerWrap)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumerBunchType.nameConsumer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descriptionProgram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.retail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherBunchType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.innerWrap)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idConsumerBunchProgram }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idConsumerBunchProgram }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idConsumerBunchProgram })
+        </td>
+    </tr>
+}
+
+</table>

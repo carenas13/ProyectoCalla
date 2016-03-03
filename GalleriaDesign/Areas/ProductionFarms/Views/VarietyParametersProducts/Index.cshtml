@@ -1,0 +1,312 @@
+﻿@model IEnumerable<ApplicationProductionsFarms.Model.VarietyParametersProducts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = 1 }, htmlAttributes: new { @class = "btn btn-info btn-lg", style = "font-weight:bold;" })
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Generate QRCode", "QRCode", new { id = 1 }, htmlAttributes: new { @class = "btn btn-info btn-lg", style = "font-weight:bold;" })
+</p>
+<table id="example" class="table table-striped table-bordered table-responsive" cellspacing="0">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Color.codColor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlowerSuppliers.codFlowerSup)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlowerType.codFlowerType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MarketType.codMarketType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Products.codProduct)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.program.codProgram)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.variety.codVariety)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.codVariety)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnConf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasLuz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaInicioF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdxCamaTallos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TallosSiemProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndicePerdConf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndicePerdProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TallosSiemConf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemDesboton)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemB91)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemB92)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemB93)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TalloXBalde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TalloXCaja)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.codVariety)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnConf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasLuz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaInicioF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdxCamaTallos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TallosSiemProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndicePerdConf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndicePerdProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TallosSiemConf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemDesboton)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemB91)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemB92)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasEnSiemB93)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasCorte7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TalloXBalde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TalloXCaja)
+            </th>
+            <th></th>
+
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Color.codColor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlowerSuppliers.codFlowerSup)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlowerType.codFlowerType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MarketType.codMarketType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Products.codProduct)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.program.codProgram)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.variety.codVariety)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.codVariety)
+                    <input type="hidden" id="cdVariedad" name="cdVariedad" value="@item.codVariety"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasEnConf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasLuz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaInicioF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdxCamaTallos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TallosSiemProd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndicePerdConf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndicePerdProd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TallosSiemConf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasEnSiemDesboton)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasEnSiemB91)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasEnSiemB92)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasEnSiemB93)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte6)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasCorte7)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TalloXBalde)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TalloXCaja)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idVariedad }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idVariedad }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idVariedad })
+                    <div data-role="content">
+                        <form>
+                                <input type="button" value="Generar QR" onclick="update_qrcode(this)">
+                            
+                        </form>
+                        <div id="qr" name="qr"></div>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+
+</table>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#example').dataTable()
+
+            //    "order": [0, "desc"],
+            //    "aoColumns": [
+            //                  { "bSortable": true },
+            //                  { "bSortable": false },
+            //                  { "bSortable": true },
+            //                  { "bSortable": true },
+            //                   { "bSortable": false },
+            //                  //{ "bSortable": true },
+            //                   { "bSortable": true },
+            //                  { "bSortable": true },
+            //                   { "bSortable": false },
+
+            //    ]
+        });
+    </script>
+}

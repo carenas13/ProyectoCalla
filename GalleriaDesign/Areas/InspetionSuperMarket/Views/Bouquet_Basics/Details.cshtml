@@ -1,0 +1,42 @@
+﻿@model Supermarket.Models.Bouquet_Basics
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bouquet_Basics</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bouquetProgram.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bouquetProgram.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idBouquetBasics)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idBouquetBasics)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.countPerType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.countPerType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idBBasics }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

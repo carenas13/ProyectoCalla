@@ -1,0 +1,58 @@
+﻿@model IEnumerable<GalleriaDesign.Models.EmailsBody>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emailFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.passwordEmailFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emailContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.signatureEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.passwordEmailFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.signatureEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.emailBodyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.emailBodyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.emailBodyID })
+        </td>
+    </tr>
+}
+
+</table>

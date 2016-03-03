@@ -1,0 +1,806 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B335F029-8C81-40F8-ACB4-25E3D1206252}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GalleriaDesign</RootNamespace>
+    <AssemblyName>GalleriaDesign</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\GTH\Controllers\ArchivoAdjuntosController.cs" />
+    <Compile Include="Areas\GTH\Controllers\FormacionYDesarrollosController.cs" />
+    <Compile Include="Areas\GTH\Controllers\HomeGTHController.cs" />
+    <Compile Include="Areas\GTH\Controllers\ParticipantesController.cs" />
+    <Compile Include="Areas\GTH\GTHAreaRegistration.cs" />
+    <Compile Include="Areas\GTH\Models\ArchivoAdjunto.cs" />
+    <Compile Include="Areas\GTH\Models\FormacionYDesarrollo.cs" />
+    <Compile Include="Areas\GTH\Models\Participante.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\AdditionalComentsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\BasicsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\BouquetProgramsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\Bouquet_BasicsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\Bouquet_FillerController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\Bouquet_FocalsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\Bouquet_GreenTypeController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ColorEnhacedsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ConsumerBunchProgramsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ConsumerBunchTypesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\CoolerTemperaturesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ExposureClimatesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\FillerTypesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\FloralDisplaysController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\FloralSetupsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\FlowerPerfomancesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\FocalsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\GreenTypesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\HeadSizesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\HomeInspetionSuperMarketController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ImagesAdditionalComentsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ImagesBouquetProgramsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ImagesBunchProgramsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ImagesRoseProgramsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ImagesStoreExecutionsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ImagesStoreInformationsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\OverallFloralExecutionsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\ProductBreackDownsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\PullDatesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\RetailersController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\RoseProgramsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\Rose_FillerController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\SleeveTypesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\StemLengthsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\StoreExecutionsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\StoreInformationsController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\Store_ProductBreakDownController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\SuppliersController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\WaterStatesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Controllers\WaterTemperaturesController.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\InspetionSuperMarketAreaRegistration.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\AdditionalComents.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Basics.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\BouquetProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Bouquet_Basics.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Bouquet_Filler.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Bouquet_Focals.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Bouquet_GreenType.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ColorEnhaced.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ConsumerBunchProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ConsumerBunchType.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\CoolerTemperature.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ExposureClimate.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\FillerType.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\FloralDisplay.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\FloralSetup.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\FlowerPerfomance.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Focals.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\GreenType.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\HeadSize.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Images.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesAdditionalComents.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesBouquetProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesBunchProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesRoseProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesStoreExecution.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesStoreInformation.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImagesTypeBouquetProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImageTypeAdditionalComents.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImageTypeBunchProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImageTypeRoseProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImageTypeStoreExecutions.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\ImageTypeStoreInformation.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\InspecctionSupermarket.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\OverallFloralExecution.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\productBreackDown.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\PullDates.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Retailer.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\RoseProgram.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Rose_Filler.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Rose_GreenType.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\SleeveType.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\StemLength.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\StoreExecution.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\StoreInformation.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Store_ProductBreakDown.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\SupermarketContext.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\Supplier.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\WaterState.cs" />
+    <Compile Include="Areas\InspetionSuperMarket\Models\WaterTemperature.cs" />
+    <Compile Include="Areas\Orders\OrdersAreaRegistration.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\BlocksController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\ColorsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\DimensionsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\FarmsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\FarmVarietiesController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\FlowerSuppliersController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\FlowerTypesController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\HomeProductionFarmsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\MarketTypesController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\ProgramsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\VarietiesController.cs" />
+    <Compile Include="Areas\ProductionFarms\Controllers\VarietyParametersProductsController.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\ApplicationProductionsFarmsContext.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Blocks.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\BlockVariety.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Color.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Dimensions.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Farms.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\FarmVariety.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\FlowerSuppliers.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\FlowerType.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\MarketType.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\PlaneBlock.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Products.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Program.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\Variety.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\VarietyParametersProducts.cs" />
+    <Compile Include="Areas\ProductionFarms\Models\VarietyProductCode.cs" />
+    <Compile Include="Areas\ProductionFarms\ProductionFarmsAreaRegistration.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\HomeQCGalleriaController.cs" />
+    <Compile Include="Areas\QCGalleria\QCGalleriaAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\EmailsBodiesController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\EmailsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\ProblemByReportsController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\problemsController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\ProblemTypeByReportsController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\ProblemTypesController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\QualityInspectionsController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\QualityReportController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\QualityReportsController.cs" />
+    <Compile Include="Areas\QCGalleria\Controllers\ReportTypesController.cs" />
+    <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GTHMigrations\Configuration.cs" />
+    <Compile Include="Migrations\201602252025285_Initial.cs" />
+    <Compile Include="Migrations\201602252025285_Initial.Designer.cs">
+      <DependentUpon>201602252025285_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Areas\QCGalleria\Models\Emails.cs" />
+    <Compile Include="Areas\QCGalleria\Models\EmailsBody.cs" />
+    <Compile Include="Areas\QCGalleria\Models\GalleriaDesignContext.cs" />
+    <Compile Include="Areas\GTH\Models\GTHContext.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Areas\QCGalleria\Models\Image.cs" />
+    <Compile Include="Areas\QCGalleria\Models\ImageByType.cs" />
+    <Compile Include="Areas\QCGalleria\Models\ImageTem.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Areas\QCGalleria\Models\problem.cs" />
+    <Compile Include="Areas\QCGalleria\Models\ProblemByReport.cs" />
+    <Compile Include="Areas\QCGalleria\Models\ProblemType.cs" />
+    <Compile Include="Areas\QCGalleria\Models\ProblemTypeByReport.cs" />
+    <Compile Include="Areas\QCGalleria\Models\QualityInspection.cs" />
+    <Compile Include="Areas\QCGalleria\Models\QualityReport.cs" />
+    <Compile Include="Areas\QCGalleria\Models\ReportType.cs" />
+    <Compile Include="Models\RolGalleria.cs" />
+    <Compile Include="Models\SessionExpireAttribute.cs" />
+    <Compile Include="Models\UserGalleria.cs" />
+    <Compile Include="ProductionFarmsMigrations\201603031915476_Initial.cs" />
+    <Compile Include="ProductionFarmsMigrations\201603031915476_Initial.Designer.cs">
+      <DependentUpon>201603031915476_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionFarmsMigrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QCGalleriaMigrations\201602251724038_Initial.cs" />
+    <Compile Include="QCGalleriaMigrations\201602251724038_Initial.Designer.cs">
+      <DependentUpon>201602251724038_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QCGalleriaMigrations\Configuration.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="SuperMarketMigrations\201603031916166_Initial.cs" />
+    <Compile Include="SuperMarketMigrations\201603031916166_Initial.Designer.cs">
+      <DependentUpon>201603031916166_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuperMarketMigrations\Configuration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Img\logoGalleria.png" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\QCGalleria\Views\web.config" />
+    <Content Include="Areas\QCGalleria\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\Shared\MenuQCGalleria.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\HomeQCGalleria\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\web.config" />
+    <Content Include="Areas\ProductionFarms\Views\web.config" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Shared\MenuInspetionSuperMarket.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\HomeInspetionSuperMarket\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Shared\MenuProductionFarms.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\HomeProductionFarms\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Farms\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Farms\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Farms\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Farms\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Farms\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Basics\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Basics\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Basics\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Basics\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Basics\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Basics\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Basics\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Basics\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Basics\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Basics\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Filler\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Filler\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Filler\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Filler\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_Filler\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_GreenType\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_GreenType\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_GreenType\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_GreenType\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Bouquet_GreenType\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\BouquetPrograms\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\BouquetPrograms\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\BouquetPrograms\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\BouquetPrograms\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\BouquetPrograms\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ColorEnhaceds\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ColorEnhaceds\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ColorEnhaceds\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ColorEnhaceds\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ColorEnhaceds\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchPrograms\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchPrograms\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchPrograms\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchPrograms\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchPrograms\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchTypes\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchTypes\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchTypes\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchTypes\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ConsumerBunchTypes\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\CoolerTemperatures\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\CoolerTemperatures\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\CoolerTemperatures\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\CoolerTemperatures\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\CoolerTemperatures\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ExposureClimates\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ExposureClimates\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ExposureClimates\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ExposureClimates\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ExposureClimates\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FillerTypes\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FillerTypes\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FillerTypes\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FillerTypes\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FillerTypes\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralDisplays\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralDisplays\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralDisplays\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralDisplays\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralDisplays\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralSetups\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralSetups\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralSetups\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralSetups\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FloralSetups\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FlowerPerfomances\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FlowerPerfomances\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FlowerPerfomances\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FlowerPerfomances\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\FlowerPerfomances\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Focals\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Focals\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Focals\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Focals\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Focals\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\GreenTypes\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\GreenTypes\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\GreenTypes\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\GreenTypes\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\GreenTypes\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\HeadSizes\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\HeadSizes\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\HeadSizes\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\HeadSizes\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\HeadSizes\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\InspecctionSupermarkets\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\InspecctionSupermarkets\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\InspecctionSupermarkets\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\InspecctionSupermarkets\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\InspecctionSupermarkets\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\OverallFloralExecutions\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\OverallFloralExecutions\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\OverallFloralExecutions\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\OverallFloralExecutions\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\OverallFloralExecutions\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ProductBreackDowns\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ProductBreackDowns\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ProductBreackDowns\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ProductBreackDowns\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\ProductBreackDowns\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\PullDates\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\PullDates\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\PullDates\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\PullDates\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\PullDates\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Retailers\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Retailers\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Retailers\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Retailers\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Retailers\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\RosePrograms\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\RosePrograms\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\RosePrograms\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\RosePrograms\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\RosePrograms\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\SleeveTypes\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\SleeveTypes\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\SleeveTypes\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\SleeveTypes\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\SleeveTypes\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StemLengths\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StemLengths\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StemLengths\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StemLengths\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StemLengths\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Store_ProductBreakDown\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Store_ProductBreakDown\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Store_ProductBreakDown\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Store_ProductBreakDown\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Store_ProductBreakDown\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreExecutions\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreExecutions\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreExecutions\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreExecutions\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreExecutions\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreInformations\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreInformations\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreInformations\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreInformations\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\StoreInformations\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Suppliers\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Suppliers\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Suppliers\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Suppliers\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\Suppliers\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterStates\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterStates\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterStates\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterStates\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterStates\Index.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterTemperatures\Create.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterTemperatures\Delete.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterTemperatures\Details.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterTemperatures\Edit.cshtml" />
+    <Content Include="Areas\InspetionSuperMarket\Views\WaterTemperatures\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Blocks\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Blocks\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Blocks\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Blocks\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Blocks\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Colors\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Colors\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Colors\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Colors\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Colors\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FarmVarieties\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FarmVarieties\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FarmVarieties\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FarmVarieties\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FarmVarieties\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerSuppliers\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerSuppliers\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerSuppliers\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerSuppliers\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerSuppliers\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerTypes\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerTypes\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerTypes\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerTypes\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\FlowerTypes\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\MarketTypes\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\MarketTypes\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\MarketTypes\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\MarketTypes\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\MarketTypes\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Products\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Products\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Products\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Programs\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Programs\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Programs\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Programs\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Programs\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Varieties\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Varieties\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Varieties\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Varieties\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Varieties\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\Index.cshtml" />
+    <Content Include="Areas\GTH\Views\web.config" />
+    <Content Include="Areas\GTH\Views\FormacionYDesarrollos\Create.cshtml" />
+    <Content Include="Areas\GTH\Views\FormacionYDesarrollos\Delete.cshtml" />
+    <Content Include="Areas\GTH\Views\FormacionYDesarrollos\Details.cshtml" />
+    <Content Include="Areas\GTH\Views\FormacionYDesarrollos\Edit.cshtml" />
+    <Content Include="Areas\GTH\Views\FormacionYDesarrollos\Index.cshtml" />
+    <Content Include="Areas\GTH\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GTH\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GTH\Views\HomeGTH\Index.cshtml" />
+    <Content Include="Areas\GTH\Views\Shared\MenuGTH.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\Prueba.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Dimensions\Create.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Dimensions\Delete.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Dimensions\Details.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Dimensions\Edit.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Dimensions\Index.cshtml" />
+    <Content Include="Areas\ProductionFarms\Views\Dimensions\QRCode.cshtml" />
+    <Content Include="Areas\Orders\Views\web.config" />
+    <None Include="Properties\PublishProfiles\QCGalleria.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.bootstrap.wizard.js" />
+    <Content Include="Scripts\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Supermarket\InspectionSupermarket.js" />
+    <Content Include="Scripts\qrcode.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\Emails\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\Emails\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\Emails\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\Emails\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\Emails\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\EmailsBodies\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\EmailsBodies\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\EmailsBodies\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\EmailsBodies\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\EmailsBodies\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemByReports\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemByReports\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemByReports\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemByReports\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemByReports\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\problems\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\problems\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\problems\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\problems\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\problems\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemTypes\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemTypes\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemTypes\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemTypes\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ProblemTypes\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReport\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\Index.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\PDF.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\QualityReports\ResultSearch.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ReportTypes\Create.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ReportTypes\Delete.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ReportTypes\Details.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ReportTypes\Edit.cshtml" />
+    <Content Include="Areas\QCGalleria\Views\ReportTypes\Index.cshtml" />
+    <Content Include="Views\Account\RoleCreate.cshtml" />
+    <Content Include="Views\Management\addRolesUser.cshtml" />
+    <Content Include="Views\Management\Create.cshtml" />
+    <Content Include="Views\Management\Index.cshtml" />
+    <Content Include="Views\Management\seeRolesUser.cshtml" />
+    <Content Include="Views\Management\usersList.cshtml" />
+    <Content Include="Views\Home\SubirFoto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\GTH\Views\ArchivoAdjuntos\" />
+    <Folder Include="Areas\GTH\Views\Participantes\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\AdditionalComents\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\Bouquet_Focals\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\ImagesAdditionalComents\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\ImagesBouquetPrograms\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\ImagesBunchPrograms\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\ImagesRosePrograms\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\ImagesStoreExecutions\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\ImagesStoreInformations\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\Images\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\Rose_Filler\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\Rose_GreenType\" />
+    <Folder Include="Areas\InspetionSuperMarket\Views\TypeMenus\" />
+    <Folder Include="Areas\Orders\Controllers\" />
+    <Folder Include="Areas\Orders\Models\" />
+    <Folder Include="Areas\Orders\Views\Shared\" />
+    <Folder Include="Areas\QCGalleria\Views\Images\" />
+    <Folder Include="Areas\QCGalleria\Views\ImageTems\" />
+    <Folder Include="Areas\QCGalleria\Views\ProblemTypeByReports\" />
+    <Folder Include="Areas\QCGalleria\Views\QualityInspections\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602252025285_Initial.resx">
+      <DependentUpon>201602252025285_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductionFarmsMigrations\201603031915476_Initial.resx">
+      <DependentUpon>201603031915476_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QCGalleriaMigrations\201602251724038_Initial.resx">
+      <DependentUpon>201602251724038_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuperMarketMigrations\201603031916166_Initial.resx">
+      <DependentUpon>201603031916166_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>34744</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:5631/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

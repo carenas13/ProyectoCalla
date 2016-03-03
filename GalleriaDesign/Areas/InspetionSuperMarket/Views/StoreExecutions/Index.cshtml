@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Supermarket.Models.StoreExecution>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.coolerTemperature.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exposureClient.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flowerPerfomance.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.overallFloralExecution.nameOverall)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pullDates.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.waterState.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.waterTemperature.description)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.coolerTemperature.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exposureClient.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flowerPerfomance.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.overallFloralExecution.nameOverall)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pullDates.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.waterState.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.waterTemperature.description)
+        </td>
+      
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idStoreExecution }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idStoreExecution }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idStoreExecution })
+        </td>
+    </tr>
+}
+
+</table>

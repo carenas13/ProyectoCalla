@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Supermarket.Models.Bouquet_Basics>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bouquetProgram.descriptionProgram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idBouquetBasics)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.countPerType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bouquetProgram.descriptionProgram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idBouquetBasics)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.countPerType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idBBasics }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idBBasics }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idBBasics })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model Supermarket.Models.ConsumerBunchProgram
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ConsumerBunchProgram</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.consumerBunchType.nameConsumer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumerBunchType.nameConsumer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.retail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.retail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherBunchType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherBunchType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.innerWrap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.innerWrap)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idConsumerBunchProgram }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

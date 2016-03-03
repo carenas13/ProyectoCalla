@@ -1,0 +1,792 @@
+﻿@model GalleriaDesign.Models.QualityReport
+
+@{
+    ViewBag.Title = "Details comentario";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+<div id="pdfText">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>QualityReport</h2>
+        </div>
+        <!-- lapiz editar comenta-->
+        <div class="col-md-6">
+                <a data-toggle="modal" class="btn btn-primary pull-right" href="#ModalEditEcabezado" title="Edit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            </div>
+
+    </div>
+
+    <!--report-->
+
+    <table class="table">
+        <tr>
+            <td>
+                @*@Html.LabelFor(model => model.dateReport)*@
+                @Html.Label("DATE / FECHA")
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dateReport)
+
+            </td>
+            <td>
+                @*@Html.LabelFor(model => model.dateReport)*@
+                @Html.Label("DATE WEB PACK")
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dateWebPack)
+
+            </td>
+
+
+
+        </tr>
+        <tr>
+            <td>
+                @*@Html.LabelFor(model => model.farmReport)*@
+                @Html.Label("FARM/FINCA:")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.farmReport)
+            </td>
+            <td>
+                @*@Html.LabelFor(model => model.customer)*@
+                @Html.Label("CUSTOMER/CLIENTE:")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.customer)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @*@Html.LabelFor(model => model.awbNumber)*@
+                @Html.Label("AWB NUMBER:")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.awbNumber)
+            </td>
+            <td>
+                @Html.LabelFor(model => model.qty)
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.qty)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @*@Html.LabelFor(model => model.inspectionPlace)*@
+                @Html.Label("INSPECTION PLACE")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.inspectionPlace)
+            </td>
+            <td>
+                @Html.Label("BUNCH / BOX")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.bunchBox)
+
+            </td>
+        </tr>
+        <tr>
+
+
+            <td>
+
+                @Html.Label("BUNCH INSPECTED")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.bunchInspected)
+            </td>
+
+            <td>
+
+                @Html.Label("BOXES INSPECTED")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.boxesInspected)
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+
+                @*@Html.LabelFor(model => model.flower)*@
+                @Html.Label("FLOWER/FLOR:")
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.flower)
+
+            </td>
+
+
+
+            <td>
+
+                @Html.Label("NUMBER ORDER")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.numOrder)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+
+                @Html.Label("TOTAL BUNCH")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.totalBunch)
+            </td>
+
+        </tr>
+
+    </table>
+
+    <table border="1" class="table">
+        <!---->
+        <tr>
+            <th>
+                <h2>
+                    Quality Problems
+                </h2>
+            </th>
+            <th>
+                <h2>
+                    Picture
+                </h2>
+            </th>
+        </tr>
+
+
+        @foreach (var itemType in ViewBag.problemTypeList)
+        {
+            <tr>
+                <td>
+                    <div id="typeProblem" name="typeProblem">
+                        <label>
+                            @itemType.descritpionProblem
+                        </label>
+
+                        @foreach (var item in Model.qualityInspection)
+                        {
+                            if (item.problem.typeProblemID == itemType.typeProblemID)
+                            {
+                                if (item.answerInspection == true)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="checkbox i-checks">
+
+                                                <h6>
+                                                    @item.problem.descritpionProblem
+                                                    <input type="checkbox" id="answerInspection"
+                                                           name="answerInspection" checked="checked">
+                                                    <input type="hidden" id="problemID" name="problemID" value="@item.problem.problemID" />
+                                                </h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="checkbox i-checks">
+
+                                                <h6>
+                                                    @item.problem.descritpionProblem
+                                                    <input type="checkbox" id="answerInspection"
+                                                           name="answerInspection">
+                                                </h6>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                }
+                            }
+
+                        }
+                    </div>
+                </td>
+                <td>
+                    <a data-toggle="modal" class="btn btn-primary pull-right" href="#modalProblemType" onclick="editarTypeProblem(this)" title="Edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    @{ int idx1 = 0;
+                        foreach (var item in Model.images)
+                        {
+                            if (item.problemType.typeProblemID == itemType.typeProblemID)
+                            {
+                                <img src="@Url.Action("GetImage", new { item.imageID })" class="img-responsive" />
+
+                                idx1++;
+                            }
+                            if (idx1 == 2)
+                            {
+                                <br>
+                                idx1 = 0;
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+                        }
+
+
+
+    </table>
+</div>
+<p>
+    <h4>
+        COMMENTS/COMENTARIOS:
+    </h4>
+    <label>
+        @Html.DisplayFor(model => model.commentsReport)
+    </label>
+</p>
+<p>
+    <h4>
+        INSPECTED BY:
+    </h4>
+    <label>
+        @Html.DisplayFor(model => model.userInspector)
+    </label>
+</p>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { typeReport = Model.reportTypeId }, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.qualityReportID }, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("Generate PDF", "generatePDF", new { id = Model.qualityReportID }, htmlAttributes: new { @class = "btn btn-primary" })
+    @*@Html.ActionLink("PDF", "PDF", new { id = Model.qualityReportID })|*@
+    @*@Html.ActionLink("Send Email", "enviarCorreo", new { id = Model.qualityReportID }, htmlAttributes: new { @class = "btn btn-primary" })*@
+    @*<input type="button" class="btn btn-primary" value="Send Email" onclick="enviarHtml()" />*@
+    <a data-toggle="modal" id="sendEmailReport" href="#ModalPreguntaDestinatario" class="btn btn-primary">
+        <span></span> Send Email
+    </a>
+    @Html.HiddenFor(model => model.qualityReportID)
+</p>
+<!--Modal correo se envio correctamente-->
+<div id="ModalEmail" name="modalQuality" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <h4>
+                    <span>
+                        The E-mail was successfully sent
+                    </span>
+                </h4>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-azul" data-dismiss="modal">
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal editar encabezado-->
+
+<div id="ModalEditEcabezado" name="ModalEditEcabezado" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("DATE / FECHA")
+                        @*@Html.DisplayFor(model => model.dateReport)*@
+                        @Html.EditorFor(model => model.dateReport, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("FLOWER/FLOR:")
+                        @*@Html.DisplayFor(model => model.flower)*@
+                        @Html.EditorFor(model => model.flower, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("FARM/FINCA:")
+                        @{
+                            List<SelectListItem> listItems = new List<SelectListItem>();
+
+                            listItems.Add(new SelectListItem { Text = "ABA-ABAX", Value = "ABA-ABAX" });
+                            listItems.Add(new SelectListItem { Text = "ACH-ACHETECORP ECUADOR SAS", Value = "ACH-ACHETECORP ECUADOR SAS" });
+                            listItems.Add(new SelectListItem { Text = "AFD-ANDEAN FIELD             ", Value = "AFD-ANDEAN FIELD             " });
+                            listItems.Add(new SelectListItem { Text = "AFI-AFI PERU FARMS           ", Value = "AFI-AFI PERU FARMS           " });
+                            listItems.Add(new SelectListItem { Text = "AGC-AGRICOLA CIRCASIA        ", Value = "AGC-AGRICOLA CIRCASIA        " });
+                            listItems.Add(new SelectListItem { Text = "AGI-AGRIROSES", Value = "AGI-AGRIROSES" });
+                            listItems.Add(new SelectListItem { Text = "AGL-AGROLIMACHE ", Value = "AGL-AGROLIMACHE " });
+                            listItems.Add(new SelectListItem { Text = "AGN-AGRINAG", Value = "AGN-AGRINAG" });
+                            listItems.Add(new SelectListItem { Text = "AGV-AGRIVALDANI", Value = "AGV-AGRIVALDANI" });
+                            listItems.Add(new SelectListItem { Text = "AGX-AGROCOEX", Value = "AGX-AGROCOEX" });
+                            listItems.Add(new SelectListItem { Text = "ALD-ALDEBARAN-ROMPEVIENTOS", Value = "ALD-ALDEBARAN-ROMPEVIENTOS" });
+                            listItems.Add(new SelectListItem { Text = "ALE-ALEXANDRA FARMS          ", Value = "ALE-ALEXANDRA FARMS          " });
+                            listItems.Add(new SelectListItem { Text = "ALR-ALPAROSES", Value = "ALR-ALPAROSES" });
+                            listItems.Add(new SelectListItem { Text = "ALT-ALTOS DE LA MIRA", Value = "ALT-ALTOS DE LA MIRA" });
+                            listItems.Add(new SelectListItem { Text = "AND-ANDALUCIA FARMS          ", Value = "AND-ANDALUCIA FARMS          " });
+                            listItems.Add(new SelectListItem { Text = "ANE-AGRICOLA NEUSA           ", Value = "ANE-AGRICOLA NEUSA           " });
+                            listItems.Add(new SelectListItem { Text = "APO-APOSENTOS FARMS          ", Value = "APO-APOSENTOS FARMS          " });
+                            listItems.Add(new SelectListItem { Text = "APW-AGROPRIM", Value = "APW-AGROPRIM" });
+                            listItems.Add(new SelectListItem { Text = "ARB-CI AGRICOLA RAIMBOW", Value = "ARB-CI AGRICOLA RAIMBOW" });
+                            listItems.Add(new SelectListItem { Text = "ARC-FIORELLA", Value = "ARC-FIORELLA" });
+                            listItems.Add(new SelectListItem { Text = "ARG-AGROGANA ECUADOR SAS", Value = "ARG-AGROGANA ECUADOR SAS" });
+                            listItems.Add(new SelectListItem { Text = "ARO-FLOR AROMA", Value = "ARO-FLOR AROMA" });
+                            listItems.Add(new SelectListItem { Text = "AST-ASTRAL ROSES             ", Value = "AST-ASTRAL ROSES             " });
+                            listItems.Add(new SelectListItem { Text = "BCW-FLORES LA CAMPIÑA", Value = "BCW-FLORES LA CAMPIÑA" });
+                            listItems.Add(new SelectListItem { Text = "BES-BEST FARMS               ", Value = "BES-BEST FARMS               " });
+                            listItems.Add(new SelectListItem { Text = "BEW-RANCHO BELLAVISTA", Value = "BEW-RANCHO BELLAVISTA" });
+                            listItems.Add(new SelectListItem { Text = "BIC-BICCO FARMS SAS          ", Value = "BIC-BICCO FARMS SAS          " });
+                            listItems.Add(new SelectListItem { Text = "BLG-FLORANDINA", Value = "BLG-FLORANDINA" });
+                            listItems.Add(new SelectListItem { Text = "BOH-BOHEMIA                  ", Value = "BOH-BOHEMIA                  " });
+                            listItems.Add(new SelectListItem { Text = "BON-BONITA FARMS             ", Value = "BON-BONITA FARMS             " });
+                            listItems.Add(new SelectListItem { Text = "BRF-FLORES RIONEGRO", Value = "BRF-FLORES RIONEGRO" });
+                            listItems.Add(new SelectListItem { Text = "BUS-BUSSINES", Value = "BUS-BUSSINES" });
+                            listItems.Add(new SelectListItem { Text = "CAI-CALIFORNIA FARMS ", Value = "CAI-CALIFORNIA FARMS " });
+                            listItems.Add(new SelectListItem { Text = "CAL-CALAFATE FARMS           ", Value = "CAL-CALAFATE FARMS           " });
+                            listItems.Add(new SelectListItem { Text = "CAM-CAMTEC", Value = "CAM-CAMTEC" });
+                            listItems.Add(new SelectListItem { Text = "CAP-CI EXPOFLORES CAPIRITO SAS", Value = "CAP-CI EXPOFLORES CAPIRITO SAS" });
+                            listItems.Add(new SelectListItem { Text = "CAT-CATALEYA FLOWERS SAS", Value = "CAT-CATALEYA FLOWERS SAS" });
+                            listItems.Add(new SelectListItem { Text = "CBD-BLOOMS DIRECT SAS", Value = "CBD-BLOOMS DIRECT SAS" });
+                            listItems.Add(new SelectListItem { Text = "CBH-CI CALLA FARMS SAS", Value = "CBH-CI CALLA FARMS SAS" });
+                            listItems.Add(new SelectListItem { Text = "CER-CERES FARMS ", Value = "CER-CERES FARMS " });
+                            listItems.Add(new SelectListItem { Text = "CNN-CULTIVOS DE NORTE        ", Value = "CNN-CULTIVOS DE NORTE        " });
+                            listItems.Add(new SelectListItem { Text = "COL-COLIBRI FARMS            ", Value = "COL-COLIBRI FARMS            " });
+                            listItems.Add(new SelectListItem { Text = "CON-LA CONCHITA FARMS        ", Value = "CON-LA CONCHITA FARMS        " });
+                            listItems.Add(new SelectListItem { Text = "COP-COOP FARM", Value = "COP-COOP FARM" });
+                            listItems.Add(new SelectListItem { Text = "COR-CORIFRESCO               ", Value = "COR-CORIFRESCO               " });
+                            listItems.Add(new SelectListItem { Text = "COS-COSMOFLOWER S.A.S", Value = "COS-COSMOFLOWER S.A.S" });
+                            listItems.Add(new SelectListItem { Text = "COT-FLORES COTOPAXI", Value = "COT-FLORES COTOPAXI" });
+                            listItems.Add(new SelectListItem { Text = "CPC-CAPIRO", Value = "CPC-CAPIRO" });
+                            listItems.Add(new SelectListItem { Text = "CRC-COSTA RICA CALLAS        ", Value = "CRC-COSTA RICA CALLAS        " });
+                            listItems.Add(new SelectListItem { Text = "CRG-CROSS FARMS BOGOTA       ", Value = "CRG-CROSS FARMS BOGOTA       " });
+                            listItems.Add(new SelectListItem { Text = "CSJ-FLORES SAN JUAN SA CI    ", Value = "CSJ-FLORES SAN JUAN SA CI    " });
+                            listItems.Add(new SelectListItem { Text = "CUA-FLORES MONSERRATE        ", Value = "CUA-FLORES MONSERRATE        " });
+                            listItems.Add(new SelectListItem { Text = "CUE-MYSTIQUE                 ", Value = "CUE-MYSTIQUE                 " });
+                            listItems.Add(new SelectListItem { Text = "CUG-TESALIA                  ", Value = "CUG-TESALIA                  " });
+                            listItems.Add(new SelectListItem { Text = "CVU-CI VUELVEN FARMS         ", Value = "CVU-CI VUELVEN FARMS         " });
+                            listItems.Add(new SelectListItem { Text = "DAI -DAIKAROS", Value = "DAI -DAIKAROS" });
+                            listItems.Add(new SelectListItem { Text = "DAL-DALI ROSES", Value = "DAL-DALI ROSES" });
+                            listItems.Add(new SelectListItem { Text = "DAM-DAMAGRO ", Value = "DAM-DAMAGRO " });
+                            listItems.Add(new SelectListItem { Text = "DEJ-DEJAVU FARMS             ", Value = "DEJ-DEJAVU FARMS             " });
+                            listItems.Add(new SelectListItem { Text = "DII-DIFIORI ", Value = "DII-DIFIORI " });
+                            listItems.Add(new SelectListItem { Text = "DIN-DINALB FARMS              ", Value = "DIN-DINALB FARMS              " });
+                            listItems.Add(new SelectListItem { Text = "ECB-ECUABOUQUETS", Value = "ECB-ECUABOUQUETS" });
+                            listItems.Add(new SelectListItem { Text = "EMH-EMIHANA ", Value = "EMH-EMIHANA " });
+                            listItems.Add(new SelectListItem { Text = "ENF-CI ENCANTO FLOWERS ", Value = "ENF-CI ENCANTO FLOWERS " });
+                            listItems.Add(new SelectListItem { Text = "EQR-EQUATOROSES", Value = "EQR-EQUATOROSES" });
+                            listItems.Add(new SelectListItem { Text = "EQU-ECUANROS", Value = "EQU-ECUANROS" });
+                            listItems.Add(new SelectListItem { Text = "ERB-EL REBANO                ", Value = "ERB-EL REBANO                " });
+                            listItems.Add(new SelectListItem { Text = "ETE-FLOR ETERNA", Value = "ETE-FLOR ETERNA" });
+                            listItems.Add(new SelectListItem { Text = "EVE-EVERGREEN ", Value = "EVE-EVERGREEN " });
+                            listItems.Add(new SelectListItem { Text = "EXF-EXPRESS FARMS", Value = "EXF-EXPRESS FARMS" });
+                            listItems.Add(new SelectListItem { Text = "EXO-EXOTIC FARMS             ", Value = "EXO-EXOTIC FARMS             " });
+                            listItems.Add(new SelectListItem { Text = "FBG-FLORES COLON LTDA        ", Value = "FBG-FLORES COLON LTDA        " });
+                            listItems.Add(new SelectListItem { Text = "FCY-FANCY FLOWERS", Value = "FCY-FANCY FLOWERS" });
+                            listItems.Add(new SelectListItem { Text = "FDC-FLODECOL", Value = "FDC-FLODECOL" });
+                            listItems.Add(new SelectListItem { Text = "FDL-FLORES DEL CAMPO", Value = "FDL-FLORES DEL CAMPO" });
+                            listItems.Add(new SelectListItem { Text = "FEE-FEEL FLOWERS", Value = "FEE-FEEL FLOWERS" });
+                            listItems.Add(new SelectListItem { Text = "FEP-FLOWER EXPRESIONS", Value = "FEP-FLOWER EXPRESIONS" });
+                            listItems.Add(new SelectListItem { Text = "FES-FLOWER EVERY DAY", Value = "FES-FLOWER EVERY DAY" });
+                            listItems.Add(new SelectListItem { Text = "FFE-FLORES FE                ", Value = "FFE-FLORES FE                " });
+                            listItems.Add(new SelectListItem { Text = "FGF-FLORIGENE ECUADOR", Value = "FGF-FLORIGENE ECUADOR" });
+                            listItems.Add(new SelectListItem { Text = "FIF-FLORIGENE FLOWERS BTA    ", Value = "FIF-FLORIGENE FLOWERS BTA    " });
+                            listItems.Add(new SelectListItem { Text = "FIR-FIORENTINA", Value = "FIR-FIORENTINA" });
+                            listItems.Add(new SelectListItem { Text = "FLI-GRUPO FLORISOL", Value = "FLI-GRUPO FLORISOL" });
+                            listItems.Add(new SelectListItem { Text = "FLO-FLORISERT FARMS          ", Value = "FLO-FLORISERT FARMS          " });
+                            listItems.Add(new SelectListItem { Text = "FLT-FLORIFRUT", Value = "FLT-FLORIFRUT" });
+                            listItems.Add(new SelectListItem { Text = "FMA-FLORES MAGICAS", Value = "FMA-FLORES MAGICAS" });
+                            listItems.Add(new SelectListItem { Text = "FMF-AGRICOLA LA MONTANA      ", Value = "FMF-AGRICOLA LA MONTANA      " });
+                            listItems.Add(new SelectListItem { Text = "FMH-FLOR MACHACHI", Value = "FMH-FLOR MACHACHI" });
+                            listItems.Add(new SelectListItem { Text = "FMR-FLORES MARAL SAS", Value = "FMR-FLORES MARAL SAS" });
+                            listItems.Add(new SelectListItem { Text = "FOD-FRUTOS LA ODISEA         ", Value = "FOD-FRUTOS LA ODISEA         " });
+                            listItems.Add(new SelectListItem { Text = "FQU-FLOREQUISA", Value = "FQU-FLOREQUISA" });
+                            listItems.Add(new SelectListItem { Text = "FRR-FLORANA", Value = "FRR-FLORANA" });
+                            listItems.Add(new SelectListItem { Text = "FSA-SAVISA", Value = "FSA-SAVISA" });
+                            listItems.Add(new SelectListItem { Text = "FSI-FLORSANI", Value = "FSI-FLORSANI" });
+                            listItems.Add(new SelectListItem { Text = "FSS-FLORES DEL SUR", Value = "FSS-FLORES DEL SUR" });
+                            listItems.Add(new SelectListItem { Text = "FTM-FLORES TIMANA            ", Value = "FTM-FLORES TIMANA            " });
+                            listItems.Add(new SelectListItem { Text = "FTU -FLORES DE TUMBABIRO ", Value = "FTU -FLORES DE TUMBABIRO " });
+                            listItems.Add(new SelectListItem { Text = "FUF-INVERPALMAS              ", Value = "FUF-INVERPALMAS              " });
+                            listItems.Add(new SelectListItem { Text = "FUL-FLORES MUNDO COLORES.", Value = "FUL-FLORES MUNDO COLORES." });
+                            listItems.Add(new SelectListItem { Text = "FWW-FLORIGENE DIR UP TO MAY13", Value = "FWW-FLORIGENE DIR UP TO MAY13" });
+                            listItems.Add(new SelectListItem { Text = "GAA-GRUPO ANDES              ", Value = "GAA-GRUPO ANDES              " });
+                            listItems.Add(new SelectListItem { Text = "GAL-FLORES DE LA GALICIA", Value = "GAL-FLORES DE LA GALICIA" });
+                            listItems.Add(new SelectListItem { Text = "GAM-MONTEVERDE               ", Value = "GAM-MONTEVERDE               " });
+                            listItems.Add(new SelectListItem { Text = "GBU-FLORES GAMBUR            ", Value = "GBU-FLORES GAMBUR            " });
+                            listItems.Add(new SelectListItem { Text = "GOL-GOLDEN ROSE", Value = "GOL-GOLDEN ROSE" });
+                            listItems.Add(new SelectListItem { Text = "GST-GREEN STAR", Value = "GST-GREEN STAR" });
+                            listItems.Add(new SelectListItem { Text = "GUT-GUTIMILKO", Value = "GUT-GUTIMILKO" });
+                            listItems.Add(new SelectListItem { Text = "GYP-GYPSO ", Value = "GYP-GYPSO " });
+                            listItems.Add(new SelectListItem { Text = "HFF-H FLOWER", Value = "HFF-H FLOWER" });
+                            listItems.Add(new SelectListItem { Text = "HOS-HOSA FARMS               ", Value = "HOS-HOSA FARMS               " });
+                            listItems.Add(new SelectListItem { Text = "HYF-FLORECOT ", Value = "HYF-FLORECOT " });
+                            listItems.Add(new SelectListItem { Text = "HYO-HYDRAFLORA SAS", Value = "HYO-HYDRAFLORA SAS" });
+                            listItems.Add(new SelectListItem { Text = "ILM-INVERSIONES LA MONTANA   ", Value = "ILM-INVERSIONES LA MONTANA   " });
+                            listItems.Add(new SelectListItem { Text = "ING-INGUEZA", Value = "ING-INGUEZA" });
+                            listItems.Add(new SelectListItem { Text = "IRS-IRIS FARMS               ", Value = "IRS-IRIS FARMS               " });
+                            listItems.Add(new SelectListItem { Text = "JAR-JARDINES DE SAN NICOLAS", Value = "JAR-JARDINES DE SAN NICOLAS" });
+                            listItems.Add(new SelectListItem { Text = "JOR-EL JORDAN", Value = "JOR-EL JORDAN" });
+                            listItems.Add(new SelectListItem { Text = "JPF-JYP FLOWERS SAS", Value = "JPF-JYP FLOWERS SAS" });
+                            listItems.Add(new SelectListItem { Text = "JUM-JUMBO ROSES", Value = "JUM-JUMBO ROSES" });
+                            listItems.Add(new SelectListItem { Text = "KUN-KUNA FLOWERS             ", Value = "KUN-KUNA FLOWERS             " });
+                            listItems.Add(new SelectListItem { Text = "LAC-CULTIVOS  LA CEJA", Value = "LAC-CULTIVOS  LA CEJA" });
+                            listItems.Add(new SelectListItem { Text = "LAH-LA HERRADURA", Value = "LAH-LA HERRADURA" });
+                            listItems.Add(new SelectListItem { Text = "LAM-FLORES DE LA MONTAÑA", Value = "LAM-FLORES DE LA MONTAÑA" });
+                            listItems.Add(new SelectListItem { Text = "LAR-EL ROSEDAL ", Value = "LAR-EL ROSEDAL " });
+                            listItems.Add(new SelectListItem { Text = "LAT-LATIN FLOWER             ", Value = "LAT-LATIN FLOWER             " });
+                            listItems.Add(new SelectListItem { Text = "LAV-FLORES LA VICTORIA", Value = "LAV-FLORES LA VICTORIA" });
+                            listItems.Add(new SelectListItem { Text = "LAX-LA AUXILIADORA ", Value = "LAX-LA AUXILIADORA " });
+                            listItems.Add(new SelectListItem { Text = "LFL-LAS FLORES FARMS         ", Value = "LFL-LAS FLORES FARMS         " });
+                            listItems.Add(new SelectListItem { Text = "LGF-LA GAITANA FARMS         ", Value = "LGF-LA GAITANA FARMS         " });
+                            listItems.Add(new SelectListItem { Text = "LTC-LATITUD 0", Value = "LTC-LATITUD 0" });
+                            listItems.Add(new SelectListItem { Text = "MAC-MACARENA FARMS           ", Value = "MAC-MACARENA FARMS           " });
+                            listItems.Add(new SelectListItem { Text = "MAG-NINTANGA", Value = "MAG-NINTANGA" });
+                            listItems.Add(new SelectListItem { Text = "MAI-MAXIROSES", Value = "MAI-MAXIROSES" });
+                            listItems.Add(new SelectListItem { Text = "MEC-MER C ROSES", Value = "MEC-MER C ROSES" });
+                            listItems.Add(new SelectListItem { Text = "MGR-MEGAROSES", Value = "MGR-MEGAROSES" });
+                            listItems.Add(new SelectListItem { Text = "MIL-MILROSES", Value = "MIL-MILROSES" });
+                            listItems.Add(new SelectListItem { Text = "MIO-MILONGA FARMS            ", Value = "MIO-MILONGA FARMS            " });
+                            listItems.Add(new SelectListItem { Text = "MIR-MIRAMONTE", Value = "MIR-MIRAMONTE" });
+                            listItems.Add(new SelectListItem { Text = "MLI-MALIMA", Value = "MLI-MALIMA" });
+                            listItems.Add(new SelectListItem { Text = "MTS-CACHIPAY  SUNFLOWERS     ", Value = "MTS-CACHIPAY  SUNFLOWERS     " });
+                            listItems.Add(new SelectListItem { Text = "MUC-MUCH FLOWERS", Value = "MUC-MUCH FLOWERS" });
+                            listItems.Add(new SelectListItem { Text = "MYC-MAYACROPS FARMS          ", Value = "MYC-MAYACROPS FARMS          " });
+                            listItems.Add(new SelectListItem { Text = "MYF-PUEMBO ", Value = "MYF-PUEMBO " });
+                            listItems.Add(new SelectListItem { Text = "MZR-CULTIVOS MANZANAREZ", Value = "MZR-CULTIVOS MANZANAREZ" });
+                            listItems.Add(new SelectListItem { Text = "NAC-CAUCA                    ", Value = "NAC-CAUCA                    " });
+                            listItems.Add(new SelectListItem { Text = "NAR-NARANJO ", Value = "NAR-NARANJO " });
+                            listItems.Add(new SelectListItem { Text = "NAT-NATUFLOR ", Value = "NAT-NATUFLOR " });
+                            listItems.Add(new SelectListItem { Text = "NEM-NEMOCON FARMS            ", Value = "NEM-NEMOCON FARMS            " });
+                            listItems.Add(new SelectListItem { Text = "NER-NEVADO ", Value = "NER-NEVADO " });
+                            listItems.Add(new SelectListItem { Text = "NOF-NORCAFE FARMS            ", Value = "NOF-NORCAFE FARMS            " });
+                            listItems.Add(new SelectListItem { Text = "OLI-OLIVARES", Value = "OLI-OLIVARES" });
+                            listItems.Add(new SelectListItem { Text = "PET-PETALUMA LTDA            ", Value = "PET-PETALUMA LTDA            " });
+                            listItems.Add(new SelectListItem { Text = "PFC-PLANTAS Y FLORES         ", Value = "PFC-PLANTAS Y FLORES         " });
+                            listItems.Add(new SelectListItem { Text = "PHT-PHYTOTEC FARMS           ", Value = "PHT-PHYTOTEC FARMS           " });
+                            listItems.Add(new SelectListItem { Text = "PIA-PIANGO ", Value = "PIA-PIANGO " });
+                            listItems.Add(new SelectListItem { Text = "PLA-BAZZANI                  ", Value = "PLA-BAZZANI                  " });
+                            listItems.Add(new SelectListItem { Text = "PLR-PLATINUN ROSES", Value = "PLR-PLATINUN ROSES" });
+                            listItems.Add(new SelectListItem { Text = "PQR-WAYUU FLOWERS - PQR ROSES", Value = "PQR-WAYUU FLOWERS - PQR ROSES" });
+                            listItems.Add(new SelectListItem { Text = "PRF-FLORES Y FOLLAJES FARM   ", Value = "PRF-FLORES Y FOLLAJES FARM   " });
+                            listItems.Add(new SelectListItem { Text = "PRO-PROTEAS DEL SOL ", Value = "PRO-PROTEAS DEL SOL " });
+                            listItems.Add(new SelectListItem { Text = "PRR-PRINCESS FARMS ", Value = "PRR-PRINCESS FARMS " });
+                            listItems.Add(new SelectListItem { Text = "QUI-QUIRAMA", Value = "QUI-QUIRAMA" });
+                            listItems.Add(new SelectListItem { Text = "R&R-ROSES & ROSES", Value = "R&R-ROSES & ROSES" });
+                            listItems.Add(new SelectListItem { Text = "RED-REDIL FARMS              ", Value = "RED-REDIL FARMS              " });
+                            listItems.Add(new SelectListItem { Text = "RFD-FLORES SANTA FE LTDA     ", Value = "RFD-FLORES SANTA FE LTDA     " });
+                            listItems.Add(new SelectListItem { Text = "RGC-FLORES MARAVILLA SA      ", Value = "RGC-FLORES MARAVILLA SA      " });
+                            listItems.Add(new SelectListItem { Text = "RIF-RAINFOREST FARMS         ", Value = "RIF-RAINFOREST FARMS         " });
+                            listItems.Add(new SelectListItem { Text = "RLD-LA ROSALEDA", Value = "RLD-LA ROSALEDA" });
+                            listItems.Add(new SelectListItem { Text = "RLM-ROSAS LA MARTINA SAS", Value = "RLM-ROSAS LA MARTINA SAS" });
+                            listItems.Add(new SelectListItem { Text = "ROG-SABANILLA SAS            ", Value = "ROG-SABANILLA SAS            " });
+                            listItems.Add(new SelectListItem { Text = "ROH-ORNAMENTALES COL", Value = "ROH-ORNAMENTALES COL" });
+                            listItems.Add(new SelectListItem { Text = "ROM-ROSELAND FARMS           ", Value = "ROM-ROSELAND FARMS           " });
+                            listItems.Add(new SelectListItem { Text = "ROO-ROOTS PERU               ", Value = "ROO-ROOTS PERU               " });
+                            listItems.Add(new SelectListItem { Text = "RRG-GLAMOUR", Value = "RRG-GLAMOUR" });
+                            listItems.Add(new SelectListItem { Text = "RSQ-ROSALQUEZ", Value = "RSQ-ROSALQUEZ" });
+                            listItems.Add(new SelectListItem { Text = "RSS-ROSE SUCCESS", Value = "RSS-ROSE SUCCESS" });
+                            listItems.Add(new SelectListItem { Text = "RTI-TUCAN ROSES              ", Value = "RTI-TUCAN ROSES              " });
+                            listItems.Add(new SelectListItem { Text = "RVG-VEGAFLOR ", Value = "RVG-VEGAFLOR " });
+                            listItems.Add(new SelectListItem { Text = "SAG-SAGARO FARMS             ", Value = "SAG-SAGARO FARMS             " });
+                            listItems.Add(new SelectListItem { Text = "SBT-SB TALEE FARMS           ", Value = "SBT-SB TALEE FARMS           " });
+                            listItems.Add(new SelectListItem { Text = "SFG-SAN FRANCISCO GARDEN", Value = "SFG-SAN FRANCISCO GARDEN" });
+                            listItems.Add(new SelectListItem { Text = "SIL-FLOWER SILVESTRE", Value = "SIL-FLOWER SILVESTRE" });
+                            listItems.Add(new SelectListItem { Text = "SIS-SISARI FARMS", Value = "SIS-SISARI FARMS" });
+                            listItems.Add(new SelectListItem { Text = "SKF-SKF", Value = "SKF-SKF" });
+                            listItems.Add(new SelectListItem { Text = "SKY-SKY VALLEY ", Value = "SKY-SKY VALLEY " });
+                            listItems.Add(new SelectListItem { Text = "SOF-SOFIS FARMS ", Value = "SOF-SOFIS FARMS " });
+                            listItems.Add(new SelectListItem { Text = "SUA-AGRICOLA SUATI           ", Value = "SUA-AGRICOLA SUATI           " });
+                            listItems.Add(new SelectListItem { Text = "SUN-VALLEFLOR", Value = "SUN-VALLEFLOR" });
+                            listItems.Add(new SelectListItem { Text = "TAH-TAHAMI", Value = "TAH-TAHAMI" });
+                            listItems.Add(new SelectListItem { Text = "TEC-TEUCALI                  ", Value = "TEC-TEUCALI                  " });
+                            listItems.Add(new SelectListItem { Text = "TES-TESSA ROSES", Value = "TES-TESSA ROSES" });
+                            listItems.Add(new SelectListItem { Text = "TOA-FLORES TOACASO ", Value = "TOA-FLORES TOACASO " });
+                            listItems.Add(new SelectListItem { Text = "TRE-TREASURE FARMS", Value = "TRE-TREASURE FARMS" });
+                            listItems.Add(new SelectListItem { Text = "UNQ-UNIQUE COLLECTION SA     ", Value = "UNQ-UNIQUE COLLECTION SA     " });
+                            listItems.Add(new SelectListItem { Text = "VAL-FLORES VALDAYA           ", Value = "VAL-FLORES VALDAYA           " });
+                            listItems.Add(new SelectListItem { Text = "VDF-VERDIFRATI               ", Value = "VDF-VERDIFRATI               " });
+                            listItems.Add(new SelectListItem { Text = "VER-VERAFLOWERS", Value = "VER-VERAFLOWERS" });
+                            listItems.Add(new SelectListItem { Text = "VIL-VILLANELLY FLOWERS SAS", Value = "VIL-VILLANELLY FLOWERS SAS" });
+                            listItems.Add(new SelectListItem { Text = "YBE-JARDINES DE CAYAMBE", Value = "YBE-JARDINES DE CAYAMBE" });
+                            listItems.Add(new SelectListItem { Text = "YOT-YOTEMA FARMS             ", Value = "YOT-YOTEMA FARMS             " });
+                            listItems.Add(new SelectListItem { Text = "ZVO-ZAPAD VOSTOK", Value = "ZVO-ZAPAD VOSTOK" });
+                        }
+
+                        @Html.DropDownListFor(model => model.farmReport, listItems, htmlAttributes: new { @class = "form-control" })
+
+
+
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("CUSTOMER/CLIENTE:")
+                        @Html.EditorFor(model => model.customer, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.DisplayFor(model => model.customer)*@
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("AWB NUMBER:")
+                        @Html.EditorFor(model => model.awbNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.qty)
+                        @*@Html.DisplayFor(model => model.qty)*@
+                        @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("INSPECTION PLACE", new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.DisplayFor(model => model.inspectionPlace)*@
+                        @*<Select class="form-control" id="inspectionPlace" name="inspectionPlace" onchange="viewBoxBuch()">
+                                <option value='Qc Miami'>Qc Miami</option>
+                                <option value='Production Miami'>Production Miami </option>
+                                <option value='Farms'>Farms</option>
+
+                            </Select>*@
+
+                        @{
+                            List<SelectListItem> listItemsPlace = new List<SelectListItem>();
+                            listItemsPlace.Add(new SelectListItem
+                            {
+                                Text = "Qc Miami",
+                                Value = "Qc Miami"
+                            });
+                            listItemsPlace.Add(new SelectListItem
+                            {
+                                Text = "Production Miami",
+                                Value = "Production Miami",
+                                Selected = true
+                            });
+                            listItemsPlace.Add(new SelectListItem
+                            {
+                                Text = "Farms",
+                                Value = "Farms"
+                            });
+                        }
+
+                        @Html.DropDownListFor(model => model.inspectionPlace, listItemsPlace, htmlAttributes: new { @class = "form-control" })
+
+
+
+
+
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-azul" onclick="" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editEncabezado()">
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Agregar nuevo correo   -->
+
+<div id="ModalAgregarNuevoCorreo" name="ModalAgregarNuevoCorreo" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="modal-title">
+                            Add Email
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <input type="text" id="FarmsEmail" name="FarmsEmail" class="form-control" />
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-azul" onclick="borrarCampoSendEmai()" data-dismiss="modal"> Cancel </button>
+                @*<button type="button" class="btn btn-azul" onclick="enviarHtml()" data-dismiss="modal"> Send</button>*@
+                <a data-toggle="modal" onclick="enviarHtml()" class="btn btn-primary" data-dismiss="modal">
+                    Yes
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal pregunta destinatorio   -->
+
+<div id="ModalPreguntaDestinatario" name="ModalPreguntaDestinatario" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="modal-title">
+                            Do you want to add a new email?
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-azul" onclick="enviarHtml()" data-dismiss="modal"> No </button>
+                <a data-toggle="modal" id="sendEmailReport" href="#ModalAgregarNuevoCorreo" class="btn btn-primary" data-dismiss="modal">
+                    Yes
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal agregar nuevo destinatario-->
+
+<div id="modalProblemType" name="modalProblemType" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="modal-title">
+                            Edit Problem Type
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div id="listProblemType" class="modal-body">
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-azul" data-dismiss="modal"> Cancel </button>
+                <a data-toggle="modal" onclick="saveProblemType(this)" class="btn btn-primary" data-dismiss="modal">
+                    Send
+                </a>
+                @*<button type="button" class="btn btn-azul" onclick="saveProblemType(this)" data-dismiss="modal"> Send</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function enviarHtml() {
+
+            var reportCode = $("#qualityReportID").val();
+            var email = $("#FarmsEmail").val();
+
+            $("#sendEmailReport").attr("disabled", "disabled");
+
+            $.post('@Url.Action("enviarCorreo")', { type: 'data', id: reportCode,emailFarms:email }, function (result) {
+                if (result.success) {
+                    //alert('The Email was successfully sent');
+                    $("#sendEmailReport").removeAttr("disabled");
+                    $("#ModalEmail").modal("show");
+                    $("#FarmsEmail").val("");
+                }
+            });
+        }
+        function borrarCampoSendEmai() {
+
+            $("#FarmsEmail").val("");
+        }
+
+        function editEncabezado() {
+            $.post('@Url.Action("editEncabezado")', {
+                type: 'data', qualityReportID: qualityReportID.value,
+                dateReport: dateReport.value, farmReport: farmReport.value, awbNumber: awbNumber.value, flower: flower.value, customer: customer.value,
+                qty: qty.value, inspectionPlace: inspectionPlace.value
+            }, function (result) {
+                if (result.success) {
+
+                }
+            });
+        }
+
+        function editarTypeProblem(botonEdit) {
+           $("#listProblemType").html("");
+           // $("#listProblemType").append($(botonEdit).closest("tr").find("div[name^='typeProblem']")[0].cloneNode(true));
+            var listProblem = $(botonEdit).closest("tr").find("div[name^='typeProblem']")[0].cloneNode(true);
+            $(listProblem).find("input[name^='answerInspection']").each(function (ind, elementAswer) {
+                $(elementAswer).attr("class", "form-control");
+
+
+            })
+
+            //$(listProblem).find("h6").each(function (ind, elementAswer) {
+            //    var eti = $(elementAswer).text();
+
+
+            //})
+
+            $("#listProblemType").append(listProblem);
+
+        }
+        function saveProblemType(BtnSave) {
+
+
+            var data_caso = "";
+
+            $("#modalProblemType").find("input[name^='answerInspection']").each(function (ind, elementAswer) {
+
+                if (elementAswer.checked) {
+                    $(elementAswer).val("true");
+                    data_caso += "&["+ind+"].qualityReportID=" + $("#qualityReportID").val() + "&["+ind+"].problemID=" + 3 + "&["+ind+"].answerInspection=" + $(elementAswer).val();
+                    // $(elementAswer).val("true");
+                } else {
+                    data_caso += "&[" + ind + "].qualityReportID=" + $("#qualityReportID").val() + "&[" + ind + "].problemID=" + 3 + "&[" + ind + "].answerInspection=" + $(elementAswer).val();
+                }
+
+            })
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("editProblemType", "QualityReports")',
+                    data: data_caso,
+                    dataType: "json",
+                    success: function (response) {
+
+
+                    }
+                });
+
+
+
+        }
+
+    </script>
+}

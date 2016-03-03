@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GalleriaDesign.Models.ProblemByReport>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.problem.descritpionProblem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reportType.nameReportType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.problem.descritpionProblem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reportType.nameReportType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.problemByReport }) |
+            @Html.ActionLink("Details", "Details", new { id=item.problemByReport }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.problemByReport })
+        </td>
+    </tr>
+}
+
+</table>

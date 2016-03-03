@@ -1,0 +1,96 @@
+﻿@model Supermarket.Models.InspecctionSupermarket
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>InspecctionSupermarket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bouquetProgram.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bouquetProgram.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorEnhaced.nameColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorEnhaced.nameColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumerBunchProgram.descriptionProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumerBunchProgram.descriptionProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roseProgram.programDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roseProgram.programDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sleeveType.nameSleeve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sleeveType.nameSleeve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeExecution.idStoreExecution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeExecution.idStoreExecution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeInformation.otherRetailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeInformation.otherRetailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.nameSupplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.nameSupplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.additionalComents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.additionalComents)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

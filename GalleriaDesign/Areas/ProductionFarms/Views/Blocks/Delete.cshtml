@@ -1,0 +1,48 @@
+﻿@model ApplicationProductionsFarms.Models.Blocks
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Blocks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Farms.codeFarms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Farms.codeFarms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numBlocks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numBlocks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numBeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numBeds)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

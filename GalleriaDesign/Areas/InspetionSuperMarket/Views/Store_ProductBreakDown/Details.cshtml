@@ -1,0 +1,42 @@
+﻿@model Supermarket.Models.Store_ProductBreakDown
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Store_ProductBreakDown</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productBreackDown.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productBreackDown.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeInformation.otherRetailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeInformation.otherRetailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idStoreProductBreakDown }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

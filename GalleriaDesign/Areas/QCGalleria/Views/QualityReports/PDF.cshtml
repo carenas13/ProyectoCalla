@@ -1,0 +1,238 @@
+﻿@model GalleriaDesign.Models.QualityReport
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="pdfText">
+    <h2>QualityReport</h2>
+
+    <!--report-->
+
+    <table class="table">
+        <tr>
+            <td>
+                @*@Html.LabelFor(model => model.dateReport)*@
+                @Html.Label("DATE / FECHA")
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dateReport)
+
+            </td>
+            <td>
+
+                @*@Html.LabelFor(model => model.flower)*@
+                @Html.Label("PRODUCT/PRODUCTO:")
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.flower)
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @*@Html.LabelFor(model => model.farmReport)*@
+                @Html.Label("FARM/FINCA:")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.farmReport)
+            </td>
+            <td>
+                @*@Html.LabelFor(model => model.customer)*@
+                @Html.Label("CUSTOMER/CLIENTE:")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.customer)
+            </td>
+        </tr>
+        <tr>
+            @*<td>
+
+                    @Html.Label("AWB NUMBER:")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.awbNumber)
+                </td>*@
+            <td>
+
+                @Html.Label("NUMBER ORDER")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.numOrder)
+            </td>
+            @*<td>
+                    @Html.LabelFor(model => model.qty)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.qty)
+                </td>*@
+            <td>
+                @*@Html.LabelFor(model => model.inspectionPlace)*@
+                @Html.Label("INSPECTION PLACE")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.inspectionPlace)
+            </td>
+
+
+        </tr>
+        <tr>
+
+            @*<td>
+                    @Html.Label("BUNCH / BOX")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.bunchBox)
+
+                </td>*@
+        </tr>
+        @*<tr>
+
+
+                <td>
+
+                    @Html.Label("BUNCH INSPECTED")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.bunchInspected)
+                </td>
+
+                <td>
+
+                    @Html.Label("BOXES INSPECTED")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.boxesInspected)
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+
+                    @Html.Label("TOTAL BUNCH")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.totalBunch)
+                </td>
+
+
+
+            </tr>*@
+
+    </table>
+
+    <table border="1" class="table">
+        <!---->
+        <tr>
+            <th>
+                <h2>
+                    Quality Problems
+                </h2>
+            </th>
+            <th>
+                <h2>
+                    Picture
+                </h2>
+            </th>
+        </tr>
+
+        @foreach (var itemType in ViewBag.problemTypeList)
+        {
+            <tr>
+                <td>
+                    <label>
+                        @itemType.descritpionProblem
+                    </label>
+
+                    @foreach (var item in Model.qualityInspection)
+                    {
+                        if (item.problem.typeProblemID == itemType.typeProblemID)
+                        {
+                            if (item.answerInspection == true)
+                            {
+
+                                <div class="checkbox i-checks">
+                                    <label>
+                                        <label>
+                                            @item.problem.descritpionProblem
+                                        </label>
+                                        <input type="checkbox" id="answerInspection"
+                                               name="answerInspection" checked="checked">
+
+                                    </label>
+
+                                </div>
+
+
+                            }
+                            else
+                            {
+
+                                <div class="checkbox i-checks">
+                                    <label>
+                                        <label>
+                                            @item.problem.descritpionProblem
+                                        </label>
+                                        <input type="checkbox" id="answerInspection"
+                                               name="answerInspection">
+
+                                    </label>
+
+                                </div>
+
+
+
+
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    @{ int idx1 = 0;
+                        foreach (var item in Model.images)
+                        {
+                            if (item.problemType.typeProblemID == itemType.typeProblemID)
+                            {
+                                <img src="@Url.Action("GetImage", new { item.imageID })" style="width: 250px; height: 250px; " />
+                                idx1++;
+                            }
+                            if (idx1 == 2)
+                            {
+                                <br>
+                                idx1 = 0;
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+                        }
+
+
+    </table>
+</div>
+<p>
+    <h4>
+        COMMENTS/COMENTARIOS:
+    </h4>
+    <label>
+        @Html.DisplayFor(model => model.commentsReport)
+    </label>
+</p>
+<p>
+    <h4>
+        INSPECTED BY:
+    </h4>
+    <label>
+        @Html.DisplayFor(model => model.userInspector)
+    </label>
+</p>
+
+
+
+
+

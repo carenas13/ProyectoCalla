@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Supermarket.Models.StoreInformation>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+
+@*<img src="@Url.Action("GetImage", new { imageID=2 })" class="img-responsive" />*@
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.retailer.nameRetailer)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.otherRetailer)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.numberStore)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.inspector)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.floralSetup.description)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.fullService)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.floralDisplay.description)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.otherProduct)
+        </th>
+        <th></th>
+
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.retailer.nameRetailer)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.otherRetailer)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.numberStore)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.inspector)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.floralSetup.description)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.fullService)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.floralDisplay.description)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.otherProduct)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idStoreInformation }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idStoreInformation }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idStoreInformation })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+

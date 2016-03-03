@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Supermarket.Models.Bouquet_GreenType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bouquetProgram.descriptionProgram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idGreenType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.checkGreenType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bouquetProgram.descriptionProgram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idGreenType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.checkGreenType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idBouquetGreenType }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idBouquetGreenType }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idBouquetGreenType })
+        </td>
+    </tr>
+}
+
+</table>

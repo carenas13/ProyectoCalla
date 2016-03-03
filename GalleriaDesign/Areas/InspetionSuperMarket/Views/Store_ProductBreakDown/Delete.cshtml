@@ -1,0 +1,48 @@
+﻿@model Supermarket.Models.Store_ProductBreakDown
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Store_ProductBreakDown</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productBreackDown.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productBreackDown.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeInformation.otherRetailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeInformation.otherRetailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percent)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

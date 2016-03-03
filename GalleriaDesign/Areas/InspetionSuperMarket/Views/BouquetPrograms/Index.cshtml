@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Supermarket.Models.BouquetProgram>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionProgramBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.retailBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nameBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalstemCountBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.focalCountBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherFocals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colorEnhacedFocal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.basicStemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherBasic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colorenhacedBasic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fillerStemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherFillerBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colorEnhacedFiller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.greensStemCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherGreenType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colorEnhacedGreen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supplierBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sleeveBP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.innerWrapBP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.descriptionProgramBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.retailBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalstemCountBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.focalCountBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherFocals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colorEnhacedFocal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.basicStemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherBasic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colorenhacedBasic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fillerStemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherFillerBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colorEnhacedFiller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.greensStemCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherGreenType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colorEnhacedGreen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplierBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sleeveBP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.innerWrapBP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idBouquetProgram }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idBouquetProgram }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idBouquetProgram })
+        </td>
+    </tr>
+}
+
+</table>

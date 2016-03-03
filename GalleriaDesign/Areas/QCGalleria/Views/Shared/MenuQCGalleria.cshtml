@@ -1,0 +1,99 @@
+﻿@using GalleriaDesign.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+<ul class="nav navbar-nav">
+    @{
+        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+    }
+    <li>
+        @Html.ActionLink("Home", "Index", "HomeQCGalleria")
+
+
+    </li>
+
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Quality Solution<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+
+            @{
+                if (ViewBag.reportTypes != null)
+                {
+                    Session["ReporTypes"] = ViewBag.reportTypes;
+
+                    foreach (var itemType in ViewBag.reportTypes)
+                    {
+                        string nombre = itemType.nameReportType;
+                        <li>
+                            @Html.ActionLink(nombre, "Index", "QualityReports", new { typeReport = itemType.reportTypeId }, null)
+
+                        </li>
+
+                    }
+                }
+                else {
+                    ViewBag.reportTypes = Session["ReporTypes"];
+                    foreach (var itemType in ViewBag.reportTypes)
+                    {
+                        string nombre = itemType.nameReportType;
+                        <li>
+                            @Html.ActionLink(nombre, "Index", "QualityReports", new { typeReport = itemType.reportTypeId }, null)
+
+                        </li>
+
+                    }
+
+                }
+            }
+
+
+        </ul>
+    </li>
+        @if (User.IsInRole("SuperAdmin"))
+        {
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Administrative Solution <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            @Html.ActionLink("Report Type", "Index", "ReportTypes")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quality Problem types", "Index", "ProblemTypes")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quality Problem", "Index", "Problems")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Setting E-mails", "Index", "EmailsBodies")
+                        </li>
+                        <li>
+                            @Html.ActionLink("E-mails", "Index", "Emails")
+                        </li>
+                    </ul>
+                </li>
+        }
+
+    @*<li>@Html.ActionLink("archivo", "Index", "CargarArchivo")</li>*@
+
+
+
+
+
+</ul>
+
+   @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+   {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + @currentUser.fullName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+   }
+

@@ -1,0 +1,230 @@
+﻿@model IEnumerable<GalleriaDesign.Models.QualityReport>
+
+@{
+    ViewBag.Title = "Index Comentario";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        @Html.ActionLink("Create New", "Create", new { typeReport = ViewBag.reportType })
+
+    </div>
+
+
+</div>
+<br />
+<table id="example" class="table table-bordered table-responsive" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.qualityReportID)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateReport)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.inspectionPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.farmReport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.awbNumber)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.flower)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qty)
+            </th>
+            <th> Action </th>
+
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.qualityReportID)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateReport)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.inspectionPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.farmReport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.awbNumber)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.flower)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qty)
+            </th>
+            <th> Action </th>
+        </tr>
+    </tfoot>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            var pintar = false;
+            foreach (var respuesta in item.qualityInspection)
+            {
+                if (respuesta.problem.typeProblemID == 5 && respuesta.answerInspection==true)
+                {
+                    pintar = true;
+                }
+            }
+            if (pintar)
+            {
+                <tr style="background-color:#D9534F">
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.qualityReportID)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.dateReport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.inspectionPlace)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.farmReport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.awbNumber)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.flower)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.customer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.qty)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.qualityReportID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.qualityReportID }) |
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.qualityReportID })
+
+
+                    </td>
+
+
+                </tr>
+            }
+            else
+            {
+
+                <tr>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.qualityReportID)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.dateReport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.inspectionPlace)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.farmReport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.awbNumber)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.flower)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.customer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.qty)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.qualityReportID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.qualityReportID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.qualityReportID })
+
+
+                    </td>
+
+
+                </tr>
+            }
+            
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Generate PDF massive", "generarInformeMasivo", new { typeReport = ViewBag.reportType }, htmlAttributes: new { @class = "btn btn-primary", @disabled = "disabled" })
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#example').dataTable({
+
+                "order": [0, "desc"],
+                "aoColumns": [
+                              { "bSortable": true },
+                              { "bSortable": false },
+                              { "bSortable": true },
+                              { "bSortable": true },
+                               { "bSortable": false },
+                              //{ "bSortable": true },
+                               { "bSortable": true },
+                              { "bSortable": true },
+                               { "bSortable": false },
+
+                ]
+            });
+        });
+
+
+        @*function Search() {
+
+
+            var filtro=$("#filtroBD").val()
+
+            $.post('@Url.Action("getSearch")', { type: 'data', filtro }, function (result) {
+
+                $("#resultSearch").html(result)
+                //if (result.success) {
+                //    //alert('The image was successfully sent to the server for processing');
+                //}
+            });
+
+        }*@
+
+
+
+    </script>
+
+}

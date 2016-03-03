@@ -1,0 +1,255 @@
+﻿@model GalleriaDesign.Areas.GTH.Models.FormacionYDesarrollo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/GTH/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    @*<div class="form-horizontal">*@
+        <h4>Formacion Y Desarrollo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="row">
+
+                @Html.LabelFor(model => model.nombreTema, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.nombreTema, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nombreTema, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(model => model.duracion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.duracion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.duracion, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.capacitacionProgramada, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.capacitacionProgramada)
+                        @Html.ValidationMessageFor(model => model.capacitacionProgramada, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        <div class="form-group">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(model => model.objetivoCapactiacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.objetivoCapactiacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.objetivoCapactiacion, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.contenido, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.contenido, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.contenido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+          </div>
+
+    <h3> Participantes </h3>
+    //agregar partipantes
+
+    
+
+    // formulario de participante oculto para clonar y agragar uno nuevo
+                <div hidden="hidden">
+                    <div class="row" id="Participante" name="Participante">
+                        <div class="col-md-2">
+                            <label> identificacion</label>
+                            <input type="text" id="nmIdentificacion" name="nmIdentificacion" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label> Nombre Participante</label>
+                            <input type="text" id="nombreParticipante" name="nombreParticipante" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label> Area De Trabajo</label>
+                            <input type="text" id="areaDeTrabajo" name="areaDeTrabajo" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label> Cargo </label>
+                            <input type="text" id="cargo" name="cargo" class="form-control" />
+                        </div>
+
+                        <div class="col-sm-1 " style="padding-left: 1%;">
+                            <a href="javascript:void(0);"
+                               onclick="eliminarParticipante(this)"
+                               title="Eliminar Participante"
+                               class="btn btn-success btn-circle btn-lg"
+                               style="background-color: red; border: 0;">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+    // fin formulario de participante oculto para clonar y agragar uno nuevo
+
+    //formulario que contendra todos los participantes
+                <div id="formularioParticipantes">
+
+
+                </div>
+    // fin  formulario que contendra todos los participantes
+
+            //Boton  para agregar un nuevo participante
+            <div class="row">
+                <div class="col-sm-11"></div>
+                <div class="col-sm-1" style="padding-left: 1%;">
+                    <a href="javascript:void(0);" onclick="agregarParicipante()"
+                       title="Adicionar Participante"
+                       class="btn btn-success btn-circle btn-lg"
+                       style="background-color: #449D44; border: 0;">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </a>
+                </div>
+            </div>
+            //fin Boton  para agregar un nuevo participante
+    // fin agregar participantes
+
+        <div class="form-group">
+            <input id="image" name="image" onchange="loadFotos(this)" accept="image/*" type="file" multiple="true" style="width:10px;" capture />
+            <div hidden="hidden" id="picture">
+                <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+
+                <input type="hidden" id="foto">
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12" id="fotos">
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12" align="center">
+                <a data-toggle="modal" id="snap1"
+                   onclick="takePicture(this)"
+                   title="Take a Picture"
+                   class="btn btn-info btn-circle btn-lg"
+                   style="background-color: #449D44">
+                    <i class="glyphicon glyphicon-camera"></i>
+                </a>
+               </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="row">
+                    <div class="col-sm-1" >
+                        <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                    </div>
+                    <div class="col-sm-1" >
+                        @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-info btn-lg" })
+                    </div>
+                </div>
+                    <div class="col-sm-10"></div>
+            </div>
+
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>*@
+        @*</div>*@
+}
+
+        @*<div>
+            @Html.ActionLink("Back to List", "Index","",htmlAttributes: new { @class = "btn btn-info" })
+        </div>*@
+
+
+
+
+        @section Scripts {
+
+
+            <script type="text/javascript">
+
+                var cantFotos = 0;
+
+                //Metodo para  lanzar el evento del click del boton para activar la camara
+                function takePicture(btnCamera) {
+                    $("#image").click();
+
+                }
+                /**metodo para obtener varias imagees del input type image*/
+                function loadFotos(Camera) {
+                    var input = Camera;
+                    $(input.files).each(function (int, imagen) {
+                        drawOnCanvas(imagen);
+                    });
+
+                }
+
+
+                /**Metodo para dibujar varias fotos inputPicture  */
+                function drawOnCanvas(file) {
+                    var reader = new FileReader();
+                    var canvas = $("#canvas")[0];
+                    var ctx = canvas.getContext('2d');
+                    reader.onload = function (e) {
+                        var dataURL = e.target.result,
+                            img = new Image();
+
+                        img.onload = function () {
+                            canvas.width = 400;
+                            canvas.height = 400;                         
+                            var canvasFoto = canvas.cloneNode(true);
+                            $("#fotos").append(canvasFoto);
+                            $(canvasFoto).attr("id", "fotoFormacion");
+                            var ctx1 = canvasFoto.getContext('2d');
+                            ctx1.drawImage(img, 0, 0, 400, 400);
+                            var fotoSave = canvasFoto.toDataURL("image/png").replace('data:image/png;base64,', '');
+                            var inputFotoSave = $("#foto")[0].cloneNode(true);
+                            $(inputFotoSave).attr("name", "archivos[" + cantFotos + "]");
+                            $("#picture").append(inputFotoSave);
+                            $(inputFotoSave).val(fotoSave);
+                            cantFotos++;
+
+                        };
+
+                        img.src = dataURL;
+                    };
+
+                    reader.readAsDataURL(file);
+
+
+                }
+                //Metodo para agregar un nuevo participante
+                function agregarParicipante() {
+                    
+                    var participante = $("#Participante").clone();
+                    $("#formularioParticipantes").append(participante);
+
+                }
+                function eliminarParticipante(Participante) {
+
+                    $(Participante).closest("div[name=Participante]").remove();
+                }
+            </script>
+        }

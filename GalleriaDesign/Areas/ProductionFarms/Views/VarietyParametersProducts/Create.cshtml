@@ -1,0 +1,381 @@
+﻿@model ApplicationProductionsFarms.Model.VarietyParametersProducts
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>VarietyParametersProducts</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        
+            <div id="rootwizard">
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li><a href="#step1" role="tab" data-toggle="tab">step1</a></li>
+                    <li><a href="#step2" role="tab" data-toggle="tab">step2</a></li>
+
+                </ul>
+                <div class="progress">
+                    <div id="progressBar" class="progress-bar progress-bar-striped">
+                        <div class="bar">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="step1">
+                        <div class="row">
+                            <div class="form-group">
+
+
+                                @Html.LabelFor(model => model.idFlowerSup, "idFlowerSup", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">                                    
+                                    @Html.DropDownList("idFlowerSup",null, htmlAttributes: new {@class = "form-control" }, optionLabel: "")
+                                    @Html.ValidationMessageFor(model => model.idFlowerSup, "", new { @class = "text-danger"})
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idProduct, "idProduct", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idProduct", null, htmlAttributes: new { @class = "form-control" }, optionLabel: " ")
+                                    @Html.ValidationMessageFor(model => model.idProduct, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idCodFlowerType, "idCodFlowerType", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idCodFlowerType", null, htmlAttributes: new { @class = "form-control" }, optionLabel: " ")
+                                    @Html.ValidationMessageFor(model => model.idCodFlowerType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idColor, "idColor", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idColor", null, htmlAttributes: new { @class = "form-control" }, optionLabel: " ")
+                                    @Html.ValidationMessageFor(model => model.idColor, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idVariety, "idVariety", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idVariety", null, htmlAttributes: new { @class = "form-control" }, optionLabel: " ")
+                                    @Html.ValidationMessageFor(model => model.idVariety, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idMaketType, "idMaketType", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idMaketType", null, htmlAttributes: new { @class = "form-control" }, optionLabel: " ")
+                                    @Html.ValidationMessageFor(model => model.idMaketType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idProgram, "idProgram", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("idProgram", null, htmlAttributes: new { @class = "form-control" }, optionLabel: " ")
+                                    @Html.ValidationMessageFor(model => model.idProgram, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <h1>Create Code Variety Product</h1>
+
+                    </div>
+
+                    <div class="tab-pane" id="step2">
+                        <h1>Step 2: Middle</h1>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.codVariety, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.codVariety, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.codVariety, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasEnConf, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasEnConf, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasEnConf, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasLuz, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasLuz, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasLuz, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaInicioF, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiaInicioF, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiaInicioF, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProdxCamaTallos, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ProdxCamaTallos, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ProdxCamaTallos, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TallosSiemProd, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TallosSiemProd, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TallosSiemProd, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IndicePerdConf, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IndicePerdConf, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IndicePerdConf, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IndicePerdProd, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IndicePerdProd, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IndicePerdProd, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TallosSiemConf, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TallosSiemConf, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TallosSiemConf, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasEnSiemDesboton, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasEnSiemDesboton, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasEnSiemDesboton, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasEnSiemB91, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasEnSiemB91, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasEnSiemB91, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasEnSiemB92, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasEnSiemB92, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasEnSiemB92, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasEnSiemB93, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasEnSiemB93, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasEnSiemB93, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte1, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte2, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte3, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte3, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte3, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte4, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte4, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte4, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte5, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte5, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte5, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte6, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte6, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte6, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiasCorte7, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DiasCorte7, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiasCorte7, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TalloXBalde, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TalloXBalde, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TalloXBalde, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TalloXCaja, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TalloXCaja, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TalloXCaja, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <p></p>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-6 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <ul class="pager wizard">
+                    <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
+                    @*<li class="first previous"><a href="#" accesskey="f">First</a></li>*@
+                    <li class="previous"><a href="#" accesskey="p">&larr; Previous</a></li>
+                    @*<li class="last" style="display:none;"><a href="#">Create</a></li>*@
+                    <li class="next"><a href="#" accesskey="n">Next &rarr; </a></li>
+                </ul>
+
+            </div><!-- ./rootwizard -->
+
+ 
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {            
+            $('#rootwizard').bootstrapWizard({
+                onNext: function (tab, navigation, index) {
+
+                    if (index == 1) {
+                        $(".error").remove();
+                        // Make sure we entered the name
+                        if (!$('#idFlowerSup').val()) {
+                            //$('#Error').html('Los campos no pueden estar vacios');
+                            //$('#Error').show();                                 
+                            $('#idFlowerSup').focus().after("<span class = 'error'>Enter Flower Supplier </span>");
+                            return false;
+                        }
+                        else if (!$('#idProduct').val()) {
+                            $('#idProduct').focus().after("<span class = 'error'>Enter Product </span>");
+                            return false;
+                        }
+                        else if (!$('#idCodFlowerType').val()) {
+                            $('#idCodFlowerType').focus().after("<span class = 'error'>Enter Flower Type </span>");
+                            return false;
+                        }
+                        else if (!$('#idColor').val()) {
+                            $('#idColor').focus().after("<span class = 'error'>Enter Color </span>");
+                            return false;
+                        }
+                        else if (!$('#idVariety').val()) {
+                            $('#idVariety').focus().after("<span class = 'error'>Enter Variety </span>");
+                            return false;
+                        }
+                        else if (!$('#idMaketType').val()) {
+                            $('#idMaketType').focus().after("<span class = 'error'>Enter Market Type </span>");
+                            return false;
+                        }
+                        else if (!$('#idProgram').val()) {
+                            $('#idProgram').focus().after("<span class = 'error'>Enter Program </span>");
+                            return false;
+                        }
+                    }
+                },
+
+                onTabShow: function(tab, navigation, index) {
+
+                    // Dynamically change percentage completion on progress bar
+                    var tabCount = navigation.find('li').length;
+                    var current = index+1;
+                    var percentDone = (current/tabCount) * 100;
+                    $('#rootwizard').find('#progressBar').css({width:percentDone+'%'});
+
+                    // Optional: Show Done button when on last tab;
+                    // It is invisible by default.
+                    $('#rootwizard').find('.last').toggle(current >= tabCount);
+
+                    // Optional: Hide Next button if on last tab;
+                    // otherwise it shows but is disabled
+                    $('#rootwizard').find('.next').toggle(current < tabCount);
+                }})
+    });
+
+    </script>
+
+}

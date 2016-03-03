@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ApplicationProductionsFarms.Models.Dimensions>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = 1 }, htmlAttributes: new { @class = "btn btn-info btn-lg", style = "font-weight:bold;" })
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Generate QRCode", "QRCode", new { id = 1 }, htmlAttributes: new { @class = "btn btn-info btn-lg", style = "font-weight:bold;" })
+    
+</p>
+<table id="example" class="table table-striped table-bordered table-responsive" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.block.numBlocks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codeBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.width)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.block.numBlocks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codeBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.width)
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.block.numBlocks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codeBeds)
+                    <input type="hidden" id="cdBed" name="cdBed" value="@item.codeBeds" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.length)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.width)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idBed }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idBed }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idBed })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#example').dataTable()
+
+            //    "order": [0, "desc"],
+            //    "aoColumns": [
+            //                  { "bSortable": true },
+            //                  { "bSortable": false },
+            //                  { "bSortable": true },
+            //                  { "bSortable": true },
+            //                   { "bSortable": false },
+            //                  //{ "bSortable": true },
+            //                   { "bSortable": true },
+            //                  { "bSortable": true },
+            //                   { "bSortable": false },
+
+            //    ]
+        });
+    </script>
+}

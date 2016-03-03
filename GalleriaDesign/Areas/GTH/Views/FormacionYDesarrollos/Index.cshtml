@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GalleriaDesign.Areas.GTH.Models.FormacionYDesarrollo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/GTH/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreTema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.capacitacionProgramada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.objetivoCapactiacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contenido)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreTema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.capacitacionProgramada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.objetivoCapactiacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contenido)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idFormacionYDesarrollo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idFormacionYDesarrollo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idFormacionYDesarrollo })
+        </td>
+    </tr>
+}
+
+</table>

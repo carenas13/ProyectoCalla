@@ -1,0 +1,35 @@
+﻿@model GalleriaDesign.Models.ReportType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nameReportType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameReportType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.reportTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

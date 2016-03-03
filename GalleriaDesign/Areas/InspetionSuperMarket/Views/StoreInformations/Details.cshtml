@@ -1,0 +1,106 @@
+﻿@model Supermarket.Models.StoreInformation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StoreInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.floralDisplay.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.floralDisplay.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.floralSetup.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.floralSetup.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.retailer.nameRetailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.retailer.nameRetailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherRetailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherRetailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.store)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.store)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inspector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inspector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fullService)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullService)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherProduct)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idStoreInformation }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

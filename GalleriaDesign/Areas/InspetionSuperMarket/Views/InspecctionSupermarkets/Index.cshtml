@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Supermarket.Models.InspecctionSupermarket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.colorEnhaced.nameColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.consumerBunchProgram.descriptionProgram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.roseProgram.programDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sleeveType.nameSleeve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storeExecution.idStoreExecution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storeInformation.otherRetailer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supplier.nameSupplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.additionalComents)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.colorEnhaced.nameColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumerBunchProgram.descriptionProgram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.roseProgram.programDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sleeveType.nameSleeve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.storeExecution.idStoreExecution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.storeInformation.otherRetailer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplier.nameSupplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.additionalComents)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idInspecctionSupermarket }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idInspecctionSupermarket }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idInspecctionSupermarket })
+        </td>
+    </tr>
+}
+
+</table>

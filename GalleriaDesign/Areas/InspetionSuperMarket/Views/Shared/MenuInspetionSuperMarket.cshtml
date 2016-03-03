@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNet.Identity
+<ul class="nav navbar-nav">
+    <li>
+        @Html.ActionLink("Home", "Index", "HomeInspetionSuperMarket")
+
+
+    </li>
+
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            InspetionSuperMarket Solution<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          
+
+            <li> @Html.ActionLink("Inspection  Supermarket", "Index", "StoreInformations")</li>
+
+
+
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Administrative Solution <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li> @Html.ActionLink("Basics", "Index", "Basics")</li>
+
+            <li> @Html.ActionLink("Color enhanced", "Index", "colorEnhaceds")</li>
+            <li> @Html.ActionLink("Consumer Bunch Type", "Index", "ConsumerBunchTypes")</li>
+            <li> @Html.ActionLink("Cooler Temperaure", "Index", "CoolerTemperatures")</li>
+            <li> @Html.ActionLink("Exposure to sunlight/draft ", "Index", "ExposureClimates")</li>
+            <li> @Html.ActionLink("Filler type ", "Index", "FillerTypes")</li>
+            <li> @Html.ActionLink("Floral Display Type", "Index", "FloralDisplays")</li>
+            <li> @Html.ActionLink("Foral Setup ", "Index", "FloralSetups")</li>
+            <li> @Html.ActionLink("Flower Perfomance", "Index", "FlowerPerfomances")</li>
+            <li> @Html.ActionLink("Focals ", "Index", "Focals")</li>
+            <li> @Html.ActionLink("Green Type ", "Index", "GreenTypes")</li>
+            <li> @Html.ActionLink("Head Size", "Index", "HeadSizes")</li>
+            <li> @Html.ActionLink("Overal Store Execution", "Index", "OverallFloralExecutions")</li>
+            <li> @Html.ActionLink("Product Breakdown ", "Index", "ProductBreackDowns")</li>
+            <li> @Html.ActionLink("Product  Pull Date", "Index", "PullDates")</li>
+            <li> @Html.ActionLink("Retailer", "Index", "Retailers")</li>
+            <li> @Html.ActionLink("Sleeve Type", "Index", "SleeveTypes")</li>
+            <li> @Html.ActionLink("Stem length", "Index", "StemLengths")</li>
+            <li> @Html.ActionLink("Supplier", "Index", "Suppliers")</li>
+            <li> @Html.ActionLink("Water State", "Index", "WaterStates")</li>
+            <li> @Html.ActionLink("Water Temperature", "Index", "WaterTemperatures")</li>
+
+        </ul>
+    </li>
+
+
+
+</ul>
+
+@using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+}
+
+
+

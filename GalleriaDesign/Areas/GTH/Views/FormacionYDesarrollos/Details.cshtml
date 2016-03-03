@@ -1,0 +1,92 @@
+﻿@model GalleriaDesign.Areas.GTH.Models.FormacionYDesarrollo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/GTH/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <h2>Formacion Y Desarrollo</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreTema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreTema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.capacitacionProgramada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.capacitacionProgramada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objetivoCapactiacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objetivoCapactiacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contenido)
+        </dd>
+   
+    </dl>
+               <div class="row">
+    @{ int idx1 = 0;
+            foreach (var item in Model.archivoAdjunto)
+            {
+                   if (idx1%2 ==0)
+                   {
+
+                       <div class="col-md-6">
+
+                           <img src="@Url.Action("GetImage", new { item.idArchivoAdjunto })" class="img-responsive" />
+                        </div>
+                   }else{
+                   
+                       <div class="col-md-6">
+
+                            <img src="@Url.Action("GetImage", new { item.idArchivoAdjunto })" class="img-responsive" />
+                       </div>
+                   }
+
+
+
+            idx1++;
+        }
+    }
+               </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idFormacionYDesarrollo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

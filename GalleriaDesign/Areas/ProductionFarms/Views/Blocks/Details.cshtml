@@ -1,0 +1,42 @@
+﻿@model ApplicationProductionsFarms.Models.Blocks
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Blocks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Farms.codeFarms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Farms.codeFarms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numBlocks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numBlocks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numBeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numBeds)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idBlocks }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

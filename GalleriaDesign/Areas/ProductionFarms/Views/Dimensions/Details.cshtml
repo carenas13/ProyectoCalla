@@ -1,0 +1,50 @@
+﻿@model ApplicationProductionsFarms.Models.Dimensions
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlaneBlock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.block.numBlocks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.block.numBlocks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codeBeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codeBeds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.width)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idBed }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

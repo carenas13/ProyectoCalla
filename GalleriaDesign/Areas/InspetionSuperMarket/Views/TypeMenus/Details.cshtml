@@ -1,0 +1,26 @@
+﻿@model GalleriaDesign.Areas.InspetionSuperMarket.Models.TypeMenus
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TypeMenus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descripMenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripMenu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idTypeMenu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
