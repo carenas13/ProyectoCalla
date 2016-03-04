@@ -168,6 +168,16 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult QRCode()
+        {
+            ViewBag.idVariedad = new SelectList(db.VarietyParametersProducts.OrderByDescending(m => m.idVariedad), "idVariedad", "codVariety");
+            //ViewBag.idBed = new SelectList(db.Dimensions, "idBed", "codeBeds");
+            //ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms");
+            //ViewBag.idBlocks = new SelectList(db.Blocks, "idBlocks", "numBlocks");
+
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

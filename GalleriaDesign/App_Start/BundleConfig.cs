@@ -67,7 +67,10 @@ namespace GalleriaDesign
                  "~/Scripts/bootstrapValidator.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/QRCode").Include(
-                 "~/Scripts/qrcode.js"));
+                 "~/Scripts/ProductionFarms/qrcode.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
+             "~/Scripts/ProductionFarms/Dimensions.js"));
         }
     }
 }
