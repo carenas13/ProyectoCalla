@@ -1,5 +1,5 @@
 ﻿function Cascading() {
-
+    //Cascada
     var IDFarm = $("#idFarms").val();
     var data_blo = "id=" + $("#idFarms").val();
     //var B = $("#idBlocks").val();
@@ -7,7 +7,7 @@
 
     $.ajax({
         type: "POST",
-        url: '@Url.Action("DropdownCascading")',
+        url: '@Url.Action("DimensionsController/DropdownCascading")',
         data: data_blo,
         dataType: "json",
         success: function (response) {
