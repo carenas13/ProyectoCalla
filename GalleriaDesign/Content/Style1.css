@@ -1,0 +1,26 @@
+﻿
+ .error {       
+        color:#ff0000;
+        position:page
+        /*background: red;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        display: none;
+        font-size: 14px;
+        margin-top: -50px;
+        margin-left: 180px;
+        padding: 10px;
+        position: absolute;*/
+    }
+    .error:before{ /* Este es un truco para crear una flechita */
+    
+    border-top: 10px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-right: 18px solid #BC1010;
+    border-left: 18px solid transparent;
+    left: -16px;
+    position: absolute;
+    top: 15px;
+}
+</style>
+

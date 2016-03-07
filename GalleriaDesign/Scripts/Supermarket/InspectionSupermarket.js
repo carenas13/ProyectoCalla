@@ -64,7 +64,6 @@ function isTrue() {
 
 }
 
-
 function loadFotos(Camera) {
 
     var input = Camera;
@@ -92,11 +91,11 @@ function loadFotos(Camera) {
 
         drawOnCanvas(file, $(Camera).closest("div[name^=inspectionSupermarket]"), cantFBPro, "fotoTypeBouquetProgram");
         cantFBPro++;
-    } else if ($(Camera).closest("div[name^=inspectionSupermarket]").find("input[name^fotoStoreExecution]").length != 0) {
+    } else if ($(Camera).closest("div[name^=inspectionSupermarket]").find("input[name^=FStoreExecution]").length != 0) {
 
         drawOnCanvas(file, $(Camera).closest("div[name^=inspectionSupermarket]"), cantFSE, "fotoTypeStoreExecutions");
         cantFSE++;
-    } else if ($(Camera).closest("div[name^=inspectionSupermarket]").find("input[name^fotosAdditionalComents]").length != 0) {
+    } else if ($(Camera).closest("div[name^=inspectionSupermarket]").find("input[name^=fotosAdditionalComents]").length != 0) {
 
         drawOnCanvas(file, $(Camera).closest("div[name^=inspectionSupermarket]"), cantFAC, "fotoTypeAdditionalComments");
         cantFAC++;

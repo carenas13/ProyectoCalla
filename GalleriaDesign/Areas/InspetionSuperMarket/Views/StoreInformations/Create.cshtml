@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm())
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
     //<form enctype="multipart/form-data" method="post" action="@Url.Action("Create")">
 
     <div id="rootwizard">
@@ -77,7 +77,7 @@
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.date, "Date", htmlAttributes: new { @class = "control-label col-md-2",@id = "date" })
+                        @Html.LabelFor(model => model.date, "Date", htmlAttributes: new { @class = "control-label col-md-2", @id = "date" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                             @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
@@ -134,32 +134,32 @@
                         </div>
                     </div>
 
-            
-                                    
+
+
                     <div hidden="hidden" id="insSupermarket">
-                    
+
 
                     </div>
-                    
 
-                                    <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                                        
-                                            <input hidden="hidden" type="text" id="fotoStore" name="fotoStore" />
-                                        
+                    <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
-                                        <a data-toggle="modal" id="snap1"
-                                           onclick="takePicture(this)"
-                                           title="Take a Picture"
-                                           class="btn btn-success  btn-circle btn-lg"
-                                           style="background-color: #449D44">
-                                            <i class="glyphicon glyphicon-camera"></i>
-                                        </a>
-                                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                                    </div>
-                    
+                        <input hidden="hidden" type="text" id="fotoStore" name="fotoStore" />
+
+
+                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                        <a data-toggle="modal" id="snap1"
+                           onclick="takePicture(this)"
+                           title="Take a Picture"
+                           class="btn btn-success  btn-circle btn-lg"
+                           style="background-color: #449D44">
+                            <i class="glyphicon glyphicon-camera"></i>
+                        </a>
+                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="otherProduct" class="col-lg-2 control-label">If Other, then ... Describe </label>
@@ -186,7 +186,7 @@
                     <div class="form-group">
                         <label for="retailBP" class="col-lg-2 control-label"> Retail</label>
                         <div class="col-lg-10">
-                            <input type="number"  step="any" class="form-control" id="retailBP" name="retailBP" >
+                            <input type="number" step="any" class="form-control" id="retailBP" name="retailBP">
                         </div>
                     </div>
 
@@ -253,14 +253,14 @@
 
                     </div>
 
-                   
-                
+
+
 
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                    
-                            <input  hidden="hidden"  type="text" id="fotoBunchProgram" name="fotoBunchProgram" />
-                       
+
+                        <input hidden="hidden" type="text" id="fotoBunchProgram" name="fotoBunchProgram" />
+
 
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
@@ -273,9 +273,9 @@
                         </a>
                         <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                     </div>
-            
 
-                    </div>
+
+                </div>
                 <div class="tab-pane" id="tab3">
 
 
@@ -355,9 +355,9 @@
 
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                   
-                            <input  hidden="hidden" type="text" id="fotoRoseProgram"  name="fotoRoseProgram" />
-                        
+
+                        <input hidden="hidden" type="text" id="fotoRoseProgram" name="fotoRoseProgram" />
+
 
 
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
@@ -483,9 +483,9 @@
 
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                       
-                            <input hidden="hidden" type="text" id="fotoRoseProgram" name="fotoRoseProgram" />
-                        
+
+                        <input hidden="hidden" type="text" id="fotoRoseProgram" name="fotoRoseProgram" />
+
 
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
@@ -678,11 +678,11 @@
                     </div>
 
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
-                        
-                        
-                        
-                            <input hidden="hidden" type="text" id="fotoBouquetProgram" name="fotoBouquetProgram" />
-                        
+
+
+
+                        <input hidden="hidden" type="text" id="fotoBouquetProgram" name="fotoBouquetProgram" />
+
 
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
@@ -702,7 +702,6 @@
 
                     @*StoreExecutions*@
 
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.storeExecution, "Overall Store Execution  grade", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -710,9 +709,6 @@
 
                         </div>
                     </div>
-
-
-
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.storeExecution, "Flower Perfomance", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -722,12 +718,29 @@
                         </div>
                     </div>
 
-                       <div name="inspectionSupermarket" id="inspectionSupermarket">
+                    @*<div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                           
-                       
-                               <input  hidden="hidden" type="text"  id="fotoStoreExecution" name="fotoStoreExecution" />
-                        
+                        <input hidden="hidden" type="text" id="StoreExecution" name="StoreExecution" />
+                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                        <a data-toggle="modal" id="snap1"
+                           onclick="takePicture(this)"
+                           title="Take a Picture"
+                           class="btn btn-success  btn-circle btn-lg"
+                           style="background-color: #449D44">
+                            <i class="glyphicon glyphicon-camera"></i>
+                        </a>
+                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                    </div>*@
+
+
+                    <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+
+                        <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
+
+
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
                         <a data-toggle="modal" id="snap1"
@@ -740,14 +753,6 @@
                         <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                     </div>
 
-
-
-
-
-
-
-
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.storeExecution, "Pull Dates", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -758,11 +763,8 @@
 
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                   
-                            <input type="text"  hidden="hidden" id="fotoStoreExecution" name="fotoStoreExecution" />
-                   
 
-
+                        <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
                         <a data-toggle="modal" id="snap1"
@@ -794,13 +796,11 @@
                     </div>
 
 
+                    
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                     
-                            <input hidden="hidden"  type="text" id="fotoStoreExecution" name="fotoStoreExecution" />
-               
 
-
+                        <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
                         <a data-toggle="modal" id="snap1"
@@ -814,7 +814,6 @@
                     </div>
 
 
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.storeExecution, "Cooler Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -823,11 +822,12 @@
                         </div>
                     </div>
 
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
-
-                            <input hidden="hidden" type="text" id="fotoStoreExecution" name="fotoStoreExecution" />
                   
 
+                    <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+                        <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
                         <a data-toggle="modal" id="snap1"
@@ -858,10 +858,8 @@
 
                     <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                       
-                            <input hidden="hidden" type="text" id="fotoStoreExecution" name="fotoStoreExecution" />
-                    
 
+                        <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
                         <a data-toggle="modal" id="snap1"
@@ -874,10 +872,11 @@
                         <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                     </div>
 
+
                     <div class="form-group">
                         <label for="otherCommentsExecution" class="col-md-2 control-label">Other Store execution comments</label>
                         <div class="col-md-10">
-                     
+
 
 
                             <textarea id="otherCommentsExecution" name="otherCommentsExecution" maxlength="255" class="form-control"> </textarea>
@@ -885,27 +884,26 @@
                         </div>
                     </div>
 
-                   
 
                 </div>
-                    <div class="tab-pane" id="tab6">
-                        <div class="form-group">
-                            <label for="comentsAdditional" class="col-md-2 control-label">Additional comments</label>
-                            <div class="col-md-10">
-                              
-                                <textarea id="comentsAdditional" name="comentsAdditional" maxlength="255" class="form-control"> </textarea>
-                          
-                            </div>
+                <div class="tab-pane" id="tab6">
+                    <div class="form-group">
+                        <label for="comentsAdditional" class="col-md-2 control-label">Additional comments</label>
+                        <div class="col-md-10">
+
+                            <textarea id="comentsAdditional" name="comentsAdditional" maxlength="255" class="form-control"> </textarea>
+
                         </div>
-                        
+                    </div>
 
 
-                          <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                           
-                       
-                               <input  hidden="hidden" type="text"  id="fotoStoreExecution" name="fotoStoreExecution" />
-                        
+                    <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+
+                        <input hidden="hidden" type="text" id="fotosAdditionalComents" name="fotosAdditionalComents" />
+
                         <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
                         <a data-toggle="modal" id="snap1"
@@ -918,20 +916,22 @@
                         <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                     </div>
 
-                        <input type="submit" value="Create" class="btn btn-default" />
-
-                    <ul class="pager wizard">
-                        <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
-                        <li class="first previous"><a href="#" accesskey="f">First</a></li>
-                        <li class="previous"><a href="#" accesskey="p">Previous</a></li>
-                        <li class="last" style="display:none;"><a href="#">Done</a></li>
-
-                        <li class="next"><a href="#" accesskey="n">Next</a></li>
-                    </ul>
+                    <input type="submit" value="Create" class="btn btn-default" Onclick="isTrue()" />
 
 
-                        </div>
+
+
                 </div>
+
+                <ul class="pager wizard">
+                    <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
+                    <li class="first previous"><a href="#" accesskey="f">First</a></li>
+                    <li class="previous"><a href="#" accesskey="p">Previous</a></li>
+                    @*<li class="last" style="display:none;"><a href="#">Done</a></li>*@
+
+                    <li class="next"><a href="#" accesskey="n">Next</a></li>
+                </ul>
+            </div>
 
 
         </div>
@@ -941,13 +941,13 @@
 }
 
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-      <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
 
 
           $(document).ready(function () {
@@ -964,35 +964,58 @@
               if (month.valueOf() < 10) {
                   month = "0" + month;
               }
-        
+
               $("#date").val(year + "-" + month + "-" + day);
 
           });
 
-            $(document).ready(function () {
-                $('#rootwizard').bootstrapWizard({
+            @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        
+        $(document).ready(function () {
 
 
-                    onTabShow: function (tab, navigation, index) {
+            $('#rootwizard').bootstrapWizard({
+                onNext: function (tab, navigation, index) {
 
-                        // Dynamically change percentage completion on progress bar
-                        var tabCount = navigation.find('li').length;
-                        var current = index + 1;
-                        var percentDone = (current / tabCount) * 100;
-                        $('#rootwizard').find('#progressBar').css({ width: percentDone + '%' });
-
-                        // Optional: Show Done button when on last tab;
-                        // It is invisible by default.
-                        $('#rootwizard').find('.last').toggle(current >= tabCount);
-
-                        // Optional: Hide Next button if on last tab;
-                        // otherwise it shows but is disabled
-                        $('#rootwizard').find('.next').toggle(current < tabCount);
+                    if (index == 1) {
+                        $(".error").remove();
+                        if (!$('#customerID').val()) {
+                            $('#customerID').focus().after("<span class='error'>Enter a customer name</span>");
+                            return false;
+                        }
+                        else if (!$('#idCarrier').val()) {
+                            $('#idCarrier').focus().after("<span class='error'>Ingrese un  carrier</span>");
+                            return false;
+                        }
+                        else if (!$('#orderTypeID').val()) {
+                            $('#orderTypeID').focus().after("<span class='error'>Ingrese un Order Type</span>");
+                            return false;
+                        }
                     }
-                });
-            });
-</script>
+                    
+                },
 
 
 
-    }
+                // Dynamically change percentage completion on progress bar
+                onTabShow: function (tab, navigation, index) {
+                    var tabCount = navigation.find('li').length;
+                    var current = index + 1;
+                    var percentDone = (current / tabCount) * 100;
+                    $('#rootwizard').find('#progressBar').css({ width: percentDone + '%' });
+                }
+            })
+            //$('#customerID, #idCarrier, #orderTypeID').Keyup(function () {
+            //    if ($(this).val() != "") {
+            //        $(".error").fadeOut();
+            //        return false;
+            //    }
+            //});
+        });
+    </script>
+
+
+
+}

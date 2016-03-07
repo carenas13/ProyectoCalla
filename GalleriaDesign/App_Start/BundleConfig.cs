@@ -26,6 +26,7 @@ namespace GalleriaDesign
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/dataTables.bootstrap.min.css",
+                      "~/Content/Style1.css",
                       "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/jasny").Include(
                     "~/Scripts/jasny-bootstrap.js",
