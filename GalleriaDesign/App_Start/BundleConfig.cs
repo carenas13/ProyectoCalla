@@ -26,6 +26,7 @@ namespace GalleriaDesign
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/dataTables.bootstrap.min.css",
+                      "~/Content/Style1.css",
                       "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/jasny").Include(
                     "~/Scripts/jasny-bootstrap.js",
@@ -71,6 +72,9 @@ namespace GalleriaDesign
 
             bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
              "~/Scripts/ProductionFarms/Dimensions.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/georeferenzacion").Include(
+                        "~/Scripts/Supermarket/geo.js"));
         }
     }
 }

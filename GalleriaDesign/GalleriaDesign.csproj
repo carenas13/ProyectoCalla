@@ -370,6 +370,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\Style1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -623,6 +624,7 @@
     <Content Include="Areas\ProductionFarms\Views\Dimensions\QRCode.cshtml" />
     <Content Include="Areas\Orders\Views\web.config" />
     <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\QRCode.cshtml" />
+    <None Include="Properties\PublishProfiles\Jorge.pubxml" />
     <None Include="Properties\PublishProfiles\QCGalleria.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
@@ -640,6 +642,7 @@
     <Content Include="Scripts\ProductionFarms\Dimensions.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Supermarket\geo.js" />
     <Content Include="Scripts\Supermarket\InspectionSupermarket.js" />
     <Content Include="Scripts\ProductionFarms\qrcode.js" />
     <Content Include="Scripts\_references.js" />
