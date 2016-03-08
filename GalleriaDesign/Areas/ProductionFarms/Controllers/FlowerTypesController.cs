@@ -109,10 +109,19 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            FlowerType flowerType = db.FlowerTypes.Find(id);
-            db.FlowerTypes.Remove(flowerType);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            List<FlowerType> flowertype = db.FlowerTypes.Include(r => r.varietyparametersproducts).ToList();
+            FlowerType flowert = flowertype.Find(r => r.idCodFlowerType == id);
+
+            //Find(id).Include(p => p.block);
+            if (flowert.varietyparametersproducts.Count() == 0)
+            {
+                db.FlowerTypes.Remove(flowert);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.message = "No se puede Eliminar porque existen Elementos asosociados al tipo de reporte";
+            return View(flowert);
         }
 
         protected override void Dispose(bool disposing)

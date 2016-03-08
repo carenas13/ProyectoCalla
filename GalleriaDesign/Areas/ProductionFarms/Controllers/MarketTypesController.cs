@@ -109,10 +109,19 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MarketType marketType = db.MarketTypes.Find(id);
-            db.MarketTypes.Remove(marketType);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            List<MarketType> markettype = db.MarketTypes.Include(r => r.varietyparametersproducts).ToList();
+            MarketType markett = markettype.Find(r => r.idMaketType == id);
+
+            //Find(id).Include(p => p.block);
+            if (markett.varietyparametersproducts.Count() == 0)
+            {
+                db.MarketTypes.Remove(markett);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.message = "No se puede Eliminar porque existen Elementos asosociados al tipo de reporte";
+            return View(markett);
         }
 
         protected override void Dispose(bool disposing)

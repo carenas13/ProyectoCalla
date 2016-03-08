@@ -7,121 +7,118 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ApplicationProductionsFarms.Models;
+using GalleriaDesign.Areas.ProductionFarms.Models;
 
 namespace GalleriaDesign.Areas.ProductionFarms.Controllers
 {
-    public class ProgramsController : Controller
+    public class SowingsController : Controller
     {
         private ApplicationProductionsFarmsContext db = new ApplicationProductionsFarmsContext();
 
-        // GET: ProductionFarms/Programs
+        // GET: ProductionFarms/Sowings
         public ActionResult Index()
         {
-            return View(db.Programs.ToList());
+            var sowings = db.Sowings.Include(s => s.Farms);
+            return View(sowings.ToList());
         }
 
-        // GET: ProductionFarms/Programs/Details/5
+        // GET: ProductionFarms/Sowings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Program program = db.Programs.Find(id);
-            if (program == null)
+            Sowing sowing = db.Sowings.Find(id);
+            if (sowing == null)
             {
                 return HttpNotFound();
             }
-            return View(program);
+            return View(sowing);
         }
 
-        // GET: ProductionFarms/Programs/Create
+        // GET: ProductionFarms/Sowings/Create
         public ActionResult Create()
         {
+            ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms");
             return View();
         }
 
-        // POST: ProductionFarms/Programs/Create
+        // POST: ProductionFarms/Sowings/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idProgram,codProgram,description")] Program program)
+        public ActionResult Create([Bind(Include = "idSowing,NumSowing,fecSowing,month,weekSowing,fusionCode,metersavailable,stemsxMeters,idFarms")] Sowing sowing)
         {
             if (ModelState.IsValid)
             {
-                db.Programs.Add(program);
+                db.Sowings.Add(sowing);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(program);
+            ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms", sowing.idFarms);
+            return View(sowing);
         }
 
-        // GET: ProductionFarms/Programs/Edit/5
+        // GET: ProductionFarms/Sowings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Program program = db.Programs.Find(id);
-            if (program == null)
+            Sowing sowing = db.Sowings.Find(id);
+            if (sowing == null)
             {
                 return HttpNotFound();
             }
-            return View(program);
+            ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms", sowing.idFarms);
+            return View(sowing);
         }
 
-        // POST: ProductionFarms/Programs/Edit/5
+        // POST: ProductionFarms/Sowings/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idProgram,codProgram,description")] Program program)
+        public ActionResult Edit([Bind(Include = "idSowing,NumSowing,fecSowing,month,weekSowing,fusionCode,metersavailable,stemsxMeters,idFarms")] Sowing sowing)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(program).State = EntityState.Modified;
+                db.Entry(sowing).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(program);
+            ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms", sowing.idFarms);
+            return View(sowing);
         }
 
-        // GET: ProductionFarms/Programs/Delete/5
+        // GET: ProductionFarms/Sowings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Program program = db.Programs.Find(id);
-            if (program == null)
+            Sowing sowing = db.Sowings.Find(id);
+            if (sowing == null)
             {
                 return HttpNotFound();
             }
-            return View(program);
+            return View(sowing);
         }
 
-        // POST: ProductionFarms/Programs/Delete/5
+        // POST: ProductionFarms/Sowings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            List<Program> programs = db.Programs.Include(r => r.varietyparametersproducts).ToList();
-            Program program = programs.Find(r => r.idProgram == id);
-
-            //Find(id).Include(p => p.block);
-            if (program.varietyparametersproducts.Count() == 0)
-            {
-                db.Programs.Remove(program);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.message = "No se puede Eliminar porque existen Elementos asosociados al tipo de reporte";
-            return View(program);
+            Sowing sowing = db.Sowings.Find(id);
+            db.Sowings.Remove(sowing);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

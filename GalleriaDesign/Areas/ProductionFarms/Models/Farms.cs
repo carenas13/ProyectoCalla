@@ -1,5 +1,6 @@
 ﻿using ApplicationProductionsFarms.Model;
 using GalleriaDesign.Areas.ProductionFarms;
+using GalleriaDesign.Areas.ProductionFarms.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,10 +16,11 @@ namespace ApplicationProductionsFarms.Models
         public string codeFarms { get; set; }
         [Required]
         public string description { get; set; }
-        public virtual ICollection<Blocks> blocks { get; set; } //Relación con Blocks   
-        public virtual ICollection<FarmVariety> farmvariety { get; set; } //Relación con VarietyParameters
-        
-       
+        public virtual ICollection<Blocks> blocks { get; set; } //Relación con Blocks
+        public virtual ICollection<Sowing> sowing { get; set; } //Relación con Blocks
+
+
+
 
     }
 }

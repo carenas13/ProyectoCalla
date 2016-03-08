@@ -57,10 +57,7 @@ namespace GalleriaDesign
                  "~/Scripts/bootstrap-select.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/supermarket").Include(
-
-            "~/Scripts/Supermarket/InspectionSupermarket.js"
-           ));
-
+            "~/Scripts/Supermarket/InspectionSupermarket.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Validation").Include(
                  "~/Scripts/bootstrapValidator.js",
@@ -69,8 +66,12 @@ namespace GalleriaDesign
             bundles.Add(new ScriptBundle("~/bundles/QRCode").Include(
                  "~/Scripts/ProductionFarms/qrcode.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
-             "~/Scripts/ProductionFarms/Dimensions.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ReadQR").Include(
+                 "~/Scripts/ProductionFarms/html5-qrcode.min.js",
+                 "~/Scripts/ProductionFarms/jsqrcode-combined.min.js"));
+
+            //bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
+            // "~/Scripts/ProductionFarms/Dimensions.js"));
         }
     }
 }
