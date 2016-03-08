@@ -326,10 +326,6 @@
     <Compile Include="Migrations\201602252025285_Initial.Designer.cs">
       <DependentUpon>201602252025285_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603032223596_Initial1.cs" />
-    <Compile Include="Migrations\201603032223596_Initial1.Designer.cs">
-      <DependentUpon>201603032223596_Initial1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Areas\QCGalleria\Models\Emails.cs" />
@@ -351,9 +347,9 @@
     <Compile Include="Models\RolGalleria.cs" />
     <Compile Include="Models\SessionExpireAttribute.cs" />
     <Compile Include="Models\UserGalleria.cs" />
-    <Compile Include="ProductionFarmsMigrations\201603042158476_Initial.cs" />
-    <Compile Include="ProductionFarmsMigrations\201603042158476_Initial.Designer.cs">
-      <DependentUpon>201603042158476_Initial.cs</DependentUpon>
+    <Compile Include="ProductionFarmsMigrations\201603031915476_Initial.cs" />
+    <Compile Include="ProductionFarmsMigrations\201603031915476_Initial.Designer.cs">
+      <DependentUpon>201603031915476_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductionFarmsMigrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -373,6 +369,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\Style1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -626,6 +623,9 @@
     <Content Include="Areas\ProductionFarms\Views\Sowings\Details.cshtml" />
     <Content Include="Areas\ProductionFarms\Views\Sowings\Edit.cshtml" />
     <Content Include="Areas\ProductionFarms\Views\Sowings\Index.cshtml" />
+    <Content Include="Areas\Orders\Views\web.config" />
+    <Content Include="Areas\ProductionFarms\Views\VarietyParametersProducts\QRCode.cshtml" />
+    <None Include="Properties\PublishProfiles\Jorge.pubxml" />
     <None Include="Properties\PublishProfiles\QCGalleria.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
@@ -645,6 +645,7 @@
     <Content Include="Scripts\ProductionFarms\jsqrcode-combined.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Supermarket\geo.js" />
     <Content Include="Scripts\Supermarket\InspectionSupermarket.js" />
     <Content Include="Scripts\ProductionFarms\qrcode.js" />
     <Content Include="Scripts\_references.js" />
@@ -766,11 +767,8 @@
     <EmbeddedResource Include="Migrations\201602252025285_Initial.resx">
       <DependentUpon>201602252025285_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603032223596_Initial1.resx">
-      <DependentUpon>201603032223596_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProductionFarmsMigrations\201603042158476_Initial.resx">
-      <DependentUpon>201603042158476_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="ProductionFarmsMigrations\201603031915476_Initial.resx">
+      <DependentUpon>201603031915476_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QCGalleriaMigrations\201602251724038_Initial.resx">
       <DependentUpon>201602251724038_Initial.cs</DependentUpon>
