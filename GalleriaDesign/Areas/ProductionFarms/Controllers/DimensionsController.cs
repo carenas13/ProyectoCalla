@@ -16,21 +16,22 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
     {
         private ApplicationProductionsFarmsContext db = new ApplicationProductionsFarmsContext();
 
-        // GET: ProductionFarms/PlaneBlocks
+        // GET: ProductionFarms/Dimensions
         public ActionResult Index()
         {
-            var dimensions = db.Dimensions.Include(p => p.block);
+            var dimensions = db.Dimensions.Include(d => d.block);
 
             foreach (var dimen in dimensions.ToList())
-            {
-                string codeBed = string.Concat(dimen.block.Farms.codeFarms, dimen.block.numBlocks);
-                dimen.codeBeds = codeBed;
-            }
+            {               
+                string dimens1 = string.Concat(dimen.block.numBlocks,dimen.numBed);                
 
+                dimen.codeBeds = dimens1;
+
+            }
             return View(dimensions.ToList());
         }
 
-        // GET: ProductionFarms/PlaneBlocks/Details/5
+        // GET: ProductionFarms/Dimensions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,15 +46,14 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             return View(dimensions);
         }
 
-        // GET: ProductionFarms/PlaneBlocks/Create
+        // GET: ProductionFarms/Dimensions/Create
         public ActionResult Create()
         {
-
             ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms");
             ViewBag.idBlocks = new SelectList(db.Blocks, "idBlocks", "numBlocks");
-
             return View();
         }
+
         public JsonResult DropdownCascading(int id)
         {
             IEnumerable<Blocks> bloques = db.Blocks.ToList().Where(b => b.idFarms == id);
@@ -64,19 +64,19 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
                 codigos.Add(new { codigoBloque = blq.numBlocks.ToString() });
 
             }
-
+           
             return Json(codigos, JsonRequestBehavior.AllowGet);
         }
-        // POST: ProductionFarms/PlaneBlocks/Create
+
+
+        // POST: ProductionFarms/Dimensions/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idBed,codeBeds,length,width,idBlocks")] Dimensions dimensions)
+        public ActionResult Create([Bind(Include = "idBed,numBed,codeBeds,length,width,idBlocks")] Dimensions dimensions)
         {
-
             var bloque = db.Blocks.Find(dimensions.idBlocks).idFarms;
-
 
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             return View(dimensions);
         }
 
-        // GET: ProductionFarms/PlaneBlocks/Edit/5
+        // GET: ProductionFarms/Dimensions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -105,12 +105,12 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             return View(dimensions);
         }
 
-        // POST: ProductionFarms/PlaneBlocks/Edit/5
+        // POST: ProductionFarms/Dimensions/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idBed,codeBeds,length,width,idBlocks")] Dimensions dimensions)
+        public ActionResult Edit([Bind(Include = "idBed,numBed,codeBeds,length,width,idBlocks")] Dimensions dimensions)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             return View(dimensions);
         }
 
-        // GET: ProductionFarms/PlaneBlocks/Delete/5
+        // GET: ProductionFarms/Dimensions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -137,7 +137,7 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             return View(dimensions);
         }
 
-        // POST: ProductionFarms/PlaneBlocks/Delete/5
+        // POST: ProductionFarms/Dimensions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -147,17 +147,16 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        
         public ActionResult QRCode()
         {
             ViewBag.idBed = new SelectList(db.Dimensions.OrderByDescending(m => m.idBed), "idBed", "codeBeds");
             //ViewBag.idBed = new SelectList(db.Dimensions, "idBed", "codeBeds");
             //ViewBag.idFarms = new SelectList(db.Farms, "idFarms", "codeFarms");
             //ViewBag.idBlocks = new SelectList(db.Blocks, "idBlocks", "numBlocks");
-            
+
             return View();
         }
-
 
         protected override void Dispose(bool disposing)
         {

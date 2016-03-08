@@ -110,10 +110,19 @@ namespace GalleriaDesign.Areas.ProductionFarms.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Variety variety = db.Varieties.Find(id);
-            db.Varieties.Remove(variety);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            List<Variety> variety = db.Varieties.Include(r => r.varietyparametersproducts).ToList();
+            Variety varietys = variety.Find(r => r.idVariety == id);
+
+            //Find(id).Include(p => p.block);
+            if (varietys.varietyparametersproducts.Count() == 0)
+            {
+                db.Varieties.Remove(varietys);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.message = "No se puede Eliminar porque existen Elementos asosociados al tipo de reporte";
+            return View(varietys);
         }
 
         protected override void Dispose(bool disposing)

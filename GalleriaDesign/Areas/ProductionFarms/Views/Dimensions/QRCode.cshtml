@@ -20,33 +20,33 @@
             @Html.LabelFor(model => model.idBlocks, "code Beds", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("idBed", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "Select Code")
-                
+
             </div>
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.idBlocks, "Farms", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idFarms", null, htmlAttributes: new { @class = "form-control", @onchange = "Cascading()" }, optionLabel: "Select Farm")
+                @Html.LabelFor(model => model.idBlocks, "Farms", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idFarms", null, htmlAttributes: new { @class = "form-control", @onchange = "Cascading()" }, optionLabel: "Select Farm")
 
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.idBlocks, "Block", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idBlocks", null, htmlAttributes: new { @class = "form-control", @name = "a" }, optionLabel: "")
-                @Html.ValidationMessageFor(model => model.idBlocks, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                </div>
+            </div>*@
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.codeBeds, "Bed", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.codeBeds, new { htmlAttributes = new { @class = "form-control", @id = "codeBeds" } })
-            </div>
-        </div>*@
-        
+                @Html.LabelFor(model => model.idBlocks, "Block", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idBlocks", null, htmlAttributes: new { @class = "form-control", @name = "a" }, optionLabel: "")
+                    @Html.ValidationMessageFor(model => model.idBlocks, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.codeBeds, "Bed", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.codeBeds, new { htmlAttributes = new { @class = "form-control", @id = "codeBeds" } })
+                </div>
+            </div>*@
+
         <div data-role="content">
             <form>
                 <div class="form-group">
@@ -56,7 +56,7 @@
                 </div>
             </form>
             <div id="qr" name="qr"></div>
-        </div>        
+        </div>
     </div>
 }
 

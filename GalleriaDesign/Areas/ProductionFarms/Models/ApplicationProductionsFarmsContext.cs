@@ -23,7 +23,7 @@ namespace ApplicationProductionsFarms.Models
 
         public System.Data.Entity.DbSet<ApplicationProductionsFarms.Models.Farms> Farms { get; set; }
 
-        public System.Data.Entity.DbSet<ApplicationProductionsFarms.Model.FarmVariety> FarmVarieties { get; set; }
+        
 
         public System.Data.Entity.DbSet<ApplicationProductionsFarms.Model.Variety> Varieties { get; set; }
 
@@ -42,7 +42,9 @@ namespace ApplicationProductionsFarms.Models
         public System.Data.Entity.DbSet<ApplicationProductionsFarms.Models.Products> Products { get; set; }
 
         public System.Data.Entity.DbSet<ApplicationProductionsFarms.Models.Program> Programs { get; set; }
-       
+
+        public System.Data.Entity.DbSet<GalleriaDesign.Areas.ProductionFarms.Models.Sowing> Sowings { get; set; }
+
 
 
         // public System.Collections.IEnumerable VarietyParametersProductions { get; set; }
