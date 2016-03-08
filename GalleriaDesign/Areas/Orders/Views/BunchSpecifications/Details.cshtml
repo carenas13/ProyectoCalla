@@ -1,0 +1,58 @@
+﻿@model Applicative_Order.Models.BunchSpecification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BunchSpecification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thickness)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thickness)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.defoliation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.defoliation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foliage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foliage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bunchSpecificationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

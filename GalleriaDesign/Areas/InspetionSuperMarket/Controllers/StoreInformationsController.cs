@@ -92,7 +92,9 @@ namespace GalleriaDesign.Areas.InspetionSuperMarket.Controllers
             ViewBag.idExposureClimate = new SelectList(db.ExposureClimates, "idExposureClimate", "description");
             ViewBag.exposureDraft = new SelectList(db.ExposureClimates, "idExposureClimate", "description");
 
-            ViewData["fecha"] = DateTime.Now.ToString();
+            ViewBag.productBreakList = db.ProductBreackDowns.ToList();
+
+           // ViewData["fecha"] = DateTime.Now.ToString();
 
             return View();
         }
@@ -103,7 +105,11 @@ namespace GalleriaDesign.Areas.InspetionSuperMarket.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreInformation storeInformation , ConsumerBunchProgram consumerBunch,
-            RoseProgram roseProgram, BouquetProgram bouquetProgram,StoreExecution storeExecution, AdditionalComents additionalComents, List<ImageTypeStoreInformation> imagetypeStoreInformation, List<ImageTypeBunchProgram> imagetypeBunchProgram,List<ImageTypeRoseProgram> imageTypeRoseProgram, List<ImagesTypeBouquetProgram> imageTypeBouquetProgram,List<ImageTypeStoreExecutions> imageTypeStoreExecution, List<ImageTypeAdditionalComents> imageTypeAdditionalComments)
+            RoseProgram roseProgram, BouquetProgram bouquetProgram,StoreExecution storeExecution, AdditionalComents additionalComents, 
+            List<ImageTypeStoreInformation> imagetypeStoreInformation, List<ImageTypeBunchProgram> imagetypeBunchProgram,
+            List<ImageTypeRoseProgram> imageTypeRoseProgram, List<ImagesTypeBouquetProgram> imageTypeBouquetProgram,
+            List<ImageTypeStoreExecutions> imageTypeStoreExecution, List<ImageTypeAdditionalComents> imageTypeAdditionalComments,
+            List<Store_ProductBreakDown> storeProductBreakDown)
         {
 
             //Cbp:ConsumerBunchProgram  //Rp: RoseProgram //Bp: BouquetProgra //Se: Store Execution //Ac: Additional Comentarios
@@ -221,6 +227,10 @@ namespace GalleriaDesign.Areas.InspetionSuperMarket.Controllers
                 }
             }
 
+
+         
+
+            storeInformation.storeProductBreakDown = storeProductBreakDown;
             storeInformation.imagesStoreInformation = listImageStoreInformation;
 
 

@@ -32,11 +32,18 @@
             <li>@Html.ActionLink("Production Farms", "Index", "HomeProductionFarms", new { area = "ProductionFarms" }, null)</li>
 
         }
-        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]) || 
+        @if (
             User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserGTH"]))
         {
 
             <li>@Html.ActionLink("Gestion Humana", "Index", "HomeGTH", new { area = "GTH" }, null)</li>
+
+        }
+        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]) ||
+                    User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserOrders"]))
+        {
+
+            <li>@Html.ActionLink("Orders", "Index", "HomeOrders", new { area = "Orders" }, null)</li>
 
         }
 

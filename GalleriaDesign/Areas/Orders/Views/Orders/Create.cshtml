@@ -1,0 +1,249 @@
+﻿@model Applicative_Order.Models.Order
+
+
+@{
+    ViewBag.Title = "Create ";
+    
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div id="ApplicativeOrder" class="form-horizontal">
+        <div id="rootwizard">
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a href="#step1" role="tab" data-toggle="tab">Preview Order</a></li>
+                <li><a href="#step2" role="tab" data-toggle="tab">Create Order</a></li>
+
+            </ul>
+
+
+
+            <div class="progress">
+                <div id="progressBar" class="progress-bar progress-bar-striped">
+                    <div class="bar">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <div id="cusID" hidden="hidden">
+                        <h5> ingreser el campo custormerID</h5>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.customerID, "Customer", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("customerID", null, htmlAttributes: new { @class = "form-control" }, optionLabel : "")
+                            @Html.ValidationMessageFor(model => model.customerID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idCarrier, "Carrier", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("idCarrier", null, htmlAttributes: new { @class = "form-control" },optionLabel:"")
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.orderTypeID, "Order Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("orderTypeID", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "")
+                            @Html.ValidationMessageFor(model => model.orderTypeID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipDateMiami, "Ship Date Miami:", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ShipDateMiami, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipDateMiami, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="step2">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.productGalleriaID, "product Galleria", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("productGalleriaID", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "")
+                            @Html.ValidationMessageFor(model => model.productGalleriaID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.numberStems,"Number Stems", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.numberStems, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.numberStems, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.typeDescription,"Type Descriptions", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.typeDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.typeDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+             
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BoxType, "Box Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.BoxType, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BoxType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.measures,"Measures", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.measures, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.measures, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BunchPerBox,"Bunch Per Box", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.BunchPerBox, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BunchPerBox, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BoxNumer,"Box Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.BoxNumer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BoxNumer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.prize, "Prize", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.prize, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.prize, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.total,"Total ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.ShipDateMiami, "Ship Date Miami:", htmlAttributes: new { @class = "control-label col-md-2", @id = "date" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ShipDateMiami, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipDateMiami, "", new { @class = "text-danger", @type = "date" })
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.protocol, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.protocol)
+                                @Html.ValidationMessageFor(model => model.protocol, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <ul class="pager wizard">
+                    <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
+                    <li class="first previous"><a href="#" accesskey="f">First</a></li>
+                    <li class="previous"><a href="#" accesskey="p">Previous</a></li>
+                    <li class="last" style="display:none;"><a href="#">Done</a></li>
+                    <li class="next"><a href="#" accesskey="n">Next</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        
+        $(document).ready(function () {
+
+
+            $('#rootwizard').bootstrapWizard({
+                onNext: function (tab, navigation, index) {
+
+                    if (index == 1) {
+                        $(".error").remove();
+                        if (!$('#customerID').val()) {
+                            $('#customerID').focus().after("<span class='error'>Enter a customer name</span>");
+                            return false;
+                                        }
+                        else if (!$('#idCarrier').val()) {
+                            $('#idCarrier').focus().after("<span class='error'>Ingrese un  carrier</span>");
+                            return false;
+                        }
+                        else if (!$('#orderTypeID').val()) {
+                            $('#orderTypeID').focus().after("<span class='error'>Ingrese un Order Type</span>");
+                            return false;
+                        }
+                    }
+                    
+                },
+
+
+
+                // Dynamically change percentage completion on progress bar
+                onTabShow: function (tab, navigation, index) {
+                    var tabCount = navigation.find('li').length;
+                    var current = index + 1;
+                    var percentDone = (current / tabCount) * 100;
+                    $('#rootwizard').find('#progressBar').css({ width: percentDone + '%' });
+                }
+            })
+            //$('#customerID, #idCarrier, #orderTypeID').Keyup(function () {
+            //    if ($(this).val() != "") {
+            //        $(".error").fadeOut();
+            //        return false;
+            //    }
+            //});
+        });
+    </script>
+
+
+}

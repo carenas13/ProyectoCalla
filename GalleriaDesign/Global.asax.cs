@@ -86,6 +86,15 @@ namespace GalleriaDesign
             {
                 rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserProductioFarms"]));
             }
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["UserOrders"]))
+            {
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserOrders"]));
+            }
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["UserGTH"]))
+            {
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserGTH"]));
+            }
+
 
         }
     }

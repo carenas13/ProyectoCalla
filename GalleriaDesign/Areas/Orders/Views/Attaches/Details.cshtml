@@ -1,0 +1,26 @@
+﻿@model AplicativoPedido.Models.Attach
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Attach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.labelUPC.nameUPC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.labelUPC.nameUPC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.attachID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

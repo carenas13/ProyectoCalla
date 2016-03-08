@@ -174,16 +174,36 @@
                             </a>
                             <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
+                        @{
+                            int idx1 = 0;
+                            foreach (var productBreak in ViewBag.productBreakList)
+                            {
+                                <div class="row">
+                                    <input type="hidden" class="form-control" id="ProblemID"
+                                           name="@string.Format("[{0}].idProductBD", idx1)"
+                                           value=@productBreak.idProductBD>
+                                    <div class="col-md-12">
+                                        <h4>
+                                            @productBreak.description
+                                            <input type="number" id="productBreakDown"
+                                                   name="@string.Format("[{0}].percent", idx1)" style="height: 40px; width: 40px; margin-right: 10px;" />
+                                        </h4>
+                                    </div>
+                                  </div>
+                                    idx1++;
+                              }
+                             }
 
 
-                        <div class="form-group">
-                            <label for="otherProduct" class="col-lg-2 control-label">If Other, then ... Describe </label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" id="otherProduct" name="otherProduct">
-                            </div>
-                        </div>
 
-                    </div>
+                                    <div class="form-group">
+                                        <label for="otherProduct" class="col-lg-2 control-label">If Other, then ... Describe </label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" id="otherProduct" name="otherProduct">
+                                        </div>
+                                    </div>
+
+                                </div>
                     <div class="tab-pane" id="tab2">
 
                         @*// Bunch Program*@

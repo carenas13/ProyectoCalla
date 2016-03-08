@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Applicative_Order.Models.PackingSpecification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.boxType.codeBox)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.foodType.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sleeveType.codSleeveType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.slizeSleeve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.positionSleeve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.positionRubber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BunchPerBox)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.boxType.codeBox)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.foodType.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sleeveType.codSleeveType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.slizeSleeve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.positionSleeve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.positionRubber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BunchPerBox)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.packSpecID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.packSpecID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.packSpecID })
+        </td>
+    </tr>
+}
+
+</table>

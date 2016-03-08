@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Applicative_Order.Models.Farm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create a new type of  Farm</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.country.nameCountry)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.codFarm)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.country.nameCountry)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.codFarm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.farmID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.farmID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.farmID })
+        </td>
+    </tr>
+}
+
+</table>

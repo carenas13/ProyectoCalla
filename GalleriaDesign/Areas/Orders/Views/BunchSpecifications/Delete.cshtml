@@ -1,0 +1,64 @@
+﻿@model Applicative_Order.Models.BunchSpecification
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BunchSpecification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thickness)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thickness)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.defoliation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.defoliation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foliage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foliage)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

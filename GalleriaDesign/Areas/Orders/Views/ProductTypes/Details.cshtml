@@ -1,0 +1,42 @@
+﻿@model Applicative_Order.Models.ProductType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productGalleria.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productGalleria.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberStems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberStems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionProduct)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idProduct }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,74 @@
+﻿@model Applicative_Order.Models.PackingSpecification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PackingSpecification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.boxType.codeBox)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.boxType.codeBox)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foodType.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foodType.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sleeveType.codSleeveType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sleeveType.codSleeveType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slizeSleeve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slizeSleeve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.positionSleeve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.positionSleeve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.positionRubber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.positionRubber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BunchPerBox)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BunchPerBox)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.packSpecID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

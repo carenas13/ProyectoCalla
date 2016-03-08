@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Applicative_Order.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.customer.nitCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orderType.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productGalleria.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idCarrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberStems)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typeDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.measures)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BoxType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BoxNumer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AWB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.protocol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipDateMiami)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.nitCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orderType.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productGalleria.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCarrier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberStems)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.measures)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BoxType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BoxNumer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AWB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.protocol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipDateMiami)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.orderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.orderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.orderID })
+        </td>
+    </tr>
+}
+
+</table>

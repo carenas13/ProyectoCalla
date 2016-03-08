@@ -1,0 +1,71 @@
+﻿@model Applicative_Order.Models.BunchSpecification
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bunchSpecification.length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.packingSpecifications.slizeSleeve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recipe.nameRecipe)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bunchSpecification.length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.packingSpecifications.slizeSleeve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recipe.nameRecipe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.protocolID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.protocolID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.protocolID })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+
+    //$(document).ready(function () {
+    //    $('#rootwizard').bootstrapWizard({ 'nextSelector': '.button-next', 'previousSelector': '.button-previous' });
+    //});
+</script>
+
+<script type=”text/javascript” src="~/Scripts/stacktable.js"></script>
+
+<script type=”text/javascript”>
+    $(document).ready(function() {
+    $('#tabla1').stacktable();
+    });
+
+    alert("Prueba");
+</script>
+}
+
