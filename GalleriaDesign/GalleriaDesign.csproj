@@ -327,10 +327,6 @@
     <Compile Include="Migrations\201602252025285_Initial.Designer.cs">
       <DependentUpon>201602252025285_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603032223596_Initial1.cs" />
-    <Compile Include="Migrations\201603032223596_Initial1.Designer.cs">
-      <DependentUpon>201603032223596_Initial1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Areas\QCGalleria\Models\Emails.cs" />
@@ -764,9 +760,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602252025285_Initial.resx">
       <DependentUpon>201602252025285_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603032223596_Initial1.resx">
-      <DependentUpon>201603032223596_Initial1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductionFarmsMigrations\201603031915476_Initial.resx">
       <DependentUpon>201603031915476_Initial.cs</DependentUpon>

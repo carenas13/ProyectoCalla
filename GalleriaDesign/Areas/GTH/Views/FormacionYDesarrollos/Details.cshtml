@@ -9,84 +9,98 @@
 
 <div>
     <h2>Formacion Y Desarrollo</h2>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombreTema)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombreTema)
-        </dd>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            @*<td><strong>@Html.DisplayNameFor(model => model.nombreTema) </strong></td>*@
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["tema"]</strong></td>
+            <td>@Html.DisplayFor(model => model.nombreTema)</td>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["Fecha"]</strong></td>
+            <td>@Html.DisplayFor(model => model.fecha)</td>
+        </tr>
+        <tr>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["Duracion"]</strong></td>  
+            <td>@Html.DisplayFor(model => model.duracion)</td>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["capacitacionProgramada"]</strong></td>
+            <td>@Html.DisplayFor(model => model.capacitacionProgramada)</td>
+        </tr>
+        <tr>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["objetivoCapactiacion"]</strong>></td>
+            <td>@Html.DisplayFor(model => model.objetivoCapactiacion)</td>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["contenido"]</strong></td>
+            <td>@Html.DisplayFor(model => model.contenido)</td>
+        </tr>
+        <tr>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["Responsable"]</strong></td>
+            <td>@Html.DisplayFor(model => model.responsable)</td>
+            <td><strong>@System.Web.Configuration.WebConfigurationManager.AppSettings["facilitador"]</strong></td>
+            <td>@Html.DisplayFor(model => model.facilitador)</td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
+    </table>
+    <h3>Asistentes</h3>
+    <table  class="table table-striped table-bordered table-responsive" >
+        <tr>
+            <th>
+                <strong>@Html.DisplayName("Numero Identificacion")</strong>
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
+            </th>
+            <th>
+                <strong>@Html.DisplayName("Nombre Asistente")</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayName("Area de trabajo")</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayName("Cargo")</strong>
+            </th>
+      
+        </tr>
+        @foreach (var participante in Model.participante){
 
-        <dt>
-            @Html.DisplayNameFor(model => model.duracion)
-        </dt>
+            <tr>
+                <td>@participante.nmIdentificacion</td>
+                <td>@participante.nombreParticipante</td>
+                <td>@participante.areaDeTrabajo</td>
+                <td>@participante.cargo</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.duracion)
-        </dd>
+            </tr>
+      
 
-        <dt>
-            @Html.DisplayNameFor(model => model.capacitacionProgramada)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.capacitacionProgramada)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.objetivoCapactiacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.objetivoCapactiacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contenido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contenido)
-        </dd>
-   
-    </dl>
-               <div class="row">
-    @{ int idx1 = 0;
-            foreach (var item in Model.archivoAdjunto)
-            {
-                   if (idx1%2 ==0)
-                   {
-
-                       <div class="col-md-6">
-
-                           <img src="@Url.Action("GetImage", new { item.idArchivoAdjunto })" class="img-responsive" />
-                        </div>
-                   }else{
-                   
-                       <div class="col-md-6">
-
-                            <img src="@Url.Action("GetImage", new { item.idArchivoAdjunto })" class="img-responsive" />
-                       </div>
-                   }
-
-
-
-            idx1++;
         }
-    }
+         
+
+
+    </table>
+    <h3>Evidencias Fotograficas</h3>
+               <div class="row">
+                    @{ int idx1 = 0;
+                            foreach (var item in Model.archivoAdjunto)
+                            {
+                                   if (idx1%2 ==0)
+                                   {
+
+                                       <div class="col-md-6">
+
+                                           <img src="@Url.Action("GetImage", new { item.idArchivoAdjunto })" class="img-responsive" />
+                                        </div>
+                                   }else{
+                   
+                                       <div class="col-md-6">
+
+                                            <img src="@Url.Action("GetImage", new { item.idArchivoAdjunto })" class="img-responsive" />
+                                       </div>
+                                   }
+
+
+
+                            idx1++;
+                        }
+                    }
                </div>
 </div>
+<br />
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idFormacionYDesarrollo }) |
-    @Html.ActionLink("Back to List", "Index")
+    
+    @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-info btn-lg" })
 </p>

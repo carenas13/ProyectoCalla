@@ -69,6 +69,20 @@
             </div>
           </div>
 
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(model => model.responsable, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.responsable, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.facilitador, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.facilitador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.facilitador, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
     <h3> Participantes </h3>
     //agregar partipantes
 
@@ -79,19 +93,19 @@
                     <div class="row" id="Participante" name="Participante">
                         <div class="col-md-2">
                             <label> identificacion</label>
-                            <input type="text" id="nmIdentificacion" name="nmIdentificacion" class="form-control" />
+                            <input type="text" id="nmIdentificacion" name="Identificacion" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label> Nombre Participante</label>
-                            <input type="text" id="nombreParticipante" name="nombreParticipante" class="form-control" />
+                            <input type="text" id="nombreParticipante" name="Participante" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label> Area De Trabajo</label>
-                            <input type="text" id="areaDeTrabajo" name="areaDeTrabajo" class="form-control" />
+                            <input type="text" id="areaDeTrabajo" name="Trabajo" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label> Cargo </label>
-                            <input type="text" id="cargo" name="cargo" class="form-control" />
+                            <input type="text" id="cargo" name="cargotrabajo" class="form-control" />
                         </div>
 
                         <div class="col-sm-1 " style="padding-left: 1%;">
@@ -133,18 +147,16 @@
         <div class="form-group">
             <input id="image" name="image" onchange="loadFotos(this)" accept="image/*" type="file" multiple="true" style="width:10px;" capture />
             <div hidden="hidden" id="picture">
-                <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                <canvas id="canvas" name="canvas" class="img-responsive col-md-5"></canvas>
 
                 <input type="hidden" id="foto">
             </div>
-            <div class="row">
+            <div class="row" id="fotos">
 
-                <div class="col-sm-12" id="fotos">
-
-
-
-                </div>
+                
             </div>
+            <br />
+            <br />
             <div class="col-md-12" align="center">
                 <a data-toggle="modal" id="snap1"
                    onclick="takePicture(this)"
@@ -161,7 +173,7 @@
             <div class="row">
                 <div class="row">
                     <div class="col-sm-1" >
-                        <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                        <input type="submit" value="Create" onclick="listarParticipantes()" class="btn btn-primary btn-lg" />
                     </div>
                     <div class="col-sm-1" >
                         @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-info btn-lg" })
@@ -206,7 +218,6 @@
 
                 }
 
-
                 /**Metodo para dibujar varias fotos inputPicture  */
                 function drawOnCanvas(file) {
                     var reader = new FileReader();
@@ -220,7 +231,10 @@
                             canvas.width = 400;
                             canvas.height = 400;                         
                             var canvasFoto = canvas.cloneNode(true);
-                            $("#fotos").append(canvasFoto);
+                          //  var columnaFoto = '<div class="col-sm-6"> </div>';
+                            $("#fotos").append( canvasFoto);
+                          //  $(columnaFoto).append(canvasFoto);
+                           // $("#fotos").append(canvasFoto);
                             $(canvasFoto).attr("id", "fotoFormacion");
                             var ctx1 = canvasFoto.getContext('2d');
                             ctx1.drawImage(img, 0, 0, 400, 400);
@@ -247,9 +261,24 @@
                     $("#formularioParticipantes").append(participante);
 
                 }
+                //Metodo para eliminar un participante
                 function eliminarParticipante(Participante) {
 
                     $(Participante).closest("div[name=Participante]").remove();
+                }
+
+                function listarParticipantes() {
+
+                    $("#formularioParticipantes").find("div[name=Participante]").each(function (ind,participante) {
+
+                        $(participante).find("input[name = Identificacion]").attr("name", "[" + ind + "].nmIdentificacion");
+                        $(participante).find("input[name = Participante]").attr("name", "[" + ind + "].nombreParticipante");
+                        $(participante).find("input[name = Trabajo]").attr("name", "[" + ind + "].areaDeTrabajo");
+                        $(participante).find("input[name = cargotrabajo]").attr("name", "[" + ind + "].cargo");
+
+                    });
+
+
                 }
             </script>
         }

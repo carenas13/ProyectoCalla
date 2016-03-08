@@ -16,6 +16,8 @@ namespace GalleriaDesign.Areas.GTH.Models
         public Boolean capacitacionProgramada { get; set; }
         public string objetivoCapactiacion { get; set; }
         public string contenido { get; set; }
+        public string responsable { get; set; }
+        public string facilitador { get; set; }
 
         public ICollection<ArchivoAdjunto> archivoAdjunto { get; set; }
         public ICollection<Participante> participante { get; set; }
