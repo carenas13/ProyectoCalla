@@ -72,6 +72,9 @@ namespace GalleriaDesign
 
             bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
              "~/Scripts/ProductionFarms/Dimensions.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/georeferenzacion").Include(
+                        "~/Scripts/Supermarket/geo.js"));
         }
     }
 }
