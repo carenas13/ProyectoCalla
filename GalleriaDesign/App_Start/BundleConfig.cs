@@ -27,6 +27,12 @@ namespace GalleriaDesign
                       "~/Content/bootstrap.css",
                       "~/Content/dataTables.bootstrap.min.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/file").Include(
+                      "~/Content/fileinput.min.css",
+                      "~/Content/fileinput.css"
+                      ));
+
             bundles.Add(new ScriptBundle("~/bundles/jasny").Include(
                     "~/Scripts/jasny-bootstrap.js",
                     "~/Scripts/jasny-bootstrap.min.js",
@@ -71,6 +77,10 @@ namespace GalleriaDesign
 
             bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
              "~/Scripts/ProductionFarms/Dimensions.js"));
+
+           
         }
+
+
     }
 }

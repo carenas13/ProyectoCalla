@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = "Details comentario";
     Layout = "~/Areas/QCGalleria/Views/Shared/_Layout.cshtml";
+    @*<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../js/fileinput.min.js" type="text/javascript"></script>*@
 }
 <div id="pdfText">
     <div class="row">
         <div class="col-md-6">
             <h2>QualityReport</h2>
         </div>
-        <!-- lapiz editar comenta-->
+        <!-- lapiz editar Encabezado-->
         <div class="col-md-6">
                 <a data-toggle="modal" class="btn btn-primary pull-right" href="#ModalEditEcabezado" title="Edit">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -164,7 +169,6 @@
             </th>
         </tr>
 
-
         @foreach (var itemType in ViewBag.problemTypeList)
         {
             <tr>
@@ -173,7 +177,6 @@
                         <label>
                             @itemType.descritpionProblem
                         </label>
-
                         @foreach (var item in Model.qualityInspection)
                         {
                             if (item.problem.typeProblemID == itemType.typeProblemID)
@@ -183,14 +186,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="checkbox i-checks">
-
                                                 <h6>
                                                     @item.problem.descritpionProblem
                                                     <input type="checkbox" id="answerInspection"
                                                            name="answerInspection" checked="checked">
                                                     <input type="hidden" id="problemID" name="problemID" value="@item.problem.problemID" />
                                                 </h6>
-
                                             </div>
                                         </div>
                                     </div>
@@ -202,14 +203,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="checkbox i-checks">
-
                                                 <h6>
                                                     @item.problem.descritpionProblem
                                                     <input type="checkbox" id="answerInspection"
                                                            name="answerInspection">
                                                 </h6>
-
-
 
                                             </div>
                                         </div>
@@ -224,8 +222,9 @@
                 </td>
                 <td>
                     <a data-toggle="modal" class="btn btn-primary pull-right" href="#modalProblemType" onclick="editarTypeProblem(this)" title="Edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                   
                     @{ int idx1 = 0;
                         foreach (var item in Model.images)
                         {
@@ -241,31 +240,51 @@
                                 idx1 = 0;
                             }
                         }
+                     
                     }
                 </td>
             </tr>
                         }
-
-
-
     </table>
 </div>
-<p>
-    <h4>
-        COMMENTS/COMENTARIOS:
-    </h4>
-    <label>
-        @Html.DisplayFor(model => model.commentsReport)
-    </label>
-</p>
-<p>
-    <h4>
-        INSPECTED BY:
-    </h4>
-    <label>
-        @Html.DisplayFor(model => model.userInspector)
-    </label>
-</p>
+ 
+<div class="row">
+    <div class="col-md-6">
+       
+    </div>
+    <!-- lapiz editar comentarios-->
+    <div class="col-md-6">
+        <a data-toggle="modal" class="btn btn-primary pull-right" href="#ModalComments" title="Edit">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+    </div>
+</div>
+<table class="table">    
+    <tr>
+        <th>
+            <h4>
+                COMMENTS/COMENTARIOS:
+            </h4>
+        </th>
+        <th>
+            <label>
+                @Html.DisplayFor(model => model.commentsReport)
+            </label>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <h4>
+                INSPECTED BY:
+            </h4>
+        </th>
+        <th>
+            <label>
+                @Html.DisplayFor(model => model.userInspector)
+            </label>
+        </th>
+    </tr>
+</table>
 <p>
     @Html.ActionLink("Back to List", "Index", new { typeReport = Model.reportTypeId }, htmlAttributes: new { @class = "btn btn-primary" })
     @Html.ActionLink("Edit", "Edit", new { id = Model.qualityReportID }, htmlAttributes: new { @class = "btn btn-primary" })
@@ -278,6 +297,8 @@
     </a>
     @Html.HiddenFor(model => model.qualityReportID)
 </p>
+
+
 <!--Modal correo se envio correctamente-->
 <div id="ModalEmail" name="modalQuality" class="modal fade" aria-hidden="true">
     <div class="modal-dialog">
@@ -299,8 +320,38 @@
         </div>
     </div>
 </div>
-<!--Modal editar encabezado-->
 
+<!-- Modal Comentarios   -->
+<div id="ModalComments" name="ModalComments" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("COMMENTS/COMENTARIOS:")
+                    
+                        @Html.EditorFor(model => model.commentsReport, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("INSPECTED BY:")
+                    
+                        @Html.EditorFor(model => model.userInspector, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-azul" onclick="" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editComments()">
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal editar encabezado-->
 <div id="ModalEditEcabezado" name="ModalEditEcabezado" class="modal fade" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -670,7 +721,7 @@
     </div>
 </div>
 
-<!-- modal agregar nuevo destinatario-->
+<!-- modal tipo de problema-->
 
 <div id="modalProblemType" name="modalProblemType" class="modal fade" aria-hidden="true">
     <div class="modal-dialog">
@@ -690,6 +741,17 @@
 
             </div>
             <div class="modal-footer">
+                <a data-toggle="modal" onclick="EditImage(this)" class="btn btn-primary" data-dismiss="modal">
+                    Edit images
+                </a>
+                <a data-toggle="modal" id="snap1"
+                   onclick="takePicture(this)"
+                   title="Take a Picture"
+                   class="btn btn-success  btn-circle btn-lg"
+                   style="background-color: #449D44">
+                    <i class="glyphicon glyphicon-camera"></i>
+                </a>
+
                 <button type="button" class="btn btn-azul" data-dismiss="modal"> Cancel </button>
                 <a data-toggle="modal" onclick="saveProblemType(this)" class="btn btn-primary" data-dismiss="modal">
                     Send
@@ -704,6 +766,7 @@
 @section Scripts {
 
     <script type="text/javascript">
+       
         function enviarHtml() {
 
             var reportCode = $("#qualityReportID").val();
@@ -720,6 +783,7 @@
                 }
             });
         }
+           
         function borrarCampoSendEmai() {
 
             $("#FarmsEmail").val("");
@@ -730,9 +794,21 @@
                 type: 'data', qualityReportID: qualityReportID.value,
                 dateReport: dateReport.value, farmReport: farmReport.value, awbNumber: awbNumber.value, flower: flower.value, customer: customer.value,
                 qty: qty.value, inspectionPlace: inspectionPlace.value
+               
             }, function (result) {
                 if (result.success) {
+                    location.reload(true)
+                }
+            });
+        }
 
+        function editComments() {
+
+            $.post('@Url.Action("editComments")', {
+                type: 'data', commentsReport: commentsReport.value, qualityReportID: qualityReportID.value
+            }, function (result) {
+                if (result.success) {
+                    location.reload(true)
                 }
             });
         }
@@ -754,6 +830,10 @@
             //})
 
             $("#listProblemType").append(listProblem);
+
+        }
+        function EditImage() {
+            alert("y ahora que quieres hacer");
 
         }
         function saveProblemType(BtnSave) {

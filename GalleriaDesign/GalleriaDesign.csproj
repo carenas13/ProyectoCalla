@@ -327,9 +327,9 @@
     <Compile Include="Migrations\201602252025285_Initial.Designer.cs">
       <DependentUpon>201602252025285_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603032223596_Initial1.cs" />
-    <Compile Include="Migrations\201603032223596_Initial1.Designer.cs">
-      <DependentUpon>201603032223596_Initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201603041503170_Initial1.cs" />
+    <Compile Include="Migrations\201603041503170_Initial1.Designer.cs">
+      <DependentUpon>201603041503170_Initial1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -630,6 +630,8 @@
     <None Include="Properties\PublishProfiles\QCGalleria.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Content\fileinput.css" />
+    <Content Include="Content\fileinput.min.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -765,8 +767,8 @@
     <EmbeddedResource Include="Migrations\201602252025285_Initial.resx">
       <DependentUpon>201602252025285_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603032223596_Initial1.resx">
-      <DependentUpon>201603032223596_Initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603041503170_Initial1.resx">
+      <DependentUpon>201603041503170_Initial1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductionFarmsMigrations\201603031915476_Initial.resx">
       <DependentUpon>201603031915476_Initial.cs</DependentUpon>

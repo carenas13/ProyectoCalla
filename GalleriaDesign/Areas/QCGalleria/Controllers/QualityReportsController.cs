@@ -614,7 +614,19 @@ namespace GalleriaDesign.Areas.QCGalleria.Controllers
 
             //  return Json(new { success = true });
         }
-
+        public ActionResult editComments(int qualityReportID,string commentsReport)
+        {
+            QualityReport qualityReport = db.QualityReports.Find(qualityReportID);
+            qualityReport.commentsReport = commentsReport;
+            if (ModelState.IsValid)
+            {
+                db.Entry(qualityReport).State = EntityState.Modified;
+                db.SaveChanges();
+                // return RedirectToAction("Details", new { id= qualityReportID });
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
 
     }
 }
