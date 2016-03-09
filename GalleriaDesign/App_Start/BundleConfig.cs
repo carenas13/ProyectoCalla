@@ -70,6 +70,10 @@ namespace GalleriaDesign
             bundles.Add(new ScriptBundle("~/bundles/QRCode").Include(
                  "~/Scripts/ProductionFarms/qrcode.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ReadQR").Include(
+                 "~/Scripts/ProductionFarms/html5-qrcode.min.js",
+                 "~/Scripts/ProductionFarms/jsqrcode-combined.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
              "~/Scripts/ProductionFarms/Dimensions.js"));
 
