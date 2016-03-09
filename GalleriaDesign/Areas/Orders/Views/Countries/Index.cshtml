@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Applicative_Order.Models.Country>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create a new type of  Country</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nameCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codeCountry)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codeCountry)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.countryID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.countryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.countryID })
+        </td>
+    </tr>
+}
+
+</table>

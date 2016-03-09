@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AplicativoPedido.Models.LabelUPC>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nameUPC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barcodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productCountry)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameUPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.barcodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productCountry)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.labelUPCID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.labelUPCID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.labelUPCID })
+        </td>
+    </tr>
+}
+
+</table>

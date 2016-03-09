@@ -1,0 +1,50 @@
+﻿@model Applicative_Order.Models.Recipe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recipe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productCalla.nameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productCalla.nameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameRecipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameRecipe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberBunch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberBunch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberStemsPerBunch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberStemsPerBunch)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

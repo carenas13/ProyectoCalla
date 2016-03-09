@@ -1,0 +1,66 @@
+﻿@model Applicative_Order.Models.BoxType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BoxType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codeBox)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codeBox)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.high)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.high)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numMaxBunch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numMaxBunch)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.boxTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

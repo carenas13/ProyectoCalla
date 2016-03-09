@@ -2,12 +2,13 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>PlaneBlock</h4>
+    <h4>Dimensions</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,6 +17,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.block.numBlocks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numBed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numBed)
         </dd>
 
         <dt>

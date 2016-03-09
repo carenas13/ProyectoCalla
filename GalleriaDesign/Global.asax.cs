@@ -38,11 +38,11 @@ namespace GalleriaDesign
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var rolManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            var user = userManager.FindByName("galleria@galleriafarms.com");
+            var user = userManager.FindByName(System.Web.Configuration.WebConfigurationManager.AppSettings["superUser"]);
 
-            if (!userManager.IsInRole(user.Id, "SuperAdmin"))
+            if (!userManager.IsInRole(user.Id, System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]))
             {
-                userManager.AddToRole(user.Id, "SuperAdmin");
+                userManager.AddToRole(user.Id, System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]);
             }
 
         }
@@ -50,16 +50,16 @@ namespace GalleriaDesign
         private void createSuperUser(ApplicationDbContext db)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var user = userManager.FindByName("galleria@galleriafarms.com");
+            var user = userManager.FindByName(System.Web.Configuration.WebConfigurationManager.AppSettings["superUser"]);
 
                if(user == null){
                     user = new ApplicationUser
                     {
-                        UserName = "galleria@galleriafarms.com",
-                        Email = "galleria@galleriafarms.com"
+                        UserName = System.Web.Configuration.WebConfigurationManager.AppSettings["superUser"],
+                        Email = System.Web.Configuration.WebConfigurationManager.AppSettings["superUser"]
 
                     };
-                userManager.Create(user,"galleria");
+                userManager.Create(user, System.Web.Configuration.WebConfigurationManager.AppSettings["contrasenaSuperAdmin"]);
                 }
 
         }
@@ -68,22 +68,33 @@ namespace GalleriaDesign
         {
           var rolManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
-            if (!rolManager.RoleExists("SuperAdmin"))
+            //  if (!rolManager.RoleExists("SuperAdmin"))
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"])) 
             {
-                rolManager.Create(new IdentityRole("SuperAdmin"));
+                // rolManager.Create(new IdentityRole("SuperAdmin"));
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]));
             }
-            if (!rolManager.RoleExists("InspectorQC"))
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["InspectorQC"]))
             {
-                rolManager.Create(new IdentityRole("InspectorQC"));
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["InspectorQC"]));
             }
-            if (!rolManager.RoleExists("InspectorSuperMarket"))
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["InspectorSuperMarket"]))
             {
-                rolManager.Create(new IdentityRole("InspectorSuperMarket"));
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["InspectorSuperMarket"]));
             }
-            if (!rolManager.RoleExists("UserProductioFarms"))
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["UserProductioFarms"]))
             {
-                rolManager.Create(new IdentityRole("UserProductioFarms"));
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserProductioFarms"]));
             }
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["UserOrders"]))
+            {
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserOrders"]));
+            }
+            if (!rolManager.RoleExists(System.Web.Configuration.WebConfigurationManager.AppSettings["UserGTH"]))
+            {
+                rolManager.Create(new IdentityRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserGTH"]));
+            }
+
 
         }
     }

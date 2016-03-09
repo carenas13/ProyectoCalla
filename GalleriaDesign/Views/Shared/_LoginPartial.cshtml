@@ -15,28 +15,39 @@
 
 
         </li>
-        @if (User.IsInRole("SuperAdmin") || User.IsInRole("InspectorQC"))
+        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]) || 
+            User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["InspectorQC"]))
         {
             <li>@Html.ActionLink("QCGalleria", "Index", "HomeQCGalleria", new { area = "QCGalleria" }, null)</li>
 
         }
-        @if (User.IsInRole("SuperAdmin") || User.IsInRole("InspectorSuperMarket")) {
+        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]) ||
+            User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["InspectorSuperMarket"])) {
 
             <li>@Html.ActionLink("InspetionSuper Market", "Index", "HomeInspetionSuperMarket", new { area = "InspetionSuperMarket" }, null)</li>
         }
-        @if (User.IsInRole("SuperAdmin") || User.IsInRole("UserProductioFarms")) {
+        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]) ||
+            User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserProductioFarms"])) {
 
             <li>@Html.ActionLink("Production Farms", "Index", "HomeProductionFarms", new { area = "ProductionFarms" }, null)</li>
 
         }
-        @if (User.IsInRole("SuperAdmin") || User.IsInRole("UserGTH"))
+        @if (
+            User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserGTH"]))
         {
 
             <li>@Html.ActionLink("Gestion Humana", "Index", "HomeGTH", new { area = "GTH" }, null)</li>
 
         }
+        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]) ||
+                    User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["UserOrders"]))
+        {
 
-        @if (User.IsInRole("SuperAdmin"))
+            <li>@Html.ActionLink("Orders", "Index", "HomeOrders", new { area = "Orders" }, null)</li>
+
+        }
+
+        @if (User.IsInRole(System.Web.Configuration.WebConfigurationManager.AppSettings["SuperAdmin"]))
         {
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

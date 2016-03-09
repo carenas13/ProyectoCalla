@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Applicative_Order.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create a new type of  Customer</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nitCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nitCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.customerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.customerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.customerID })
+        </td>
+    </tr>
+}
+
+</table>

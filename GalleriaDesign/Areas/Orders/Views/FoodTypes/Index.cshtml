@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Applicative_Order.Models.FoodType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create a new type of  food</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.foodTypeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.foodTypeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.foodTypeID })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

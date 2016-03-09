@@ -27,25 +27,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.idBlocks, "Block", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("idBlocks", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "")
+                @Html.DropDownList("idBlocks", null, htmlAttributes: new { @class = "form-control", @onchange = "selectBlock()" }, optionLabel: "")
                 @Html.ValidationMessageFor(model => model.idBlocks, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.codeBeds, "Bed", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.numBed, "Bed", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.codeBeds, new { htmlAttributes = new { @class = "form-control", @id = "codeBeds" } })
+                @Html.EditorFor(model => model.numBed, new { htmlAttributes = new { @class = "form-control", @onchage = "selectBed()"} })
+                @Html.ValidationMessageFor(model => model.numBed, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
                 @Html.LabelFor(model => model.codeBeds, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.codeBeds, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.codeBeds, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.length, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -61,7 +62,7 @@
                 @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
             </div>
-        </div>        
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -77,9 +78,49 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/CascadingDrop")*@
+
+    <script>
+
+        function Cascading() {
+            //Cascada
+            var IDFarm = $("#idFarms").val();
+            var data_blo = "id=" + $("#idFarms").val();
+            //var B = $("#idBlocks").val();
+            //$.post('@Url.Action("DropdownCascading")', { type: 'data', id: IDFarm }, function (result) {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DropdownCascading")',
+                data: data_blo,
+                dataType: "json",
+                success: function (response) {
+
+                    $("#idBlocks").html("");
+                    var option = "<option>Select Block</option>";
+                    $("#idBlocks").append(option);
+                    $.each(response, function (i, block) {
+                        var option = "<option>" + block.codigoBloque + "</option>";
+                        $("#idBlocks").append(option);
+                    });
+                }
+
+            });
+
+        }
+
+        function selectBlock() {
+            var Blo = $("#idBlocks option:selected").text();
+
+            //var codeb = IDFarm.concat(Blo);
+        }
+
+        //function selectBed() {
+        //    var bed = $("#idBed").val();
+        //}
 
 
+
+    </script>
 
 }
-
-

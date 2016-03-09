@@ -26,13 +26,8 @@ namespace GalleriaDesign
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/dataTables.bootstrap.min.css",
+                      "~/Content/Style1.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/file").Include(
-                      "~/Content/fileinput.min.css",
-                      "~/Content/fileinput.css"
-                      ));
-
             bundles.Add(new ScriptBundle("~/bundles/jasny").Include(
                     "~/Scripts/jasny-bootstrap.js",
                     "~/Scripts/jasny-bootstrap.min.js",
@@ -75,12 +70,15 @@ namespace GalleriaDesign
             bundles.Add(new ScriptBundle("~/bundles/QRCode").Include(
                  "~/Scripts/ProductionFarms/qrcode.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ReadQR").Include(
+                 "~/Scripts/ProductionFarms/html5-qrcode.min.js",
+                 "~/Scripts/ProductionFarms/jsqrcode-combined.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/CascadingDrop").Include(
              "~/Scripts/ProductionFarms/Dimensions.js"));
 
-           
+            bundles.Add(new ScriptBundle("~/bundles/georeferenzacion").Include(
+                        "~/Scripts/Supermarket/geo.js"));
         }
-
-
     }
 }

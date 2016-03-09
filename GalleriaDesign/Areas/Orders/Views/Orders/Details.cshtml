@@ -1,0 +1,138 @@
+﻿@model Applicative_Order.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.nitCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.nitCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orderType.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orderType.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productGalleria.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productGalleria.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idCarrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idCarrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberStems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberStems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.measures)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.measures)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BoxType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoxType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BoxNumer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoxNumer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AWB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AWB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.protocol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.protocol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDateMiami)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipDateMiami)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.orderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

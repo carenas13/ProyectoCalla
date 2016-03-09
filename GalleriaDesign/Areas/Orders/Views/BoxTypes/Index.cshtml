@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Applicative_Order.Models.BoxType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Crear a new type of box</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codeBox)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.high)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numMaxBunch)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codeBox)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.high)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numMaxBunch)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.boxTypeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.boxTypeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.boxTypeID })
+        </td>
+    </tr>
+}
+
+</table>

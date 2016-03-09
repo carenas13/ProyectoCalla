@@ -30,6 +30,7 @@ namespace GalleriaDesign.Areas.GTH.Controllers
             }
             FormacionYDesarrollo formacionYDesarrollo = db.FormacionYDesarrolloes.Find(id);
             formacionYDesarrollo.archivoAdjunto = db.ArchivoAdjuntoes.Where(ad => ad.idFormacionYDesarrollo == id).ToList();
+            formacionYDesarrollo.participante = db.Participantes.Where(p => p.idFormacionYDesarrollo == id).ToList();
 
 
             if (formacionYDesarrollo == null)
@@ -50,7 +51,7 @@ namespace GalleriaDesign.Areas.GTH.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormacionYDesarrollo formacionYDesarrollo, List<string> archivos)
+        public ActionResult Create(FormacionYDesarrollo formacionYDesarrollo, List<string> archivos, List<Participante> participantes)
         {
             List<ArchivoAdjunto> archivosAdjuntos = new List<ArchivoAdjunto>();
             if (archivos!=null) {
@@ -66,6 +67,7 @@ namespace GalleriaDesign.Areas.GTH.Controllers
 
                 }
             }
+            formacionYDesarrollo.participante = participantes;
             formacionYDesarrollo.archivoAdjunto = archivosAdjuntos;
 
             if (ModelState.IsValid)

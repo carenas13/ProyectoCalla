@@ -62,6 +62,8 @@ namespace Supermarket.Models
         public virtual ICollection<AdditionalComents>  additionalComents { get; set; }
 
         public virtual ICollection<ImagesStoreInformation> imagesStoreInformation { get; set; }
+        
+        public virtual ICollection<Store_ProductBreakDown> storeProductBreakDown { get; set; }
 
 
 

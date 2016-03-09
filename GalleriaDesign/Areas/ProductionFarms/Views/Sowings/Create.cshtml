@@ -1,0 +1,208 @@
+﻿@model GalleriaDesign.Areas.ProductionFarms.Models.Sowing
+
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sowing</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="rootwizard">
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a href="#step1" role="tab" data-toggle="tab">step1</a></li>
+                <li><a href="#step2" role="tab" data-toggle="tab">step2</a></li>
+            </ul>
+
+            <div class="progress">
+                <div id="progressBar" class="progress-bar progress-bar-striped">
+                    <div class="bar">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <div class="row">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idFarms, "Farms", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idFarms", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idFarms, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumSowing, "Number Sowing",htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NumSowing, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.NumSowing, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.fecSowing, "Date Sowing",htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.fecSowing, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fecSowing, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.month, "Month",htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.month, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.month, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.weekSowing, "Week",htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.weekSowing, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.weekSowing, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <h1>Create Code Variety Product</h1>
+                </div>
+
+
+
+                <div class="tab-pane" id="step2">
+                    <h1>Step 2: Middle</h1>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fusionCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.fusionCode, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.fusionCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.metersavailable, "Meters Available",htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.metersavailable, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.metersavailable, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.stemsxMeters, "Stems x Meters",htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.stemsxMeters, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.stemsxMeters, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <textarea id="p1" name="msg" rows="4" style="display:none;" cols="5"></textarea><br>
+                    <textarea id="p2" name="msg2" rows="4" style="display:none;" cols="5"></textarea><br>
+
+                    <div id="reader" style="width:300px;height:250px"></div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <ul class="pager wizard">
+                <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
+                @*<li class="first previous"><a href="#" accesskey="f">First</a></li>*@
+                <li class="previous"><a href="#" accesskey="p">&larr; Previous</a></li>
+                @*<li class="last" style="display:none;"><a href="#">Create</a></li>*@
+                <li class="next"><a href="#" accesskey="n">Next &rarr; </a></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+
+        // Se activa la camara por medio de bootstrap y se almacenan los datos.
+        // en los textarea con id p2 y p1, para concatenarlos y crear el codigo
+        // de siembra..........................................................
+
+        $('#reader').html5_qrcode(function (data) {
+            // do something when code is read                
+            $("#p2").val(data);
+            var dat = $("#p2").val();
+            var res = $("#p1").val() + dat;
+            $("#p1").val(res);
+            var concat = $("#p1").val();
+            $("#fusionCode").val(concat);
+        },
+           function (error) {
+               //show read errors 
+               console.log(error);
+           }, function (videoError) {
+               //the video stream could be opened
+               console.log(videoError);
+           }
+           );
+
+        $(document).ready(function () {
+            $('#rootwizard').bootstrapWizard({
+                onNext: function (tab, navigation, index) {
+
+                    if (index == 1) {
+                        $(".error").remove();
+                        // Make sure we entered the name
+                        if (!$('#idFarms').val()) {
+                            //$('#Error').html('Los campos no pueden estar vacios');
+                            //$('#Error').show();
+                            $('#idFarms').focus().after("<span class = 'error'>Enter Farms </span>");
+                            return false;
+                        }
+                        
+                    }
+                },
+
+                onTabShow: function(tab, navigation, index) {
+
+                    // Dynamically change percentage completion on progress bar
+                    var tabCount = navigation.find('li').length;
+                    var current = index+1;
+                    var percentDone = (current/tabCount) * 100;
+                    $('#rootwizard').find('#progressBar').css({width:percentDone+'%'});
+
+                    // Optional: Show Done button when on last tab;
+                    // It is invisible by default.
+                    $('#rootwizard').find('.last').toggle(current >= tabCount);
+
+                    // Optional: Hide Next button if on last tab;
+                    // otherwise it shows but is disabled
+                    $('#rootwizard').find('.next').toggle(current < tabCount);
+                }})
+    });
+
+    </script>
+}

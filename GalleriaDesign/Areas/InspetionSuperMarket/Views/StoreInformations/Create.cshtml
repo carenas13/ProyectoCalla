@@ -1,5 +1,10 @@
 ﻿@model Supermarket.Models.StoreInformation
+@using GalleriaDesign.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
 
+
+           
 @{
     ViewBag.Title = "Create";
 }
@@ -7,32 +12,41 @@
 <h2> Inspection Supermarket</h2>
 
 
-@using (Html.BeginForm())
-{
-@Html.AntiForgeryToken()
-    //<form enctype="multipart/form-data" method="post" action="@Url.Action("Create")">
-
-    <div id="rootwizard">
-
-
-
-        <ul class="nav nav-tabs" role="tablist">
-            <li><a href="#tab1" role="tab" data-toggle="tab">Store information</a></li>
-            <li><a href="#tab2" role="tab" data-toggle="tab">Consumer bunch program</a></li>
-            <li><a href="#tab3" role="tab" data-toggle="tab">Rose program</a></li>
-            <li><a href="#tab4" role="tab" data-toggle="tab">Bouquet program </a></li>
-            <li><a href="#tab5" role="tab" data-toggle="tab">Store Execution</a></li>
-            <li><a href="#tab6" role="tab" data-toggle="tab">Additional Coments</a></li>
-        </ul>
+    @{
+        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+    }
+  
+<input type="hidden" id="inspector2" name="inspector2" value="@currentUser.fullName" />
 
 
-        <div class="progress">
-            <div id="progressBar" class="progress-bar progress-bar-striped">
-                <div class="bar">
-                    <span></span>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        //<form enctype="multipart/form-data" method="post" action="@Url.Action("Create")">
+
+        <div id="rootwizard">
+
+
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a href="#tab1" role="tab" data-toggle="tab">Store information</a></li>
+                <li><a href="#tab2" role="tab" data-toggle="tab">Consumer bunch program</a></li>
+                <li><a href="#tab3" role="tab" data-toggle="tab">Rose program</a></li>
+                <li><a href="#tab4" role="tab" data-toggle="tab">Bouquet program </a></li>
+                <li><a href="#tab5" role="tab" data-toggle="tab">Store Execution</a></li>
+                <li><a href="#tab6" role="tab" data-toggle="tab">Additional Coments</a></li>
+            </ul>
+
+
+            <div class="progress">
+                <div id="progressBar" class="progress-bar progress-bar-striped">
+                    <div class="bar">
+                        <span></span>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
 
@@ -40,905 +54,926 @@
 
 
 
-        <div id="supermarketWizard" class="form-horizontal">
+            <div id="supermarketWizard" class="form-horizontal">
 
 
-            <div class="tab-content" id="formInspectionSupermarket">
-                <div class="tab-pane" id="tab1">
+                <div class="tab-content" id="formInspectionSupermarket">
+                    <div class="tab-pane" id="tab1">
 
 
-                    @*// Store Information*@
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.idRetailer, " Retailer ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idRetailer", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.idRetailer, "", new { @class = "text-danger" })
+                        @*// Store Information*@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idRetailer, " Retailer ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idRetailer", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "")
+                                @Html.ValidationMessageFor(model => model.idRetailer, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.otherRetailer, "Other Retailer", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.otherRetailer, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.otherRetailer, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.otherRetailer, "Other Retailer", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.otherRetailer, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.otherRetailer, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        @Html.LabelFor(model => model.numberStore, "Number Store", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.numberStore, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.numberStore, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.numberStore, "Number Store", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.numberStore, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.numberStore, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.date, "Date", htmlAttributes: new { @class = "control-label col-md-2",@id = "date" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.date, "Date", htmlAttributes: new { @class = "control-label col-md-2", @id = "date" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.city, "City", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.city, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.state, "State", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.state, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.inspector, "Inspector", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.inspector, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.inspector, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.inspector, "Inspector", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.inspector, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.inspector, "", new { @class = "text-danger" })
+
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.idFloralSetup, "Floral Setup", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idFloralSetup", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.idFloralSetup, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idFloralSetup, "Floral Setup", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idFloralSetup", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "")
+                                @Html.ValidationMessageFor(model => model.idFloralSetup, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.fullService, "Full Service", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.fullService, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.fullService, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.fullService, "Full Service", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.fullService, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fullService, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.idFloralDisplay, "Floral Display", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idFloralDisplay", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.idFloralDisplay, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idFloralDisplay, "Floral Display", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idFloralDisplay", null, htmlAttributes: new { @class = "form-control" }, optionLabel: "")
+                                @Html.ValidationMessageFor(model => model.idFloralDisplay, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-            
-                                    
-                    <div hidden="hidden" id="insSupermarket">
-                    
 
-                    </div>
-                    
 
-                                    <div name="inspectionSupermarket" id="inspectionSupermarket">
+                        <div hidden="hidden" id="insSupermarket">
 
-                                        
-                                            <input hidden="hidden" type="text" id="fotoStore" name="fotoStore" />
-                                        
 
-                                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+                        </div>
 
-                                        <a data-toggle="modal" id="snap1"
-                                           onclick="takePicture(this)"
-                                           title="Take a Picture"
-                                           class="btn btn-success  btn-circle btn-lg"
-                                           style="background-color: #449D44">
-                                            <i class="glyphicon glyphicon-camera"></i>
-                                        </a>
-                                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+                            <input hidden="hidden" type="text" id="fotoStore" name="fotoStore" />
+
+
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                        </div>
+                        @{
+                            int idx1 = 0;
+                            foreach (var productBreak in ViewBag.productBreakList)
+                            {
+                                <div class="row">
+                                    <input type="hidden" class="form-control" id="ProblemID"
+                                           name="@string.Format("[{0}].idProductBD", idx1)"
+                                           value=@productBreak.idProductBD>
+                                    <div class="col-md-12">
+                                        <h4>
+                                            @productBreak.description
+                                            <input type="number" id="productBreakDown"
+                                                   name="@string.Format("[{0}].percent", idx1)" style="height: 40px; width: 40px; margin-right: 10px;" />
+                                        </h4>
                                     </div>
-                    
-
-                    <div class="form-group">
-                        <label for="otherProduct" class="col-lg-2 control-label">If Other, then ... Describe </label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherProduct" name="otherProduct">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="tab-pane" id="tab2">
-
-                    @*// Bunch Program*@
-
-                    <div class="form-group">
-                        <label for="descriptionProgram" class="col-lg-2 control-label"> Program description </label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="descriptionProgram" name="descriptionProgram">
-                        </div>
-                    </div>
+                                  </div>
+                                    idx1++;
+                              }
+                             }
 
 
 
+                                    <div class="form-group">
+                                        <label for="otherProduct" class="col-lg-2 control-label">If Other, then ... Describe </label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" id="otherProduct" name="otherProduct">
+                                        </div>
+                                    </div>
 
-                    <div class="form-group">
-                        <label for="retailBP" class="col-lg-2 control-label"> Retail</label>
-                        <div class="col-lg-10">
-                            <input type="number"  step="any" class="form-control" id="retailBP" name="retailBP" >
-                        </div>
-                    </div>
+                                </div>
+                    <div class="tab-pane" id="tab2">
 
+                        @*// Bunch Program*@
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.consumerBunchProgram, "Consumer Bunch Type", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idConsumerBunchType", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="otherBunchType" class="col-lg-2 control-label"> If other, then describe</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherBunchType" name="otherBunchType">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="stemCountBP" class="col-lg-2 control-label"> Stem Count</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="stemCountBP" name="stemCountBP">
-                        </div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.consumerBunchProgram, "Color Enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("colorEnlancedBP", null, htmlAttributes: new { @class = "form-control" })
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.consumerBunchProgram, "Supplier (If available)", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idSupplier", null, htmlAttributes: new { @class = "form-control" })
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.consumerBunchProgram, "Sleeve type ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("sleevetypeBP", null, htmlAttributes: new { @class = "form-control" })
-
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-                    <div class="form-group">
-                        <label for="innerWrapBP" class="col-lg-2 control-label"> Inner Wrap</label>
-
-                        <div class="col-lg-10">
-                            <input type="checkbox" name="innerWrapBP" id="innerWrapBP" />
+                        <div class="form-group">
+                            <label for="descriptionProgram" class="col-lg-2 control-label"> Program description </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="descriptionProgram" name="descriptionProgram">
+                            </div>
                         </div>
 
-                    </div>
-
-                   
-                
-
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
-
-                    
-                            <input  hidden="hidden"  type="text" id="fotoBunchProgram" name="fotoBunchProgram" />
-                       
-
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
-            
-
-                    </div>
-                <div class="tab-pane" id="tab3">
 
 
-                    @*Rose Program*@
 
-
-                    <div class="form-group">
-                        <label for="programDescription" class="col-lg-2 control-label"> Description Program</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="programDescription" name="programDescription">
+                        <div class="form-group">
+                            <label for="retailBP" class="col-lg-2 control-label"> Retail</label>
+                            <div class="col-lg-10">
+                                <input type="number" step="any" class="form-control" id="retailBP" name="retailBP">
+                            </div>
                         </div>
-                    </div>
 
 
-                    <h4> Rose Bunch Retail </h4>
-
-
-                    <div class="form-group">
-                        <label for="bunchRetail" class="col-lg-2 control-label"> Rose Bunch Retail </label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="bunchRetail" name="bunchRetail">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.consumerBunchProgram, "Consumer Bunch Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idConsumerBunchType", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="stemCountRP" class="col-lg-2 control-label"> Rose Stem Count </label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="stemCountRP" name="stemCountRP">
+                        <div class="form-group">
+                            <label for="otherBunchType" class="col-lg-2 control-label"> If other, then describe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherBunchType" name="otherBunchType">
+                            </div>
                         </div>
-                    </div>
 
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Stem Length", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idStemLength", null, htmlAttributes: new { @class = "form-control" })
-
+                        <div class="form-group">
+                            <label for="stemCountBP" class="col-lg-2 control-label"> Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="stemCountBP" name="stemCountBP">
+                            </div>
                         </div>
-                    </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.consumerBunchProgram, "Color Enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("colorEnlancedBP", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.consumerBunchProgram, "Supplier (If available)", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idSupplier", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.consumerBunchProgram, "Sleeve type ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("sleevetypeBP", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
 
 
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Head Size", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idHeadSize", null, htmlAttributes: new { @class = "form-control" })
+
+
+
+                        <div class="form-group">
+                            <label for="innerWrapBP" class="col-lg-2 control-label"> Inner Wrap</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="innerWrapBP" id="innerWrapBP" />
+                            </div>
 
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Supplier(if available)", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("supplierRP", null, htmlAttributes: new { @class = "form-control" })
 
+
+
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+                            <input hidden="hidden" type="text" id="fotoBunchProgram" name="fotoBunchProgram" />
+
+
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
+
+
                     </div>
+                    <div class="tab-pane" id="tab3">
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Sleeve type", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("sleeveRP", null, htmlAttributes: new { @class = "form-control" })
 
+                        @*Rose Program*@
+
+
+                        <div class="form-group">
+                            <label for="programDescription" class="col-lg-2 control-label"> Description Program</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="programDescription" name="programDescription">
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="innerWrapRP" class="col-lg-2 control-label"> Inner Wrap?</label>
+                        <h4> Rose Bunch Retail </h4>
 
-                        <div class="col-lg-10">
-                            <input type="checkbox" name="innerWrapRP" id="innerWrapRP" />
+
+                        <div class="form-group">
+                            <label for="bunchRetail" class="col-lg-2 control-label"> Rose Bunch Retail </label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="bunchRetail" name="bunchRetail">
+                            </div>
                         </div>
-                    </div>
 
-
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
-
-                   
-                            <input  hidden="hidden" type="text" id="fotoRoseProgram"  name="fotoRoseProgram" />
-                        
-
-
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
-
-
-
-
-                    <h4> Rose Bouquet Retail</h4>
-
-                    <div class="form-group">
-                        <label for="retailBouquet" class="col-lg-2 control-label"> Bouquet Retail</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="retailBouquet" name="retailBouquet">
+                        <div class="form-group">
+                            <label for="stemCountRP" class="col-lg-2 control-label"> Rose Stem Count </label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="stemCountRP" name="stemCountRP">
+                            </div>
                         </div>
-                    </div>
 
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Stem Length", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idStemLength", null, htmlAttributes: new { @class = "form-control" })
 
-                    <div class="form-group">
-                        <label for="totalStem" class="col-lg-2 control-label"> Total Stem Count</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="totalStem" name="totalStem">
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="roseStem" class="col-lg-2 control-label"> Rose Stem Count</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="roseStem" name="roseStem">
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Head Size", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idHeadSize", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Roses-color enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("roseColorEnhanced", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Supplier(if available)", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("supplierRP", null, htmlAttributes: new { @class = "form-control" })
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="fillerStemCount" class="col-lg-2 control-label"> Filler Stem Count</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="fillerStemCount" name="fillerStemCount">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Sleeve type", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("sleeveRP", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="otherFiller" class="col-lg-2 control-label"> If other, Then ... Describe</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherFiller" name="otherFiller">
+                        <div class="form-group">
+                            <label for="innerWrapRP" class="col-lg-2 control-label"> Inner Wrap?</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="innerWrapRP" id="innerWrapRP" />
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Are the Filler color enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("FillerColorEnhanced", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="greemsStemCount" class="col-lg-2 control-label"> Green Stem Count</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="greemsStemCount" name="greemsStemCount">
-                        </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="otherGreenType" class="col-lg-2 control-label"> If other, then ... Desribe</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherGreenType" name="otherGreenType">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Are the greens color enhaced ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("greenColorEnhaced", null, htmlAttributes: new { @class = "form-control" })
-
-                        </div>
-                    </div>
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Supplier(if available) ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("supplierRetail", null, htmlAttributes: new { @class = "form-control" })
-
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.roseProgram, "Sleeve type ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("sleeveRetail", null, htmlAttributes: new { @class = "form-control" })
-
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="innerWrapRetail" class="col-lg-2 control-label"> Inner Wrap</label>
-
-                        <div class="col-lg-10">
-                            <input type="checkbox" name="innerWrapRetail" id="innerWrapRetail" />
-                        </div>
-                    </div>
-
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
-
-                       
                             <input hidden="hidden" type="text" id="fotoRoseProgram" name="fotoRoseProgram" />
-                        
-
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
 
 
 
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
-                </div>
-                <div class="tab-pane" id="tab4">
-
-                    @*Bouquet program*@
-
-                    <div class="form-group">
-                        <label for="descriptionProgramBP" class="col-lg-2 control-label"> Description Program</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="descriptionProgramBP" name="descriptionProgramBP">
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="retailBPR" class="col-lg-2 control-label"> Retail</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="retailBPR" name="retailBPR">
+
+
+
+                        <h4> Rose Bouquet Retail</h4>
+
+                        <div class="form-group">
+                            <label for="retailBouquet" class="col-lg-2 control-label"> Bouquet Retail</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="retailBouquet" name="retailBouquet">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="nameBPR" class="col-lg-2 control-label"> Name</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="nameBPR" name="nameBPR">
+
+
+                        <div class="form-group">
+                            <label for="totalStem" class="col-lg-2 control-label"> Total Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="totalStem" name="totalStem">
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="totalstemCountBPR" class="col-lg-2 control-label"> Total Stem Count:</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="totalstemCountBPR" name="totalstemCountBPR">
+                        <div class="form-group">
+                            <label for="roseStem" class="col-lg-2 control-label"> Rose Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="roseStem" name="roseStem">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="focalCountBPR" class="col-lg-2 control-label"> Focal Stem Count:</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="focalCountBPR" name="focalCountBPR">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Roses-color enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("roseColorEnhanced", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="otherFocals" class="col-lg-2 control-label"> If Other, then Describe :</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherFocals" name="otherFocals">
+                        <div class="form-group">
+                            <label for="fillerStemCount" class="col-lg-2 control-label"> Filler Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="fillerStemCount" name="fillerStemCount">
+                            </div>
                         </div>
-                    </div>
 
 
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bouquetProgram, "Focals-Color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("colorEnhacedFocal", null, htmlAttributes: new { @class = "form-control" })
-
+                        <div class="form-group">
+                            <label for="otherFiller" class="col-lg-2 control-label"> If other, Then ... Describe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherFiller" name="otherFiller">
+                            </div>
                         </div>
-                    </div>
 
-
-                    <div class="form-group">
-                        <label for="basicStemCount" class="col-lg-2 control-label"> Basic Stem Count:</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="basicStemCount" name="basicStemCount">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Are the Filler color enhaced", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("FillerColorEnhanced", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
                         </div>
-                    </div>
 
-
-
-                    <div class="form-group">
-                        <label for="otherBasic" class="col-lg-2 control-label">If Other, then Describe</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherBasic" name="otherBasic">
+                        <div class="form-group">
+                            <label for="greemsStemCount" class="col-lg-2 control-label"> Green Stem Count</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="greemsStemCount" name="greemsStemCount">
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bouquetProgram, "Basics-Color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("colorenhacedBasic", null, htmlAttributes: new { @class = "form-control" })
-
+                        <div class="form-group">
+                            <label for="otherGreenType" class="col-lg-2 control-label"> If other, then ... Desribe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherGreenType" name="otherGreenType">
+                            </div>
                         </div>
-                    </div>
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Are the greens color enhaced ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("greenColorEnhaced", null, htmlAttributes: new { @class = "form-control" })
 
-                    <div class="form-group">
-                        <label for="fillerStemCountBP" class="col-lg-2 control-label"> Filler Stem Count:</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="fillerStemCountBP" name="fillerStemCountBP">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="otherFillerBPR" class="col-lg-2 control-label">If Other, then Describe:</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherFillerBPR" name="otherFillerBPR">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Supplier(if available) ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("supplierRetail", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bouquetProgram, "Fillers-Color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("colorEnhacedFiller", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.roseProgram, "Sleeve type ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("sleeveRetail", null, htmlAttributes: new { @class = "form-control" })
 
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="greensStemCount" class="col-lg-2 control-label"> Green Stem Count:</label>
-                        <div class="col-lg-10">
-                            <input type="number" class="form-control" id="greensStemCount" name="greensStemCount">
+                        <div class="form-group">
+                            <label for="innerWrapRetail" class="col-lg-2 control-label"> Inner Wrap</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="innerWrapRetail" id="innerWrapRetail" />
+                            </div>
                         </div>
-                    </div>
 
-                    @*green type*@
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                    <div class="form-group">
-                        <label for="otherGreenTypeBP" class="col-lg-2 control-label">If Other, then Describe:</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="otherGreenTypeBP" name="otherGreenTypeBP">
+
+                            <input hidden="hidden" type="text" id="fotoRoseProgram" name="fotoRoseProgram" />
+
+
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
+
+
+
+
                     </div>
+                    <div class="tab-pane" id="tab4">
 
+                        @*Bouquet program*@
 
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bouquetProgram, "Greens-color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("colorEnhacedGreen", null, htmlAttributes: new { @class = "form-control" })
-
+                        <div class="form-group">
+                            <label for="descriptionProgramBP" class="col-lg-2 control-label"> Description Program</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="descriptionProgramBP" name="descriptionProgramBP">
+                            </div>
                         </div>
-                    </div>
 
-
-                    <div class="form-group">
-                        <label for="pick" class="col-lg-2 control-label"> Pick</label>
-
-                        <div class="col-lg-10">
-                            <input type="checkbox" name="pick" id="pick" />
+                        <div class="form-group">
+                            <label for="retailBPR" class="col-lg-2 control-label"> Retail</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="retailBPR" name="retailBPR">
+                            </div>
                         </div>
-                    </div>
 
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bouquetProgram, "Suplier (if available) ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("supplierBPR", null, htmlAttributes: new { @class = "form-control" })
-
+                        <div class="form-group">
+                            <label for="nameBPR" class="col-lg-2 control-label"> Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="nameBPR" name="nameBPR">
+                            </div>
                         </div>
-                    </div>
 
 
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bouquetProgram, "Sleeve type ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("sleeveBPR", null, htmlAttributes: new { @class = "form-control" })
-
+                        <div class="form-group">
+                            <label for="totalstemCountBPR" class="col-lg-2 control-label"> Total Stem Count:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="totalstemCountBPR" name="totalstemCountBPR">
+                            </div>
                         </div>
-                    </div>
 
-
-
-                    <div class="form-group">
-                        <label for="innerWrapBPR" class="col-lg-2 control-label">  Inner Wrap ?  </label>
-
-                        <div class="col-lg-10">
-                            <input type="checkbox" name="btnCheck" id="innerWrapBPR" />
+                        <div class="form-group">
+                            <label for="focalCountBPR" class="col-lg-2 control-label"> Focal Stem Count:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="focalCountBPR" name="focalCountBPR">
+                            </div>
                         </div>
-                    </div>
 
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
-                        
-                        
-                        
+                        <div class="form-group">
+                            <label for="otherFocals" class="col-lg-2 control-label"> If Other, then Describe :</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherFocals" name="otherFocals">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bouquetProgram, "Focals-Color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("colorEnhacedFocal", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="basicStemCount" class="col-lg-2 control-label"> Basic Stem Count:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="basicStemCount" name="basicStemCount">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="otherBasic" class="col-lg-2 control-label">If Other, then Describe</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherBasic" name="otherBasic">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bouquetProgram, "Basics-Color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("colorenhacedBasic", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="fillerStemCountBP" class="col-lg-2 control-label"> Filler Stem Count:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="fillerStemCountBP" name="fillerStemCountBP">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otherFillerBPR" class="col-lg-2 control-label">If Other, then Describe:</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherFillerBPR" name="otherFillerBPR">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bouquetProgram, "Fillers-Color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("colorEnhacedFiller", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="greensStemCount" class="col-lg-2 control-label"> Green Stem Count:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="greensStemCount" name="greensStemCount">
+                            </div>
+                        </div>
+
+                        @*green type*@
+
+                        <div class="form-group">
+                            <label for="otherGreenTypeBP" class="col-lg-2 control-label">If Other, then Describe:</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="otherGreenTypeBP" name="otherGreenTypeBP">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bouquetProgram, "Greens-color Enhaced? ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("colorEnhacedGreen", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="pick" class="col-lg-2 control-label"> Pick</label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="pick" id="pick" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bouquetProgram, "Suplier (if available) ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("supplierBPR", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bouquetProgram, "Sleeve type ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("sleeveBPR", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="innerWrapBPR" class="col-lg-2 control-label">  Inner Wrap ?  </label>
+
+                            <div class="col-lg-10">
+                                <input type="checkbox" name="btnCheck" id="innerWrapBPR" />
+                            </div>
+                        </div>
+
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+
                             <input hidden="hidden" type="text" id="fotoBouquetProgram" name="fotoBouquetProgram" />
-                        
-
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
 
 
-                </div>
-                <div class="tab-pane" id="tab5">
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
-                    @*StoreExecutions*@
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Overall Store Execution  grade", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idOverallFloral", null, htmlAttributes: new { @class = "form-control" })
-
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
+
+
                     </div>
+                    <div class="tab-pane" id="tab5">
 
+                        @*StoreExecutions*@
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Overall Store Execution  grade", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idOverallFloral", null, htmlAttributes: new { @class = "form-control" })
 
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Flower Perfomance", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idFlowerPerformance", null, htmlAttributes: new { @class = "form-control" })
-
+                            </div>
                         </div>
-                    </div>
 
-                       <div name="inspectionSupermarket" id="inspectionSupermarket">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Flower Perfomance", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idFlowerPerformance", null, htmlAttributes: new { @class = "form-control" })
 
-                           
-                       
-                               <input  hidden="hidden" type="text"  id="fotoStoreExecution" name="fotoStoreExecution" />
-                        
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
-
-
-
-
-
-
-
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Pull Dates", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idPullDates", null, htmlAttributes: new { @class = "form-control" })
-
+                            </div>
                         </div>
-                    </div>
 
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
+                        @*<div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                   
-                            <input type="text"  hidden="hidden" id="fotoStoreExecution" name="fotoStoreExecution" />
-                   
+                                <input hidden="hidden" type="text" id="StoreExecution" name="StoreExecution" />
+                                <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                                <a data-toggle="modal" id="snap1"
+                                   onclick="takePicture(this)"
+                                   title="Take a Picture"
+                                   class="btn btn-success  btn-circle btn-lg"
+                                   style="background-color: #449D44">
+                                    <i class="glyphicon glyphicon-camera"></i>
+                                </a>
+                                <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                            </div>*@
 
 
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
 
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Water Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idWaterTemperature", null, htmlAttributes: new { @class = "form-control" })
+                            <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
 
+
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Water State", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idWaterState", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Pull Dates", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idPullDates", null, htmlAttributes: new { @class = "form-control" })
 
+                            </div>
                         </div>
-                    </div>
+
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
 
 
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
+                            <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
 
-                     
-                            <input hidden="hidden"  type="text" id="fotoStoreExecution" name="fotoStoreExecution" />
-               
-
-
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Cooler Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idCoolerTemperature", null, htmlAttributes: new { @class = "form-control" })
-
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
-                    </div>
 
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                            <input hidden="hidden" type="text" id="fotoStoreExecution" name="fotoStoreExecution" />
-                  
 
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Water Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idWaterTemperature", null, htmlAttributes: new { @class = "form-control" })
 
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Exposure to sunlight", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idExposureClimate", null, htmlAttributes: new { @class = "form-control" })
-
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.storeExecution, "Exposure to draft", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("exposureDraft", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Water State", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idWaterState", null, htmlAttributes: new { @class = "form-control" })
 
+                            </div>
                         </div>
-                    </div>
-
-                    <div name="inspectionSupermarket" id="inspectionSupermarket">
-
-                       
-                            <input hidden="hidden" type="text" id="fotoStoreExecution" name="fotoStoreExecution" />
-                    
-
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
-
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="otherCommentsExecution" class="col-md-2 control-label">Other Store execution comments</label>
-                        <div class="col-md-10">
-                     
 
 
-                            <textarea id="otherCommentsExecution" name="otherCommentsExecution" maxlength="255" class="form-control"> </textarea>
 
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+                            <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
                         </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Cooler Temperature", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idCoolerTemperature", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+                            <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Exposure to sunlight", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idExposureClimate", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.storeExecution, "Exposure to draft", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("exposureDraft", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
+
+
+                            <input hidden="hidden" type="text" id="FStoreExecution" name="FStoreExecution" />
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="otherCommentsExecution" class="col-md-2 control-label">Other Store execution comments</label>
+                            <div class="col-md-10">
+
+
+
+                                <textarea id="otherCommentsExecution" name="otherCommentsExecution" maxlength="255" class="form-control"> </textarea>
+
+                            </div>
+                        </div>
+
+
                     </div>
-
-                   
-
-                </div>
                     <div class="tab-pane" id="tab6">
                         <div class="form-group">
                             <label for="comentsAdditional" class="col-md-2 control-label">Additional comments</label>
                             <div class="col-md-10">
-                              
+
                                 <textarea id="comentsAdditional" name="comentsAdditional" maxlength="255" class="form-control"> </textarea>
-                          
+
                             </div>
                         </div>
-                        
 
 
-                          <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                           
-                       
-                               <input  hidden="hidden" type="text"  id="fotoStoreExecution" name="fotoStoreExecution" />
-                        
-                        <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+                        <div name="inspectionSupermarket" id="inspectionSupermarket">
 
-                        <a data-toggle="modal" id="snap1"
-                           onclick="takePicture(this)"
-                           title="Take a Picture"
-                           class="btn btn-success  btn-circle btn-lg"
-                           style="background-color: #449D44">
-                            <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                        <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+
+
+                            <input hidden="hidden" type="text" id="fotosAdditionalComents" name="fotosAdditionalComents" />
+
+                            <input id="imageDisplay" hidden="hidden" name="image" onchange="loadFotos(this)" accept="image/*" type="file" capture />
+
+                            <a data-toggle="modal" id="snap1"
+                               onclick="takePicture(this)"
+                               title="Take a Picture"
+                               class="btn btn-success  btn-circle btn-lg"
+                               style="background-color: #449D44">
+                                <i class="glyphicon glyphicon-camera"></i>
+                            </a>
+                            <canvas id="canvas" name="canvas" class="img-responsive"></canvas>
+                        </div>
+
+                        <input type="submit" value="Create" class="btn btn-default" Onclick="isTrue()" />
+
+
+
+
                     </div>
-
-                        <input type="submit" value="Create" class="btn btn-default" />
 
                     <ul class="pager wizard">
                         <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
                         <li class="first previous"><a href="#" accesskey="f">First</a></li>
                         <li class="previous"><a href="#" accesskey="p">Previous</a></li>
-                        <li class="last" style="display:none;"><a href="#">Done</a></li>
+                        @*<li class="last" style="display:none;"><a href="#">Done</a></li>*@
 
                         <li class="next"><a href="#" accesskey="n">Next</a></li>
                     </ul>
-
-
-                        </div>
                 </div>
 
 
+            </div>
+
         </div>
 
-    </div>
-
-}
+    }
 
 
     <div>
@@ -946,52 +981,142 @@
     </div>
 
     @section Scripts {
+
+
         @Scripts.Render("~/bundles/jqueryval")
-      <script type="text/javascript">
+        <script type="text/javascript">
+
+            
+
+            (function () {
 
 
-          $(document).ready(function () {
+                var content = document.getElementById("geolocation-test");
+                if (navigator.geolocation) {
 
-              var fecha = new Date();
-              var day = fecha.getDate();
-              var month = fecha.getMonth() + 1;
-              var year = fecha.getFullYear();
+                    navigator.geolocation.getCurrentPosition(function (objPosition) {
 
-              if (day.valueOf() < 10) {
-                  day = "0" + day;
+                        var lon = objPosition.coords.longitude;
+                        var lat = objPosition.coords.latitude;
 
-              }
-              if (month.valueOf() < 10) {
-                  month = "0" + month;
-              }
-        
-              $("#date").val(year + "-" + month + "-" + day);
+                        
 
-          });
+                        var latlng = new google.maps.LatLng(lat, lon);
+                        geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({ "latLng": latlng }, function (results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                if (results[0]) {
+                                    dir = "<p><strong>Dirección: </strong>" + results[0].formatted_address + "</p>";
+                                    dir1 = "<p><strong>Dirección: </strong>" + results[1].formatted_address + "</p>";
+                                    dir2 =  results[2].formatted_address ;
+                                    dir3 = results[3].formatted_address ;
+
+                                    $("#city").val(dir2);
+                                    $("#state").val(dir3);
+                              
+
+                                }
+                                else {
+                                    dir = "<p>No se ha podido obtener ninguna dirección en esas coordenadas.  </p>";
+                                }
+                            }
+                            else {
+                                dir = "<p>El Servicio de Codificación Geográfica ha fallado con el siguiente error: " + status + ".</p>";
+                            }
+                            content.innerHTML = dir + dir1 + dir2 + dir3 + dir4 + dir5;
+                        });
+                    },
+
+                    function (objPositionError) {
+                        switch (objPositionError.code) {
+                            case objPositionError.PERMISSION_DENIED:
+                                content.innerHTML = "No se ha permitido el acceso a la posición del usuario.";
+                                break;
+                            case objPositionError.POSITION_UNAVAILABLE:
+                                content.innerHTML = "No se ha podido acceder a la información de su posición.";
+                                break;
+                            case objPositionError.TIMEOUT:
+                                content.innerHTML = "El servicio ha tardado demasiado tiempo en responder.";
+                                break;
+                            default: content.innerHTML = "Error desconocido.";
+                        }
+                    }, {
+                        maximumAge: 75000,
+                        timeout: 15000
+                    });
+                } else { content.innerHTML = "Su navegador no soporta la API de geolocalización."; }
+            })();
+
 
             $(document).ready(function () {
+
+                var fecha = new Date();
+                var day = fecha.getDate();
+                var month = fecha.getMonth() + 1;
+                var year = fecha.getFullYear();
+                $("#inspector").val($("#inspector2").val());
+                if (day.valueOf() < 10) {
+                    day = "0" + day;
+
+                }
+                if (month.valueOf() < 10) {
+                    month = "0" + month;
+                }
+
+                $("#date").val(year + "-" + month + "-" + day);
+
+            });
+
+
+            $(document).ready(function () {
+
+
                 $('#rootwizard').bootstrapWizard({
+                    onNext: function (tab, navigation, index) {
+
+                        if (index == 1) {
+                            $(".error").remove();
+                            if (!$('#idRetailer').val()) {
+                                $('#idRetailer').focus().after("<span class='error'>Enter a retailer</span>");
+                                return false;
+                            }
+                            else if (!$('#numberStore').val()) {
+                                $('#numberStore').focus().after("<span class='error'>Enter a Number Store</span>");
+                                return false;
+                            }
+
+                            else if (!$('#idFloralSetup').val()) {
+                                $('#idFloralSetup').focus().after("<span class='error '>Enter a Floral Setup </span>");
+                                return false;
+                            }
+
+                            else if (!$('#idFloralDisplay').val()) {
+                                $('#idFloralDisplay').focus().after("<span class='error'>Enter a Floral Display </span>");
+                                return false;
+                            }
+
+                        }
+
+                    },
 
 
+
+                    // Dynamically change percentage completion on progress bar
                     onTabShow: function (tab, navigation, index) {
-
-                        // Dynamically change percentage completion on progress bar
                         var tabCount = navigation.find('li').length;
                         var current = index + 1;
                         var percentDone = (current / tabCount) * 100;
                         $('#rootwizard').find('#progressBar').css({ width: percentDone + '%' });
-
-                        // Optional: Show Done button when on last tab;
-                        // It is invisible by default.
-                        $('#rootwizard').find('.last').toggle(current >= tabCount);
-
-                        // Optional: Hide Next button if on last tab;
-                        // otherwise it shows but is disabled
-                        $('#rootwizard').find('.next').toggle(current < tabCount);
                     }
-                });
+                })
+                //$('#customerID, #idCarrier, #orderTypeID').Keyup(function () {
+                //    if ($(this).val() != "") {
+                //        $(".error").fadeOut();
+                //        return false;
+                //    }
+                //});
             });
-</script>
+        </script>
 
 
 

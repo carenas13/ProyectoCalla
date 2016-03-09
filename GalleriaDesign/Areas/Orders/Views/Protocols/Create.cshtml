@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@model  Applicative_Order.Models.ClassCreateProtocol
+
+
+
+@using (Html.BeginForm())
+{
+
+ 
+              <div id ="rootwizard">
+
+                  <ul class="nav nav-tabs" role="tablist">
+                      <li><a href="#step1" role="tab" data-toggle="tab">Bunch Specification</a></li>
+                      <li><a href="#step2" role="tab" data-toggle="tab">Packing Specification</a></li>
+                      <li><a href="#step3" role="tab" data-toggle="tab"> Recipe</a></li>
+                  </ul>
+                 
+                  <div class="progress">
+                      <div id="progressBar" class="progress-bar progress-bar-striped">
+                          <div class="bar">
+                              <span></span>
+
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-content">
+                      <div class="tab-pane active" id="step1">
+                          <h1>Bunch Specification</h1>
+
+                          
+                      </div>
+                      <div class="tab-pane" id="step2">
+                          <h1>Packing Specification</h1>
+                      </div>
+                      <div class="tab-pane" id="step3">
+                       
+                          <h1>Recipe</h1>
+
+
+                      </div>
+
+                      <ul class="pager wizard">
+                          <!-- These show as disabled on first tab. Add style="display:none;" to make the First button disappear when first tab.	  -->
+                          <li class="first previous"><a href="#" accesskey="f">First</a></li>
+                          <li class="previous"><a href="#" accesskey="p">Previous</a></li>
+                          <li class="last" style="display:none;"><a href="#">Done</a></li>
+                          <li class="next"><a href="#" accesskey="n">Next</a></li>
+                      </ul>	
+                  </div>
+               </div>
+
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+     $(document).ready(function () {
+
+
+            $('#rootwizard').bootstrapWizard({
+                onNext: function (tab, navigation, index) {
+
+                    if (index ==  1) {
+                        // Make sure we entered the name
+                        //if (!$('#customerID').val()) {
+
+                        //    $("#cusID").removeAttr("hidden");
+                        //    //alert('Ingrese el Nombre');
+                        //    $('#customerID').focus();
+                        //    //$('#customerID').text('Ingrese el Nombre')
+                        //    return false;
+                        //}
+                      
+                    }
+                },
+
+
+                // Dynamically change percentage completion on progress bar
+                onTabShow: function (tab, navigation, index) {
+                    var tabCount = navigation.find('li').length;
+                    var current = index + 1;
+                    var percentDone = (current / tabCount) * 100;
+                    $('#rootwizard').find('#progressBar').css({ width: percentDone + '%' });
+                }
+            })
+     });
+
+</script>
+}

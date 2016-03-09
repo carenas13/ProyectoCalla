@@ -92,7 +92,9 @@ namespace GalleriaDesign.Areas.InspetionSuperMarket.Controllers
             ViewBag.idExposureClimate = new SelectList(db.ExposureClimates, "idExposureClimate", "description");
             ViewBag.exposureDraft = new SelectList(db.ExposureClimates, "idExposureClimate", "description");
 
-            ViewData["fecha"] = DateTime.Now.ToString();
+            ViewBag.productBreakList = db.ProductBreackDowns.ToList();
+
+           // ViewData["fecha"] = DateTime.Now.ToString();
 
             return View();
         }
@@ -103,7 +105,11 @@ namespace GalleriaDesign.Areas.InspetionSuperMarket.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreInformation storeInformation , ConsumerBunchProgram consumerBunch,
-            RoseProgram roseProgram, BouquetProgram bouquetProgram, StoreExecution storeExecution, AdditionalComents additionalComents, List<ImageTypeStoreInformation> imagetypeStoreInformation, List<ImageTypeBunchProgram> imagetypeBunchProgram,List<ImageTypeRoseProgram> imageTypeRoseProgram, List<ImagesTypeBouquetProgram> imageTypeBouquetProgram,List<ImageTypeStoreExecutions> imageTypeStoreExecution, List<ImageTypeAdditionalComents> imageTypeAdditionalComments)
+            RoseProgram roseProgram, BouquetProgram bouquetProgram,StoreExecution storeExecution, AdditionalComents additionalComents, 
+            List<ImageTypeStoreInformation> imagetypeStoreInformation, List<ImageTypeBunchProgram> imagetypeBunchProgram,
+            List<ImageTypeRoseProgram> imageTypeRoseProgram, List<ImagesTypeBouquetProgram> imageTypeBouquetProgram,
+            List<ImageTypeStoreExecutions> imageTypeStoreExecution, List<ImageTypeAdditionalComents> imageTypeAdditionalComments,
+            List<Store_ProductBreakDown> storeProductBreakDown)
         {
 
             //Cbp:ConsumerBunchProgram  //Rp: RoseProgram //Bp: BouquetProgra //Se: Store Execution //Ac: Additional Comentarios
@@ -132,33 +138,133 @@ namespace GalleriaDesign.Areas.InspetionSuperMarket.Controllers
 
             List<ImagesStoreInformation> listImageStoreInformation = new List<ImagesStoreInformation>();
             List<ImagesBunchProgram> listImageBunchProgram = new List<ImagesBunchProgram>();
+            List<ImagesRoseProgram> listImageRoseProgram = new List<ImagesRoseProgram>();
+            List<ImagesBouquetProgram> listImageBouquetProgram = new List<ImagesBouquetProgram>();
+            List<ImagesStoreExecution> listImageStoreExecution = new List<ImagesStoreExecution>();
+            List<ImagesAdditionalComents> listImageAdditional = new List<ImagesAdditionalComents>();
+
 
             foreach (ImageTypeStoreInformation imagen in imagetypeStoreInformation)
             {
                 if (imagen.foto != null)
                 {
-                    // string pictureNew = imagen.image.Substring("data:image/png;base64,".Length);
-
-                    // string typePro = foto.Substring(foto.Length - 1);
-                    // pictureNew = pictureNew.Substring(0, pictureNew.Length - 1);
-
                     string type = string.Empty;
                     type = "image/jpeg";
                     var buffer = Convert.FromBase64String(imagen.foto);
-
                     ImagesStoreInformation imageSave = new ImagesStoreInformation();
-
-                    //imageSave.problemType = db.ProblemTypes.Find(imagen.typeImage);
-                    //  var buffer = pictureNew.Replace(" ", "+");
                     imageSave.image = buffer;
                     listImageStoreInformation.Add(imageSave);
                 }
+            }
 
+            foreach (ImageTypeBunchProgram imagen in imagetypeBunchProgram)
+            {
+                if (imagen.fotoTypeBunchProgram != null)
+                {
+                    string type = string.Empty;
+                    type = "image/jpeg";
+                    var buffer = Convert.FromBase64String(imagen.fotoTypeBunchProgram);
+                    ImagesBunchProgram imageSave = new ImagesBunchProgram();
+                    imageSave.image = buffer;
+                    listImageBunchProgram.Add(imageSave);
 
+                }
+            }
+
+            foreach (ImageTypeRoseProgram imagen in imageTypeRoseProgram)
+            {
+                if (imagen.fotoTypeRoseProgram != null)
+                {
+                    string type = string.Empty;
+                    type = "image/jpeg";
+                    var buffer = Convert.FromBase64String(imagen.fotoTypeRoseProgram);
+                    ImagesRoseProgram imageSave = new ImagesRoseProgram();
+                    imageSave.image = buffer;
+                    listImageRoseProgram.Add(imageSave);
+
+                }
+            }
+
+            foreach (ImagesTypeBouquetProgram imagen in imageTypeBouquetProgram)
+            {
+                if (imagen.fotoTypeBouquetProgram != null)
+                {
+                    string type = string.Empty;
+                    type = "image/jpeg";
+                    var buffer = Convert.FromBase64String(imagen.fotoTypeBouquetProgram);
+                    ImagesBouquetProgram imageSave = new ImagesBouquetProgram();
+                    imageSave.image = buffer;
+                    listImageBouquetProgram.Add(imageSave);
+
+                }
+            }
+
+            foreach (ImageTypeStoreExecutions imagen in imageTypeStoreExecution)
+            {
+                if (imagen.fotoTypeStoreExecutions != null)
+                {
+                    string type = string.Empty;
+                    type = "image/jpeg";
+                    var buffer = Convert.FromBase64String(imagen.fotoTypeStoreExecutions);
+                    ImagesStoreExecution imageSave = new ImagesStoreExecution();
+                    imageSave.image = buffer;
+                    listImageStoreExecution.Add(imageSave);
+
+                }
+            }
+
+            foreach (ImageTypeAdditionalComents imagen in imageTypeAdditionalComments)
+            {
+                if (imagen.fotoTypeAdditionalComments != null)
+                {
+                    string type = string.Empty;
+                    type = "image/jpeg";
+                    var buffer = Convert.FromBase64String(imagen.fotoTypeAdditionalComments);
+                    ImagesAdditionalComents imageSave = new ImagesAdditionalComents();
+                    imageSave.image = buffer;
+                    listImageAdditional.Add(imageSave);
+
+                }
             }
 
 
+         
+
+            storeInformation.storeProductBreakDown = storeProductBreakDown;
             storeInformation.imagesStoreInformation = listImageStoreInformation;
+
+
+            // Se agrega lista de imagenes a Buch Program
+            consumerBunch.imagesBunchProgram = listImageBunchProgram;
+            List<ConsumerBunchProgram> consumerBunches = new List<ConsumerBunchProgram>();
+            consumerBunches.Add(consumerBunch);
+            storeInformation.consumerBunchProgram = consumerBunches;
+
+            // Se agrega lista de imagenes a Rose Program
+            roseProgram.imagesRoseProgam = listImageRoseProgram;
+            List<RoseProgram> rosePrograms = new List<RoseProgram>();
+            rosePrograms.Add(roseProgram);
+            storeInformation.roseProgram = rosePrograms;
+
+            //Se agrega lista de imagenes a Bouque Program
+            bouquetProgram.imagesBouquetProgam = listImageBouquetProgram;
+            List<BouquetProgram> bouquetPrograms = new List<BouquetProgram>();
+            bouquetPrograms.Add(bouquetProgram);
+            storeInformation.bouquetProgram = bouquetPrograms;
+
+            //  Se agrega lista de imagenes a Executions Program
+
+            storeExecution.imagesStoreExecution = listImageStoreExecution;
+            List<StoreExecution> storeExecutions = new List<StoreExecution>();
+            storeExecutions.Add(storeExecution);
+            storeInformation.storeExecution = storeExecutions;
+
+            //Se agrega lista de imagenes a AdditionalComments Program
+            additionalComents.imagesAdditionalComents = listImageAdditional;
+            List<AdditionalComents> additionalsComents = new List<AdditionalComents>();
+            additionalsComents.Add(additionalComents);
+            storeInformation.additionalComents = additionalsComents;
+
 
             if (ModelState.IsValid)
             {

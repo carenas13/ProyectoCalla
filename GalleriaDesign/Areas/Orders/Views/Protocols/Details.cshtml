@@ -1,0 +1,42 @@
+﻿@model Applicative_Order.Models.Protocol
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Protocol</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bunchSpecification.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bunchSpecification.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.packingSpecifications.slizeSleeve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.packingSpecifications.slizeSleeve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recipe.nameRecipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recipe.nameRecipe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.protocolID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
